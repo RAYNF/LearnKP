@@ -27,9 +27,10 @@ class _SplashScreenState extends State<SplashScreen> {
             Text(
               "PantauSemar",
               style: GoogleFonts.poppins(
-                  fontSize: 24,
+                  fontSize : 24,
                   fontWeight: FontWeight.w700,
-                  color: Color(0xffD93A3A)),
+                  color:Color(0xffD93A3A)
+                  ),
             )
           ],
         ),
