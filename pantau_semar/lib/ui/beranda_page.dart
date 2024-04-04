@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pantau_semar/ui/welcome_page.dart';
 import 'package:pantau_semar/utils/Theme.dart';
 
 class Beranda extends StatefulWidget {
@@ -11,31 +12,99 @@ class Beranda extends StatefulWidget {
 }
 
 class _BerandaState extends State<Beranda> {
-  int _selectedIndex = 0;
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
-  //halaman tampil
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-    ),
-    Text(
-      'Index 1: Business',
-    ),
-    Text(
-      'Index 2: School',
-    ),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(color: Color(0xffADADAD)),
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Container(
+                      width: 80,
+                      height: 80,
+                      child: Image.asset(
+                        "assets/logo_appbar.png",
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      "PantauSemar",
+                      style: heading.copyWith(color: danger),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.home,
+                color: danger,
+              ),
+              title: Text(
+                "Beranda",
+                style: subHeading.copyWith(color: danger),
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, Beranda.routeName);
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.info,
+                color: danger,
+              ),
+              title: Text(
+                "Tentang",
+                style: subHeading.copyWith(color: danger),
+              ),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.help,
+                color: danger,
+              ),
+              title: Text(
+                "Bantuan",
+                style: subHeading.copyWith(color: danger),
+              ),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.settings,
+                color: danger,
+              ),
+              title: Text(
+                "Settings",
+                style: subHeading.copyWith(color: danger),
+              ),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.notifications,
+                color: danger,
+              ),
+              title: Text(
+                "Notifications",
+                style: subHeading.copyWith(color: danger),
+              ),
+              onTap: () {},
+            ),
+          ],
+        ),
+      ),
       backgroundColor: danger,
       appBar: AppBar(
         backgroundColor: danger,
@@ -58,6 +127,17 @@ class _BerandaState extends State<Beranda> {
             )
           ],
         ),
+        leading: Builder(builder: (context) {
+          return IconButton(
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+            icon: Icon(
+              Icons.menu,
+              color: primary,
+            ),
+          );
+        }),
         actions: [
           Padding(
             padding: EdgeInsets.all(4),
@@ -68,53 +148,6 @@ class _BerandaState extends State<Beranda> {
           ),
         ],
         //belum bisa buka drawer
-      ),
-      drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text('Drawer Header'),
-            ),
-            ListTile(
-              title: const Text('Home'),
-              selected: _selectedIndex == 0,
-              onTap: () {
-                // Update the state of the app
-                _onItemTapped(0);
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Business'),
-              selected: _selectedIndex == 1,
-              onTap: () {
-                // Update the state of the app
-                _onItemTapped(1);
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('School'),
-              selected: _selectedIndex == 2,
-              onTap: () {
-                // Update the state of the app
-                _onItemTapped(2);
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
       ),
       body: SafeArea(
           child: ListView(
@@ -128,8 +161,11 @@ class _BerandaState extends State<Beranda> {
                 height: screenSize.height,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16), color: primary),
-                child: Center(
-                  child: _widgetOptions[_selectedIndex],
+                child: Padding(
+                  padding: EdgeInsets.all(20),
+                  child: ListView(
+                    children: [Text("hai")],
+                  ),
                 ),
               ),
             ],
