@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:pantau_semar/widget/weather_widget.dart';
 import 'package:pantau_semar/utils/Theme.dart';
 import 'package:pantau_semar/widget/customscrollablecolumnitem_widget.dart';
 
@@ -314,6 +315,30 @@ class _BerandaState extends State<Beranda> {
                           "Perkiraan Cuaca Kota Semarang",
                           style: text.copyWith(color: danger),
                         ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: danger,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(20),
+                            child: WeartherPage(),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "CCTV Lalu Lintas",
+                          style: text.copyWith(color: danger),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container()
                       ],
                     ),
                   ),

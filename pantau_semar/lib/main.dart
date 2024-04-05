@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pantau_semar/ui/beranda_page.dart';
 import 'package:pantau_semar/ui/splashScreen_page.dart';
+import 'package:pantau_semar/widget/weather_widget.dart';
 import 'package:pantau_semar/ui/welcome_page.dart';
 
 void main() {
@@ -20,7 +21,8 @@ class MyApp extends StatelessWidget {
       routes: {
         SplashScreen.routeName: (context) => SplashScreen(),
         Welcome.routeName: (context) => Welcome(),
-        Beranda.routeName: (context) => Beranda()
+        Beranda.routeName: (context) => Beranda(),
+       
       },
     );
   }
