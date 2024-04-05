@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pantau_semar/ui/beranda_page.dart';
+import 'package:pantau_semar/ui/coba.dart';
+import 'package:pantau_semar/ui/coba2.dart';
 import 'package:pantau_semar/ui/splashScreen_page.dart';
 import 'package:pantau_semar/ui/welcome_page.dart';
 
@@ -16,12 +18,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      initialRoute: Beranda.routeName,
-      routes: {
-        SplashScreen.routeName: (context) => SplashScreen(),
-        Welcome.routeName: (context) => Welcome(),
-        Beranda.routeName: (context) => Beranda()
-      },
+      home: coba(),
+      // initialRoute: SplashScreen.routeName,
+      // routes: {
+      //   SplashScreen.routeName: (context) => SplashScreen(),
+      //   Welcome.routeName: (context) => Welcome(),
+      //   Beranda.routeName: (context) => Beranda()
+      // },
     );
   }
 }
