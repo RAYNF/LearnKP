@@ -59,6 +59,30 @@ class _BerandaState extends State<Beranda> {
             ))
         .toList();
 
+    int _currentIndex = 0;
+
+    List<String> _texts = [
+      "KYAI SALEH",
+      "ABDURAHMAN SALEH",
+      "SIMPANG LIMA",
+      "BALAI KOTA"
+    ];
+
+    void _startRotating() {
+      Future.delayed(Duration(seconds: 1), () {
+        setState(() {
+          _currentIndex = (_currentIndex + 1) % _texts.length;
+          _startRotating();
+        });
+      });
+    }
+
+    @override
+    void initState() {
+      super.initState();
+      _startRotating();
+    }
+
     return Scaffold(
       drawer: Drawer(
         child: ListView(
@@ -194,159 +218,175 @@ class _BerandaState extends State<Beranda> {
         ],
         //belum bisa buka drawer
       ),
-      body: SafeArea(
-        child: ListView(
-          children: [
-            SizedBox(
-              height: 15,
-            ),
-            Column(
-              children: [
-                Container(
-                  height: screenSize.height,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16), color: primary),
-                  child: Padding(
-                    padding: EdgeInsets.all(20),
-                    child: ListView(
-                      children: [
-                        Container(
-                          child: CarouselSlider(
-                              options: CarouselOptions(
-                                  enlargeCenterPage: true,
-                                  height: 200,
-                                  autoPlay: true),
-                              items: imageSliders),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+      body: ListView(
+        children: [
+          SizedBox(
+            height: 15,
+          ),
+          Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+                color: primary),
+            child: Padding(
+              padding: EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  Container(
+                    child: CarouselSlider(
+                        options: CarouselOptions(
+                            enlargeCenterPage: true,
+                            height: 200,
+                            autoPlay: true),
+                        items: imageSliders),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Mau Lihat CCTV Apa ?",
+                        style: text.copyWith(color: danger),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        "Mulai jelajahi kota semarang sekarang",
+                        style: text.copyWith(color: muted),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    child: Padding(
+                      padding: EdgeInsets.all(20),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
                           children: [
-                            Text(
-                              "Mau Lihat CCTV Apa ?",
-                              style: text.copyWith(color: danger),
+                            CustomScrollableColumnItem(
+                              icon: Icons.traffic,
+                              text: 'Lalu lintas',
+                              onTap: () {
+                                // Handler when item is tapped
+                                print('Item tapped');
+                              },
                             ),
                             SizedBox(
-                              height: 10,
+                              width: 20,
                             ),
-                            Text(
-                              "Mulai jelajahi kota semarang sekarang",
-                              style: text.copyWith(color: muted),
-                            )
+                            CustomScrollableColumnItem(
+                              icon: Icons.house,
+                              text: 'Fasum',
+                              onTap: () {
+                                // Handler when item is tapped
+                                print('Item tapped');
+                              },
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            CustomScrollableColumnItem(
+                              icon: Icons.landscape,
+                              text: 'Kota lama',
+                              onTap: () {
+                                // Handler when item is tapped
+                                print('Item tapped');
+                              },
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            CustomScrollableColumnItem(
+                              icon: Icons.water,
+                              text: 'Sungai',
+                              onTap: () {
+                                // Handler when item is tapped
+                                print('Item tapped');
+                              },
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            CustomScrollableColumnItem(
+                              icon: Icons.shield,
+                              text: 'Kamtib',
+                              onTap: () {
+                                // Handler when item is tapped
+                                print('Item tapped');
+                              },
+                            ),
                           ],
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Container(
-                          child: Padding(
-                            padding: EdgeInsets.all(20),
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
-                                children: [
-                                  CustomScrollableColumnItem(
-                                    icon: Icons.traffic,
-                                    text: 'Lalu lintas',
-                                    onTap: () {
-                                      // Handler when item is tapped
-                                      print('Item tapped');
-                                    },
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  CustomScrollableColumnItem(
-                                    icon: Icons.house,
-                                    text: 'Fasum',
-                                    onTap: () {
-                                      // Handler when item is tapped
-                                      print('Item tapped');
-                                    },
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  CustomScrollableColumnItem(
-                                    icon: Icons.landscape,
-                                    text: 'Kota lama',
-                                    onTap: () {
-                                      // Handler when item is tapped
-                                      print('Item tapped');
-                                    },
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  CustomScrollableColumnItem(
-                                    icon: Icons.water,
-                                    text: 'Sungai',
-                                    onTap: () {
-                                      // Handler when item is tapped
-                                      print('Item tapped');
-                                    },
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  CustomScrollableColumnItem(
-                                    icon: Icons.shield,
-                                    text: 'Kamtib',
-                                    onTap: () {
-                                      // Handler when item is tapped
-                                      print('Item tapped');
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          width: screenSize.width,
-                          decoration: BoxDecoration(
-                              color: danger,
-                              borderRadius: BorderRadius.circular(16)),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          "Perkiraan Cuaca Kota Semarang",
-                          style: text.copyWith(color: danger),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            color: danger,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.all(20),
-                            child: WeartherPage(),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          "CCTV Lalu Lintas",
-                          style: text.copyWith(color: danger),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Container()
-                      ],
+                      ),
+                    ),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        color: danger, borderRadius: BorderRadius.circular(16)),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "Perkiraan Cuaca Kota Semarang",
+                    style: text.copyWith(color: danger),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: danger,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.all(20),
+                      child: WeartherPage(),
                     ),
                   ),
-                ),
-              ],
-            )
-          ],
-        ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "CCTV Lalu Lintas",
+                        style: text.copyWith(color: danger),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Lihat Selengkapnya",
+                          style: textSm.copyWith(color: muted),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: danger,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.all(20),
+                      child: WeartherPage(),
+                    ),
+                  ),
+                  Text("hai")
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
