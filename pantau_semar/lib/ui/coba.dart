@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pantau_semar/utils/Theme.dart';
 
+      // Seputar Kota Semarang
+
 class coba extends StatelessWidget {
   const coba({super.key});
 
@@ -54,7 +56,7 @@ class coba extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Text(
-        'Semarang Tawang',
+        'Lorem Ipsum',
         style: heading.copyWith(color: Colors.black ),
       ),
     );
