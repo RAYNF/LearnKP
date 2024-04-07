@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:pantau_semar/widget/weather_widget.dart';
@@ -231,6 +232,7 @@ class _BerandaState extends State<Beranda> {
             child: Padding(
               padding: EdgeInsets.all(20),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     child: CarouselSlider(
@@ -371,17 +373,43 @@ class _BerandaState extends State<Beranda> {
                   SizedBox(
                     height: 10,
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: danger,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(20),
-                      child: WeartherPage(),
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      height: 60,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: danger,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(20),
+                        child: DefaultTextStyle(
+                            style: text.copyWith(color: primary),
+                            child: AnimatedTextKit(animatedTexts: [
+                              FadeAnimatedText("KYAI SALEH"),
+                              FadeAnimatedText("ABDRURAHMAN SALEH"),
+                              FadeAnimatedText("SIMPANG LIMA"),
+                              FadeAnimatedText("TUGU MUDA"),
+                              FadeAnimatedText("BALAI KOTA"),
+                              FadeAnimatedText("SURATMO"),
+                              FadeAnimatedText("SAMPANGAN"),
+                              FadeAnimatedText("TEMBALANG"),
+                            ])),
+                      ),
                     ),
                   ),
-                  Text("hai")
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "Seputar Kota Semarang",
+                    style: text.copyWith(color: danger),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  )
+                  
                 ],
               ),
             ),
