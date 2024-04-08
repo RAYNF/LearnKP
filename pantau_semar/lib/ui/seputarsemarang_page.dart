@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-
 import 'package:pantau_semar/utils/Theme.dart';
 import 'package:pantau_semar/widget/buttonbantuan_widget.dart';
 import 'package:pantau_semar/widget/menusamping_widget.dart';
 
-class Bantuan extends StatefulWidget {
-  static const routeName = '/bantuan';
-  const Bantuan({super.key});
+class SeputarSemarang extends StatefulWidget {
+  static const routeName = '/seputar-semarang';
+  const SeputarSemarang({super.key});
 
   @override
-  State<Bantuan> createState() => _BantuanState();
+  State<SeputarSemarang> createState() => _SeputarSemarangState();
 }
 
-class _BantuanState extends State<Bantuan> {
+class _SeputarSemarangState extends State<SeputarSemarang> {
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -50,26 +49,7 @@ class _BantuanState extends State<Bantuan> {
               padding: EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ButtonBantuan(
-                      icon: Icons.email,
-                      text: "semarangpemkot@semarangkota.go.id",
-                      onTap: () {}),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  ButtonBantuan(
-                      icon: Icons.call,
-                      text: "(024) 3513366 - 3515871",
-                      onTap: () {}),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  ButtonBantuan(
-                      icon: Icons.map,
-                      text: "Jl. Pemuda No. 148 Semarang",
-                      onTap: () {}),
-                ],
+                children: [Text("semarang")],
               ),
             ),
           ),
@@ -78,7 +58,3 @@ class _BantuanState extends State<Bantuan> {
     );
   }
 }
-
-
-
-

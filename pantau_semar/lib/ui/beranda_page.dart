@@ -1,7 +1,8 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:pantau_semar/data/model/newslist_model.dart';
+import 'package:pantau_semar/widget/animatedtexttrafic_widget.dart';
+import 'package:pantau_semar/widget/listbuildernews_widget.dart';
 import 'package:pantau_semar/widget/menusamping_widget.dart';
 import 'package:pantau_semar/widget/weather_widget.dart';
 import 'package:pantau_semar/utils/Theme.dart';
@@ -19,8 +20,6 @@ class Beranda extends StatefulWidget {
 class _BerandaState extends State<Beranda> {
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
-
     final List<String> imgList = [
       'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
       'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
@@ -61,37 +60,6 @@ class _BerandaState extends State<Beranda> {
               ),
             ))
         .toList();
-
-    int _currentIndex = 0;
-
-    List<String> _texts = [
-      "KYAI SALEH",
-      "ABDURAHMAN SALEH",
-      "SIMPANG LIMA",
-      "BALAI KOTA"
-      "THAMRIN",
-      "MILO",
-      "BANKONG",
-      "KALIBANTENG",
-      "KARIADI",
-      "GAYAMSARI",
-      "ANJASMORO"
-    ];
-
-    void _startRotating() {
-      Future.delayed(Duration(seconds: 1), () {
-        setState(() {
-          _currentIndex = (_currentIndex + 1) % _texts.length;
-          _startRotating();
-        });
-      });
-    }
-
-    @override
-    void initState() {
-      super.initState();
-      _startRotating();
-    }
 
     return Scaffold(
       drawer: MenuSamping(),
@@ -306,17 +274,9 @@ class _BerandaState extends State<Beranda> {
                       child: Padding(
                         padding: EdgeInsets.all(20),
                         child: DefaultTextStyle(
-                            style: text.copyWith(color: primary),
-                            child: AnimatedTextKit(animatedTexts: [
-                              FadeAnimatedText("KYAI SALEH"),
-                              FadeAnimatedText("ABDRURAHMAN SALEH"),
-                              FadeAnimatedText("SIMPANG LIMA"),
-                              FadeAnimatedText("TUGU MUDA"),
-                              FadeAnimatedText("BALAI KOTA"),
-                              FadeAnimatedText("SURATMO"),
-                              FadeAnimatedText("SAMPANGAN"),
-                              FadeAnimatedText("TEMBALANG"),
-                            ])),
+                          style: text.copyWith(color: primary),
+                          child: AnimatedTextTrafic(),
+                        ),
                       ),
                     ),
                   ),
@@ -343,71 +303,16 @@ class _BerandaState extends State<Beranda> {
                     height: 20,
                   ),
                   Container(
-                    decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.vertical(top: Radius.circular(20))),
-                    width: double.infinity,
-                    height: 218,
-                    child: ListView.builder(
-                        itemCount: newsListSemarang.length,
-                        itemBuilder: (context, index) {
-                          final newsList berita = newsListSemarang[index];
-                          return Column(
-                            children: [
-                              InkWell(
-                                onTap: () {},
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: danger,
-                                  ),
-                                  width: double.infinity,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        height: 120,
-                                        width: double.infinity,
-                                        child: Image.network(berita.urlImage,
-                                            fit: BoxFit.fill),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.all(10),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              berita.judul,
-                                              style: textSm.copyWith(
-                                                  color: primary),
-                                            ),
-                                            SizedBox(
-                                              height: 10,
-                                            ),
-                                            Text(
-                                              berita.tanggal,
-                                              style: textSm.copyWith(
-                                                  color: primary),
-                                            )
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 20,
-                              )
-                            ],
-                          );
-                        }),
-                  )
+                      decoration: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.vertical(top: Radius.circular(20))),
+                      width: double.infinity,
+                      height: 218,
+                      child: ListBuilderNews(
+                          itemList: newsListSemarang,
+                          onTap: (item) {
+                            print(item.judul);
+                          }))
                 ],
               ),
             ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pantau_semar/ui/bantuan_page.dart';
 import 'package:pantau_semar/ui/beranda_page.dart';
+import 'package:pantau_semar/ui/seputarsemarang_page.dart';
 import 'package:pantau_semar/ui/splashScreen_page.dart';
 import 'package:pantau_semar/ui/tentang_page.dart';
 import 'package:pantau_semar/widget/weather_widget.dart';
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
         Welcome.routeName: (context) => Welcome(),
         Beranda.routeName: (context) => Beranda(),
         Bantuan.routeName: (context) => Bantuan(),
-        Tentang.routeName: (context) => Tentang()
+        Tentang.routeName: (context) => Tentang(),
+        SeputarSemarang.routeName: (context) => SeputarSemarang()
       },
     );
   }
