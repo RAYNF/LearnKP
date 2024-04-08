@@ -69,6 +69,13 @@ class _BerandaState extends State<Beranda> {
       "ABDURAHMAN SALEH",
       "SIMPANG LIMA",
       "BALAI KOTA"
+      "THAMRIN",
+      "MILO",
+      "BANKONG",
+      "KALIBANTENG",
+      "KARIADI",
+      "GAYAMSARI",
+      "ANJASMORO"
     ];
 
     void _startRotating() {

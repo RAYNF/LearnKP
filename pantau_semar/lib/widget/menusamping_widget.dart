@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pantau_semar/ui/bantuan_page.dart';
 import 'package:pantau_semar/ui/beranda_page.dart';
+import 'package:pantau_semar/ui/tentang_page.dart';
 import 'package:pantau_semar/utils/Theme.dart';
 
 class MenuSamping extends StatelessWidget {
@@ -58,7 +60,9 @@ class MenuSamping extends StatelessWidget {
               "Tentang",
               style: subHeading.copyWith(color: danger),
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, Tentang.routeName);
+            },
           ),
           ListTile(
             leading: Icon(
@@ -69,7 +73,9 @@ class MenuSamping extends StatelessWidget {
               "Bantuan",
               style: subHeading.copyWith(color: danger),
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, Bantuan.routeName);
+            },
           ),
           ListTile(
             leading: Icon(
