@@ -2,6 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:pantau_semar/data/model/newslist_model.dart';
+import 'package:pantau_semar/widget/menusamping_widget.dart';
 import 'package:pantau_semar/widget/weather_widget.dart';
 import 'package:pantau_semar/utils/Theme.dart';
 import 'package:pantau_semar/widget/customscrollablecolumnitem_widget.dart';
@@ -86,95 +87,7 @@ class _BerandaState extends State<Beranda> {
     }
 
     return Scaffold(
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(color: Color(0xffADADAD)),
-              child: Stack(
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                      width: 80,
-                      height: 80,
-                      child: Image.asset(
-                        "assets/logo_appbar.png",
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      "PantauSemar",
-                      style: heading.copyWith(color: danger),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.home,
-                color: danger,
-              ),
-              title: Text(
-                "Beranda",
-                style: subHeading.copyWith(color: danger),
-              ),
-              onTap: () {
-                Navigator.pushNamed(context, Beranda.routeName);
-              },
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.info,
-                color: danger,
-              ),
-              title: Text(
-                "Tentang",
-                style: subHeading.copyWith(color: danger),
-              ),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.help,
-                color: danger,
-              ),
-              title: Text(
-                "Bantuan",
-                style: subHeading.copyWith(color: danger),
-              ),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.settings,
-                color: danger,
-              ),
-              title: Text(
-                "Settings",
-                style: subHeading.copyWith(color: danger),
-              ),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.notifications,
-                color: danger,
-              ),
-              title: Text(
-                "Notifications",
-                style: subHeading.copyWith(color: danger),
-              ),
-              onTap: () {},
-            ),
-          ],
-        ),
-      ),
+      drawer: MenuSamping(),
       backgroundColor: danger,
       appBar: AppBar(
         backgroundColor: danger,
@@ -403,14 +316,29 @@ class _BerandaState extends State<Beranda> {
                   SizedBox(
                     height: 20,
                   ),
-                  Text(
-                    "Seputar Kota Semarang",
-                    style: text.copyWith(color: danger),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Seputar Kota Semarang",
+                        style: text.copyWith(color: danger),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Lihat Selengkapnya",
+                          style: textSm.copyWith(color: muted),
+                        ),
+                      )
+                    ],
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   Container(
+                    decoration: BoxDecoration(
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(20))),
                     width: double.infinity,
                     height: 218,
                     child: ListView.builder(
