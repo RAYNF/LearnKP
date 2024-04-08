@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:pantau_semar/data/model/newslist_model.dart';
 import 'package:pantau_semar/widget/weather_widget.dart';
 import 'package:pantau_semar/utils/Theme.dart';
 import 'package:pantau_semar/widget/customscrollablecolumnitem_widget.dart';
@@ -407,9 +408,71 @@ class _BerandaState extends State<Beranda> {
                     style: text.copyWith(color: danger),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 20,
+                  ),
+                  Container(
+                    width: double.infinity,
+                    height: 218,
+                    child: ListView.builder(
+                        itemCount: newsListSemarang.length,
+                        itemBuilder: (context, index) {
+                          final newsList berita = newsListSemarang[index];
+                          return Column(
+                            children: [
+                              InkWell(
+                                onTap: () {},
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: danger,
+                                  ),
+                                  width: double.infinity,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        height: 120,
+                                        width: double.infinity,
+                                        child: Image.network(berita.urlImage,
+                                            fit: BoxFit.fill),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.all(10),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              berita.judul,
+                                              style: textSm.copyWith(
+                                                  color: primary),
+                                            ),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            Text(
+                                              berita.tanggal,
+                                              style: textSm.copyWith(
+                                                  color: primary),
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              )
+                            ],
+                          );
+                        }),
                   )
-                  
                 ],
               ),
             ),
