@@ -38,5 +38,13 @@ var newsListSemarang = [
       description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       urlImage:
+          "https://akcdn.detik.net.id/community/media/visual/2019/07/05/58c300ad-d49f-4b0b-afda-055f755a7401.jpeg?w=700&q=90"),
+  newsList(
+      author: "detikInet",
+      judul: "Seberapa Berguna Kipas Angin di Cuaca Panas",
+      tanggal: "2024-04-07",
+      description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      urlImage:
           "https://akcdn.detik.net.id/community/media/visual/2019/07/05/58c300ad-d49f-4b0b-afda-055f755a7401.jpeg?w=700&q=90")
 ];

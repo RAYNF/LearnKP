@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pantau_semar/ui/bantuan_page.dart';
 import 'package:pantau_semar/ui/beranda_page.dart';
-import 'package:pantau_semar/ui/seputarsemarang_page.dart';
+import 'package:pantau_semar/ui/detailnews_page.dart';
 import 'package:pantau_semar/ui/splashScreen_page.dart';
 import 'package:pantau_semar/ui/tentang_page.dart';
-import 'package:pantau_semar/widget/weather_widget.dart';
 import 'package:pantau_semar/ui/welcome_page.dart';
 
 void main() {
@@ -20,14 +19,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      initialRoute: Beranda.routeName,
+      initialRoute: DetailNews.routeName,
       routes: {
         SplashScreen.routeName: (context) => SplashScreen(),
         Welcome.routeName: (context) => Welcome(),
         Beranda.routeName: (context) => Beranda(),
         Bantuan.routeName: (context) => Bantuan(),
         Tentang.routeName: (context) => Tentang(),
-        SeputarSemarang.routeName: (context) => SeputarSemarang()
+        DetailNews.routeName: (context) => DetailNews()
       },
     );
   }

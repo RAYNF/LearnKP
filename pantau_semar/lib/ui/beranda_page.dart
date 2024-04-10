@@ -307,7 +307,7 @@ class _BerandaState extends State<Beranda> {
                           borderRadius:
                               BorderRadius.vertical(top: Radius.circular(20))),
                       width: double.infinity,
-                      height: 218,
+                      height: 800,
                       child: ListBuilderNews(
                           itemList: newsListSemarang,
                           onTap: (item) {
