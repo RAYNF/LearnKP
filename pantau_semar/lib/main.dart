@@ -19,15 +19,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      initialRoute: DetailNews.routeName,
-      routes: {
-        SplashScreen.routeName: (context) => SplashScreen(),
-        Welcome.routeName: (context) => Welcome(),
-        Beranda.routeName: (context) => Beranda(),
-        Bantuan.routeName: (context) => Bantuan(),
-        Tentang.routeName: (context) => Tentang(),
-        DetailNews.routeName: (context) => DetailNews()
-      },
+      // initialRoute: Beranda.routeName,
+      // routes: {
+      //   SplashScreen.routeName: (context) => SplashScreen(),
+      //   Welcome.routeName: (context) => Welcome(),
+      //   Beranda.routeName: (context) => Beranda(),
+      //   Bantuan.routeName: (context) => Bantuan(),
+      //   Tentang.routeName: (context) => Tentang(),
+      //   DetailNews.routeName: (context) => DetailNews()
+      // },
+      home: Beranda(),
     );
   }
 }

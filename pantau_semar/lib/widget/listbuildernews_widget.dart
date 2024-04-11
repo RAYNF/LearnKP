@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:pantau_semar/data/model/newslist_model.dart';
+import 'package:pantau_semar/ui/detailnews_page.dart';
 
 class ListBuilderNews extends StatelessWidget {
   final List<dynamic> itemList;
-  final Function onTap;
-  ListBuilderNews({super.key, required this.itemList, required this.onTap});
+  // final Function onTap;
+  ListBuilderNews({super.key, required this.itemList});
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: itemList.length,
       itemBuilder: (context, index) {
-        final item = itemList[index];
+        final newsList item = itemList[index];
         return Column(
           children: [
             InkWell(
               onTap: () {
-                onTap(item);
+                Navigator.push(context,MaterialPageRoute(builder: (context){
+                    return DetailNews(data: item,);
+                }));
               },
               child: Container(
                 decoration: BoxDecoration(

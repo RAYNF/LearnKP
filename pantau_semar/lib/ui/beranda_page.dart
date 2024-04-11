@@ -309,10 +309,8 @@ class _BerandaState extends State<Beranda> {
                       width: double.infinity,
                       height: 800,
                       child: ListBuilderNews(
-                          itemList: newsListSemarang,
-                          onTap: (item) {
-                            print(item.judul);
-                          }))
+                        itemList: newsListSemarang,
+                      ))
                 ],
               ),
             ),
