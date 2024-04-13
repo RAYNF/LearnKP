@@ -212,6 +212,17 @@ class _BerandaState extends State<Beranda> {
                                 print('Item tapped');
                               },
                             ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            CustomScrollableColumnItem(
+                              icon: Icons.water_drop,
+                              text: 'Genangan',
+                              onTap: () {
+                                // Handler when item is tapped
+                                print('Item tapped');
+                              },
+                            ),
                           ],
                         ),
                       ),

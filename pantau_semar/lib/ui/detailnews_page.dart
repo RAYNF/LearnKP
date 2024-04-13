@@ -4,8 +4,8 @@ import 'package:pantau_semar/utils/Theme.dart';
 import 'package:pantau_semar/widget/menusamping_widget.dart';
 
 class DetailNews extends StatefulWidget {
-   static const routeName = '/detail-news';
-   final newsList data;
+  static const routeName = '/detail-news';
+  final newsList data;
   const DetailNews({super.key, required this.data});
 
   @override
@@ -17,24 +17,18 @@ class _DetailNewsState extends State<DetailNews> {
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
-      drawer: MenuSamping(),
       backgroundColor: danger,
       appBar: AppBar(
-        backgroundColor: danger,
-        centerTitle: true,
-        title: Text("Bantuan", style: heading.copyWith(color: primary)),
-        leading: Builder(builder: (context) {
-          return IconButton(
+          backgroundColor: danger,
+          centerTitle: true,
+          title: Text("Bantuan", style: heading.copyWith(color: primary)),
+          leading: IconButton(
             onPressed: () {
-              Scaffold.of(context).openDrawer();
+              Navigator.pop(context);
             },
-            icon: Icon(
-              Icons.menu,
-              color: primary,
-            ),
-          );
-        }),
-      ),
+            icon: Icon(Icons.arrow_back),
+            color: primary,
+          )),
       body: ListView(
         children: [
           SizedBox(
@@ -51,13 +45,52 @@ class _DetailNewsState extends State<DetailNews> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                 Text(widget.data.judul)
+                  Text(
+                    widget.data.judul,
+                    textAlign: TextAlign.center,
+                    style: subHeading.copyWith(color: danger),
+                  ),
+                  SizedBox(height: 10),
+                  Container(
+                    width: double.infinity,
+                    height: screenSize.height / 3,
+                    child: Image.network(widget.data.urlImage),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    widget.data.tanggal,
+                    style: textSm.copyWith(color: danger),
+                    textAlign: TextAlign.start,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    widget.data.description,
+                    style: text.copyWith(color: danger),
+                    textAlign: TextAlign.justify,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        widget.data.author,
+                        style: textSm.copyWith(color: danger),
+                        textAlign: TextAlign.center,
+                      )
+                    ],
+                  )
                 ],
               ),
             ),
           ),
         ],
       ),
-    );;
+    );
   }
 }
