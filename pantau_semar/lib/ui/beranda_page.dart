@@ -4,6 +4,7 @@ import 'package:pantau_semar/data/model/newslist_model.dart';
 import 'package:pantau_semar/widget/animatedtexttrafic_widget.dart';
 import 'package:pantau_semar/widget/listbuildernews_widget.dart';
 import 'package:pantau_semar/widget/menusamping_widget.dart';
+import 'package:pantau_semar/widget/optionpopupmenu_widget.dart';
 import 'package:pantau_semar/widget/weather_widget.dart';
 import 'package:pantau_semar/utils/Theme.dart';
 import 'package:pantau_semar/widget/customscrollablecolumnitem_widget.dart';
@@ -164,8 +165,38 @@ class _BerandaState extends State<Beranda> {
                               icon: Icons.traffic,
                               text: 'Lalu lintas',
                               onTap: () {
-                                // Handler when item is tapped
-                                print('Item tapped');
+                                showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        title: Text(
+                                          "Pilih tampilanmu ?",
+                                          style: subHeading.copyWith(
+                                              color: danger),
+                                        ),
+                                        content: Text(
+                                          "Ayo segera Jelajahi Kota Semarang",
+                                          style: text.copyWith(color: muted),
+                                        ),
+                                        actions: [
+                                          Column(
+                                            children: [
+                                              OpsiPopupMenu(
+                                                text: "Peta CCTV",
+                                                onTap: () {},
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              OpsiPopupMenu(
+                                                text: "Daftar Menu",
+                                                onTap: () {},
+                                              )
+                                            ],
+                                          )
+                                        ],
+                                      );
+                                    });
                               },
                             ),
                             SizedBox(
