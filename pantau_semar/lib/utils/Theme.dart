@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 Color danger = Color(0xffD93A3A);
 Color primary = Color(0xffF4F0F0);
-Color muted = Color(0xffADADAD);
+Color muted = Color(0xff666262);
 Color accent = Color(0xffF5F5FF);
 
 TextStyle heading =
