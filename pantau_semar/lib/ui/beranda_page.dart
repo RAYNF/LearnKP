@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:pantau_semar/data/model/newslist_model.dart';
 import 'package:pantau_semar/ui/daftarcctv_page.dart';
+import 'package:pantau_semar/ui/petacctv_page.dart';
 import 'package:pantau_semar/widget/animatedtexttrafic_widget.dart';
 import 'package:pantau_semar/widget/listbuildernews_widget.dart';
 import 'package:pantau_semar/widget/menusamping_widget.dart';
@@ -197,7 +198,13 @@ class _BerandaState extends State<Beranda> {
                                               ),
                                               OpsiPopupMenu(
                                                 text: "Peta CCTV",
-                                                onTap: () {},
+                                                onTap: () {
+                                                  Navigator.push(context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) {
+                                                    return PetaCctv();
+                                                  }));
+                                                },
                                               )
                                             ],
                                           )

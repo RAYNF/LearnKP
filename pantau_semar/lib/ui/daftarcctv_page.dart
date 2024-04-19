@@ -11,6 +11,9 @@ class DaftaCctv extends StatefulWidget {
 }
 
 class _DaftarCctv extends State<DaftaCctv> {
+  String? selected;
+  List<String> data = ["KYAI SALEH", "SIMPANG LIMA", "TUGU MUDA"];
+
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -39,7 +42,7 @@ class _DaftarCctv extends State<DaftaCctv> {
           ),
           Container(
             height: screenSize.height / 1.16,
-            width: screenSize.width,
+            width: double.infinity,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
                 color: primary),
@@ -62,7 +65,115 @@ class _DaftarCctv extends State<DaftaCctv> {
                   SizedBox(
                     height: 20,
                   ),
-              
+                  Container(
+                    decoration: BoxDecoration(
+                        color: danger, borderRadius: BorderRadius.circular(16)),
+                    child: Padding(
+                      padding: EdgeInsets.all(10),
+                      child: DropdownButton(
+                        iconEnabledColor: primary,
+                        dropdownColor: danger,
+                        isExpanded: true,
+                        style: text.copyWith(color: primary),
+                        value: selected,
+                        hint: Text(
+                          "Pilih area CCTV",
+                          style: text.copyWith(color: primary),
+                        ),
+                        items: data
+                            .map(
+                              (e) => DropdownMenuItem(
+                                //nilai
+                                value: e,
+                                //tampilan drodown
+                                child: Text(e),
+                              ),
+                            )
+                            .toList(),
+                        onChanged: (value) {
+                          print(value);
+                          setState(() {
+                            selected = value;
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        width: 150,
+                        height: 150,
+                        child: Image.asset(
+                          "assets/lalulintas_cctv.png",
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      Container(
+                        width: 150,
+                        height: 150,
+                        child: Image.asset(
+                          "assets/lalulintas_cctv.png",
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        width: 150,
+                        height: 150,
+                        child: Image.asset(
+                          "assets/lalulintas_cctv.png",
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      Container(
+                        width: 150,
+                        height: 150,
+                        child: Image.asset(
+                          "assets/lalulintas_cctv.png",
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        width: 150,
+                        height: 150,
+                        child: Image.asset(
+                          "assets/lalulintas_cctv.png",
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      Container(
+                        width: 150,
+                        height: 150,
+                        child: Image.asset(
+                          "assets/lalulintas_cctv.png",
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
                 ],
               ),
             ),
@@ -72,4 +183,3 @@ class _DaftarCctv extends State<DaftaCctv> {
     );
   }
 }
-
