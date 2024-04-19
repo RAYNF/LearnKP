@@ -167,50 +167,53 @@ class _BerandaState extends State<Beranda> {
                               icon: Icons.traffic,
                               text: 'Lalu lintas',
                               onTap: () {
+                                // iki
                                 showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return AlertDialog(
-                                        title: Text(
-                                          "Pilih tampilanmu ?",
-                                          style: subHeading.copyWith(
-                                              color: danger),
-                                        ),
-                                        content: Text(
-                                          "Ayo segera Jelajahi Kota Semarang",
-                                          style: text.copyWith(color: muted),
-                                        ),
-                                        actions: [
-                                          Column(
-                                            children: [
-                                              OpsiPopupMenu(
-                                                text: "Daftar CCTV",
-                                                onTap: () {
-                                                  Navigator.push(context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) {
-                                                    return DaftaCctv();
-                                                  }));
-                                                },
-                                              ),
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-                                              OpsiPopupMenu(
-                                                text: "Peta CCTV",
-                                                onTap: () {
-                                                  Navigator.push(context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) {
-                                                    return PetaCctv();
-                                                  }));
-                                                },
-                                              )
-                                            ],
-                                          )
-                                        ],
-                                      );
-                                    });
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text(
+                                        "Pilih tampilanmu ?",
+                                        style:
+                                            subHeading.copyWith(color: danger),
+                                      ),
+                                      content: Text(
+                                        "Ayo segera Jelajahi Kota Semarang",
+                                        style: text.copyWith(color: muted),
+                                      ),
+                                      actions: [
+                                        Column(
+                                          children: [
+                                            OpsiPopupMenu(
+                                              text: "Daftar CCTV",
+                                              onTap: () {
+                                                Navigator.push(context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) {
+                                                  return DaftaCctv();
+                                                }));
+                                              },
+                                            ),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            OpsiPopupMenu(
+                                              text: "Peta CCTV",
+                                              onTap: () {
+                                                Navigator.push(context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) {
+                                                  return PetaCctv();
+                                                }));
+                                              },
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    );
+                                  },
+                                );
+                                //iki
                               },
                             ),
                             SizedBox(

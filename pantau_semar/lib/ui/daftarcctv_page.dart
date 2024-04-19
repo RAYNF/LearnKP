@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pantau_semar/ui/tampilancctv_page.dart';
 import 'package:pantau_semar/utils/Theme.dart';
+import 'package:pantau_semar/widget/menuopsicctv_widget.dart';
 import 'package:pantau_semar/widget/menusamping_widget.dart';
 
 const List<String> data = <String>['One', 'Two', 'Three', 'Four'];
@@ -105,70 +107,15 @@ class _DaftarCctv extends State<DaftaCctv> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        width: 150,
-                        height: 150,
-                        child: Image.asset(
-                          "assets/lalulintas_cctv.png",
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      Container(
-                        width: 150,
-                        height: 150,
-                        child: Image.asset(
-                          "assets/lalulintas_cctv.png",
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        width: 150,
-                        height: 150,
-                        child: Image.asset(
-                          "assets/lalulintas_cctv.png",
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      Container(
-                        width: 150,
-                        height: 150,
-                        child: Image.asset(
-                          "assets/lalulintas_cctv.png",
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        width: 150,
-                        height: 150,
-                        child: Image.asset(
-                          "assets/lalulintas_cctv.png",
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      Container(
-                        width: 150,
-                        height: 150,
-                        child: Image.asset(
-                          "assets/lalulintas_cctv.png",
-                          fit: BoxFit.fill,
-                        ),
-                      ),
+                      MenuOpsiCctv(
+                          imagePath: "assets/lalulintas_cctv.png",
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return TampilanCctv();
+                            }));
+                          })
+                      // menu 1 lagi kalau ada
                     ],
                   ),
                   SizedBox(
@@ -183,3 +130,5 @@ class _DaftarCctv extends State<DaftaCctv> {
     );
   }
 }
+
+
