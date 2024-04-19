@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       //   Tentang.routeName: (context) => Tentang(),
       //   DetailNews.routeName: (context) => DetailNews()
       // },
-      home: Beranda(),
+      home: TampilanCctv(),
     );
   }
 }

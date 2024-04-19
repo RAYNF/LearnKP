@@ -48,9 +48,7 @@ class _TampilanCctvState extends State<TampilanCctv> {
               padding: EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  
-                ],
+                children: [],
               ),
             ),
           ),
