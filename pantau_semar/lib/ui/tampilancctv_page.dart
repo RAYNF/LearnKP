@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pantau_semar/utils/Theme.dart';
 import 'package:pantau_semar/widget/buttonbantuan_widget.dart';
 import 'package:pantau_semar/widget/menusamping_widget.dart';
+import 'package:pantau_semar/widget/vidioplayer_widget.dart';
 
 class TampilanCctv extends StatefulWidget {
   const TampilanCctv({super.key});
@@ -48,7 +49,7 @@ class _TampilanCctvState extends State<TampilanCctv> {
               padding: EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [],
+                children: [VideoPlayerScreen()],
               ),
             ),
           ),

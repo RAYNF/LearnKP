@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pantau_semar/ui/bantuan_page.dart';
 import 'package:pantau_semar/ui/beranda_page.dart';
-import 'package:pantau_semar/ui/coba.dart';
 import 'package:pantau_semar/ui/daftarcctv_page.dart';
 import 'package:pantau_semar/ui/detailnews_page.dart';
 import 'package:pantau_semar/ui/splashScreen_page.dart';

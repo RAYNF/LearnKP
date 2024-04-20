@@ -48,7 +48,10 @@ class MenuSamping extends StatelessWidget {
               style: subHeading.copyWith(color: danger),
             ),
             onTap: () {
-              Navigator.pushNamed(context, Beranda.routeName);
+              // Navigator.pushNamed(context, Beranda.routeName);
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return Beranda();
+              }));
             },
           ),
           ListTile(
@@ -61,7 +64,10 @@ class MenuSamping extends StatelessWidget {
               style: subHeading.copyWith(color: danger),
             ),
             onTap: () {
-              Navigator.pushNamed(context, Tentang.routeName);
+              // Navigator.pushNamed(context, Tentang.routeName);
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return Tentang();
+              }));
             },
           ),
           ListTile(
@@ -74,7 +80,10 @@ class MenuSamping extends StatelessWidget {
               style: subHeading.copyWith(color: danger),
             ),
             onTap: () {
-              Navigator.pushNamed(context, Bantuan.routeName);
+              // Navigator.pushNamed(context, Bantuan.routeName);
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return Bantuan();
+              }));
             },
           ),
           ListTile(
