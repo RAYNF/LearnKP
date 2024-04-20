@@ -76,14 +76,14 @@ class Tentang extends StatelessWidget {
                                 children: [
                                   Text(
                                     "PANTAUSEMAR v1.4.1",
-                                    style: subHeading.copyWith(color: danger),
+                                    style: subHeading.copyWith(color: primary),
                                   ),
                                   SizedBox(
                                     height: 10,
                                   ),
                                   Text(
                                     "2024 Pemerintah Kota Semarang",
-                                    style: textSm.copyWith(color: danger),
+                                    style: textSm.copyWith(color: primary),
                                   )
                                 ],
                               )

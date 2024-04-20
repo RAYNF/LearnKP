@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pantau_semar/ui/bantuan_page.dart';
 import 'package:pantau_semar/ui/beranda_page.dart';
+import 'package:pantau_semar/ui/petacctv_page.dart';
+import 'package:pantau_semar/widget/maps_widget.dart';
 import 'package:pantau_semar/ui/daftarcctv_page.dart';
 import 'package:pantau_semar/ui/detailnews_page.dart';
 import 'package:pantau_semar/ui/splashScreen_page.dart';
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
       //   Tentang.routeName: (context) => Tentang(),
       //   DetailNews.routeName: (context) => DetailNews()
       // },
-      home: TampilanCctv(),
+      home: Beranda(),
     );
   }
 }
