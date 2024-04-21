@@ -16,11 +16,12 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
-  void initState(){
+  void initState() {
     Timer(Duration(seconds: 5), () {
-      Navigator.pushReplacementNamed(context, Welcome.routeName);
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return Welcome();
+      }));
     });
   }
 
@@ -33,12 +34,9 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Center(
         child: Column(
           children: [
-            SizedBox(height: screenSize.height/5.5),
+            SizedBox(height: screenSize.height / 5.5),
             Image.asset('assets/logo_splashscreen.png'),
-            Text(
-              "PantauSemar",
-              style: heading.copyWith(color: danger)
-            )
+            Text("PantauSemar", style: heading.copyWith(color: danger))
           ],
         ),
       )),

@@ -67,8 +67,10 @@ class Welcome extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10)),
                           ),
                           onTap: () {
-                            Navigator.pushReplacementNamed(
-                                context, Beranda.routeName);
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return Beranda();
+                            }));
                           },
                         )
                       ],
