@@ -6,6 +6,8 @@ Color primary = Color(0xffF4F0F0);
 Color muted = Color(0xff666262);
 Color accent = Color(0xffF5F5FF);
 
+TextStyle headings =
+    GoogleFonts.poppins(fontSize: 48, fontWeight: FontWeight.w700);
 TextStyle heading =
     GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w700);
 TextStyle title =
