@@ -122,14 +122,11 @@ class _LoginPageState extends State<LoginPage> {
               onPressed: () {
                 // Navigator.pushReplacementNamed(context, HomePage.routeName);
               },
-              child: Text(
-                "Login",
-                style: heading.copyWith(color: Colors.black),
-              ),
+              child:
+                  Text("Login", style: heading.copyWith(color: Colors.black)),
               style: ElevatedButton.styleFrom(
-                backgroundColor: danger,
-                minimumSize: Size(screenWidth.width, 40),
-              ),
+                  backgroundColor: danger,
+                  minimumSize: Size(screenWidth.width, 60)),
             ),
             SizedBox(
               height: 30,
