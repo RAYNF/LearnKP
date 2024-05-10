@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
       //   Tentang.routeName: (context) => Tentang(),
       //   DetailNews.routeName: (context) => DetailNews()
       // },
-      home: OnBoarding(),
+      home: SplashScreen(),
     );
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pantau_semar/ui/bantuan_page.dart';
 import 'package:pantau_semar/ui/beranda_page.dart';
+import 'package:pantau_semar/ui/notifikasi_page.dart';
+import 'package:pantau_semar/ui/setting_page.dart';
 import 'package:pantau_semar/ui/tentang_page.dart';
 import 'package:pantau_semar/utils/Theme.dart';
 
@@ -65,7 +67,7 @@ class MenuSamping extends StatelessWidget {
             ),
             onTap: () {
               // Navigator.pushNamed(context, Tentang.routeName);
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return Tentang();
               }));
             },
@@ -81,7 +83,7 @@ class MenuSamping extends StatelessWidget {
             ),
             onTap: () {
               // Navigator.pushNamed(context, Bantuan.routeName);
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return Bantuan();
               }));
             },
@@ -95,7 +97,11 @@ class MenuSamping extends StatelessWidget {
               "Settings",
               style: subHeading.copyWith(color: danger),
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return Setting();
+              }));
+            },
           ),
           ListTile(
             leading: Icon(
@@ -106,7 +112,11 @@ class MenuSamping extends StatelessWidget {
               "Notifications",
               style: subHeading.copyWith(color: danger),
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return Notifikasi();
+              }));
+            },
           ),
         ],
       ),

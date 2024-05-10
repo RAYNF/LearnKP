@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pantau_semar/ui/beranda_page.dart';
+import 'package:pantau_semar/ui/onboarding_page.dart';
 import 'package:pantau_semar/utils/Theme.dart';
 
 class Welcome extends StatelessWidget {
@@ -69,7 +70,7 @@ class Welcome extends StatelessWidget {
                           onTap: () {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
-                              return Beranda();
+                              return OnBoarding();
                             }));
                           },
                         )
