@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pantau_semar/data/model/user_model.dart';
 import 'package:pantau_semar/ui/tampilancctv_page.dart';
 import 'package:pantau_semar/utils/Theme.dart';
 import 'package:pantau_semar/widget/menuopsicctv_widget.dart';
@@ -7,7 +8,8 @@ import 'package:pantau_semar/widget/menusamping_widget.dart';
 const List<String> data = <String>['One', 'Two', 'Three', 'Four'];
 
 class DaftaCctv extends StatefulWidget {
-  const DaftaCctv({super.key});
+  final Datum dataUser;
+  const DaftaCctv({super.key, required this.dataUser});
   @override
   State<DaftaCctv> createState() => _DaftarCctv();
 }
@@ -20,7 +22,9 @@ class _DaftarCctv extends State<DaftaCctv> {
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
-      drawer: MenuSamping(),
+      drawer: MenuSamping(
+        dataUser: widget.dataUser,
+      ),
       backgroundColor: danger,
       appBar: AppBar(
         backgroundColor: danger,
@@ -112,7 +116,9 @@ class _DaftarCctv extends State<DaftaCctv> {
                           onTap: () {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
-                              return TampilanCctv();
+                              return TampilanCctv(
+                                dataUser: widget.dataUser,
+                              );
                             }));
                           })
                       // menu 1 lagi kalau ada
@@ -130,5 +136,3 @@ class _DaftarCctv extends State<DaftaCctv> {
     );
   }
 }
-
-

@@ -1,10 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:pantau_semar/data/api/api_service.dart';
+import 'package:pantau_semar/data/model/getberita_model.dart';
 import 'package:pantau_semar/data/model/newslist_model.dart';
+import 'package:pantau_semar/data/model/user_model.dart';
 import 'package:pantau_semar/ui/daftarcctv_page.dart';
 import 'package:pantau_semar/ui/petacctv_page.dart';
 import 'package:pantau_semar/widget/animatedtexttrafic_widget.dart';
-import 'package:pantau_semar/widget/listbuildernews_widget.dart';
+import 'package:pantau_semar/widget/card_article.dart';
 import 'package:pantau_semar/widget/menusamping_widget.dart';
 import 'package:pantau_semar/widget/optionpopupmenu_widget.dart';
 import 'package:pantau_semar/widget/weather_widget.dart';
@@ -14,13 +17,27 @@ import 'package:pantau_semar/widget/customscrollablecolumnitem_widget.dart';
 class Beranda extends StatefulWidget {
   static const routeName = '/beranda';
 
-  const Beranda({super.key});
+  final Datum dataUser;
+  const Beranda({super.key, required this.dataUser});
 
   @override
   State<Beranda> createState() => _BerandaState();
 }
 
 class _BerandaState extends State<Beranda> {
+  late Future<GetBeritaModel> _getberita;
+  late GetBeritaModel getBeritaModel;
+
+  @override
+  void initState() {
+    super.initState();
+    _getberita = ApiService().getBerita();
+    _getberita.then((value) {
+      getBeritaModel = value;
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<String> imgList = [
@@ -31,6 +48,7 @@ class _BerandaState extends State<Beranda> {
       'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
       'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
     ];
+    Size screenSize = MediaQuery.of(context).size;
 
     final List<Widget> imageSliders = imgList
         .map((item) => Container(
@@ -65,7 +83,7 @@ class _BerandaState extends State<Beranda> {
         .toList();
 
     return Scaffold(
-      drawer: MenuSamping(),
+      drawer: MenuSamping(dataUser: widget.dataUser),
       backgroundColor: danger,
       appBar: AppBar(
         backgroundColor: danger,
@@ -190,7 +208,9 @@ class _BerandaState extends State<Beranda> {
                                                 Navigator.push(context,
                                                     MaterialPageRoute(
                                                         builder: (context) {
-                                                  return DaftaCctv();
+                                                  return DaftaCctv(
+                                                    dataUser: widget.dataUser,
+                                                  );
                                                 }));
                                               },
                                             ),
@@ -203,7 +223,9 @@ class _BerandaState extends State<Beranda> {
                                                 Navigator.push(context,
                                                     MaterialPageRoute(
                                                         builder: (context) {
-                                                  return PetaCctv();
+                                                  return PetaCctv(
+                                                    dataUser: widget.dataUser,
+                                                  );
                                                 }));
                                               },
                                             )
@@ -350,9 +372,68 @@ class _BerandaState extends State<Beranda> {
                         style: text.copyWith(color: danger),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          if (widget.dataUser.level == "admin") {
+                            showDialog<void>(
+                              context: context,
+                              barrierDismissible: false,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: const Text('Basic dialog title'),
+                                  content: Container(
+                                    width: screenSize.width,
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        TextField(
+                                          // controller: _titleController,
+                                          decoration: InputDecoration(
+                                              hintText: 'title'),
+                                        ),
+                                        TextField(
+                                          // controller: _priceController,
+                                          decoration: InputDecoration(
+                                              hintText: 'price'),
+                                        ),
+                                        TextField(
+                                          // controller: _descriptionController,
+                                          decoration: InputDecoration(
+                                              hintText: 'description'),
+                                        ),
+                                        TextField(
+                                          // controller: _categoryIdController,
+                                          decoration: InputDecoration(
+                                              hintText: 'categoryId'),
+                                        ),
+                                        TextField(
+                                          // controller: _imagesController,
+                                          decoration: InputDecoration(
+                                              hintText: 'images'),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      child: const Text('Disable'),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                    TextButton(
+                                      child: const Text('Enable'),
+                                      onPressed: () async {},
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          } else {}
+                        },
                         child: Text(
-                          "Lihat Selengkapnya",
+                          "Tambah Berita",
                           style: textSm.copyWith(color: muted),
                         ),
                       )
@@ -367,9 +448,38 @@ class _BerandaState extends State<Beranda> {
                               BorderRadius.vertical(top: Radius.circular(20))),
                       width: double.infinity,
                       height: 800,
-                      child: ListBuilderNews(
-                        itemList: newsListSemarang,
-                      ))
+                      child: FutureBuilder<GetBeritaModel>(
+                          future: _getberita,
+                          builder: (context,
+                              AsyncSnapshot<GetBeritaModel> snapshot) {
+                            var state = snapshot.connectionState;
+                            if (state != ConnectionState.done) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else {
+                              if (snapshot.hasData) {
+                                return ListView.builder(
+                                    itemCount: snapshot.data?.berita.length,
+                                    itemBuilder: (context, index) {
+                                      var berita = snapshot.data!.berita[index];
+                                      return CardArticle(
+                                        berita: berita,
+                                      );
+                                    });
+                              } else if (snapshot.hasError) {
+                                return Center(
+                                  child: Material(
+                                    child: Text(snapshot.error.toString()),
+                                  ),
+                                );
+                              } else {
+                                return const Material(
+                                  child: Text(" "),
+                                );
+                              }
+                            }
+                          }))
                 ],
               ),
             ),

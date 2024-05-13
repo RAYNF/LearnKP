@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import 'package:pantau_semar/data/api/api_service.dart';
+import 'package:pantau_semar/data/model/user_model.dart';
 import 'package:pantau_semar/ui/beranda_page.dart';
 import 'package:pantau_semar/ui/register_page.dart';
 import 'package:pantau_semar/utils/Theme.dart';
@@ -21,12 +23,63 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _verifypassword = TextEditingController();
   String message = '';
   bool visible = true;
+  late Future<UserModel> _login;
+  late UserModel userModel;
 
   void dispose() {
     super.dispose();
     _username.dispose();
     _password.dispose();
     _verifypassword.dispose();
+  }
+
+  void login() {
+    _login = ApiService().userLogin(_username.text, _password.text);
+    _login.then((value) {
+      userModel = value;
+      print(userModel.data[0].username);
+      if (userModel.success != false) {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return Beranda(dataUser: userModel.data[0],);
+        }));
+      } else {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Login Gagal"),
+              content: Text("Username atau password salah"),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("OK"),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    }).catchError((error) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Error"),
+            content: Text(error.toString()),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("OK"),
+              ),
+            ],
+          );
+        },
+      );
+    });
   }
 
   @override
@@ -114,10 +167,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return Beranda();
-                        }));
+                        login();
                       },
                       child: Text("Login",
                           style: heading.copyWith(color: Colors.black)),

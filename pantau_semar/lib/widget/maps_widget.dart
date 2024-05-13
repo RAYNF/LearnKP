@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as LatLng;
 import 'package:pantau_semar/data/model/location_model.dart';
+import 'package:pantau_semar/data/model/user_model.dart';
 import 'package:pantau_semar/ui/tampilancctv_page.dart';
 
 class Maps extends StatefulWidget {
-  const Maps({super.key});
+  final Datum dataUser;
+  const Maps({super.key, required this.dataUser});
 
   @override
   State<Maps> createState() => _MapsState();
@@ -29,7 +31,7 @@ class _MapsState extends State<Maps> {
           child: InkWell(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return TampilanCctv();
+                return TampilanCctv(dataUser: widget.dataUser,);
               }));
             },
             child: Container(

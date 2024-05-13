@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:pantau_semar/data/model/getberita_model.dart';
 import 'package:pantau_semar/data/model/newslist_model.dart';
+import 'package:pantau_semar/data/model/user_model.dart';
 import 'package:pantau_semar/utils/Theme.dart';
 import 'package:pantau_semar/widget/menusamping_widget.dart';
 
 class DetailNews extends StatefulWidget {
   static const routeName = '/detail-news';
-  final newsList data;
-  const DetailNews({super.key, required this.data});
+  final Berita berita;
+  
+  const DetailNews({super.key, required this.berita});
 
   @override
   State<DetailNews> createState() => _DetailNewsState();
@@ -46,7 +49,7 @@ class _DetailNewsState extends State<DetailNews> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.data.judul,
+                    widget.berita.judul,
                     textAlign: TextAlign.center,
                     style: subHeading.copyWith(color: danger),
                   ),
@@ -54,13 +57,13 @@ class _DetailNewsState extends State<DetailNews> {
                   Container(
                     width: double.infinity,
                     height: screenSize.height / 3,
-                    child: Image.network(widget.data.urlImage),
+                    child: Image.network(widget.berita.urlImage),
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   Text(
-                    widget.data.tanggal,
+                    widget.berita.tanggal.toString(),
                     style: textSm.copyWith(color: danger),
                     textAlign: TextAlign.start,
                   ),
@@ -68,7 +71,7 @@ class _DetailNewsState extends State<DetailNews> {
                     height: 10,
                   ),
                   Text(
-                    widget.data.description,
+                    widget.berita.description,
                     style: text.copyWith(color: danger),
                     textAlign: TextAlign.justify,
                   ),
@@ -79,7 +82,7 @@ class _DetailNewsState extends State<DetailNews> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        widget.data.author,
+                        widget.berita.usersId,
                         style: textSm.copyWith(color: danger),
                         textAlign: TextAlign.center,
                       )

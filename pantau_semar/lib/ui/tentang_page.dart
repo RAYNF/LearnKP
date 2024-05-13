@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:pantau_semar/data/model/user_model.dart';
 import 'package:pantau_semar/utils/Theme.dart';
 import 'package:pantau_semar/widget/menusamping_widget.dart';
 
 class Tentang extends StatelessWidget {
   static const routeName = '/tentang';
-  const Tentang({super.key});
+  final Datum dataUser;
+  const Tentang({super.key, required this.dataUser});
 
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
-      drawer: MenuSamping(),
+      drawer: MenuSamping(
+        dataUser: dataUser,
+      ),
       backgroundColor: danger,
       appBar: AppBar(
         backgroundColor: danger,
@@ -35,6 +39,7 @@ class Tentang extends StatelessWidget {
           ),
           Container(
             width: screenSize.width,
+            height: screenSize.height,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
                 color: primary),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pantau_semar/data/model/user_model.dart';
 import 'package:pantau_semar/ui/bantuan_page.dart';
 import 'package:pantau_semar/ui/beranda_page.dart';
 import 'package:pantau_semar/ui/notifikasi_page.dart';
@@ -7,7 +8,8 @@ import 'package:pantau_semar/ui/tentang_page.dart';
 import 'package:pantau_semar/utils/Theme.dart';
 
 class MenuSamping extends StatelessWidget {
-  const MenuSamping({super.key});
+  final Datum dataUser;
+  const MenuSamping({super.key, required this.dataUser});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +54,9 @@ class MenuSamping extends StatelessWidget {
             onTap: () {
               // Navigator.pushNamed(context, Beranda.routeName);
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return Beranda();
+                return Beranda(
+                  dataUser: dataUser,
+                );
               }));
             },
           ),
@@ -68,7 +72,9 @@ class MenuSamping extends StatelessWidget {
             onTap: () {
               // Navigator.pushNamed(context, Tentang.routeName);
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return Tentang();
+                return Tentang(
+                  dataUser: dataUser,
+                );
               }));
             },
           ),
@@ -84,7 +90,9 @@ class MenuSamping extends StatelessWidget {
             onTap: () {
               // Navigator.pushNamed(context, Bantuan.routeName);
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return Bantuan();
+                return Bantuan(
+                  dataUser: dataUser,
+                );
               }));
             },
           ),
@@ -99,7 +107,9 @@ class MenuSamping extends StatelessWidget {
             ),
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return Setting();
+                return Setting(
+                  dataUser: dataUser,
+                );
               }));
             },
           ),
