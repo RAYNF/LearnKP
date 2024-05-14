@@ -6,7 +6,7 @@ import 'package:pantau_semar/widget/menusamping_widget.dart';
 import 'package:pantau_semar/widget/vidioplayer_widget.dart';
 
 class TampilanCctv extends StatefulWidget {
-  final Datum dataUser;
+  final Data dataUser;
   const TampilanCctv({super.key, required this.dataUser});
 
   @override

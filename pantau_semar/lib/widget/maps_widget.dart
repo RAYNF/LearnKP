@@ -6,7 +6,7 @@ import 'package:pantau_semar/data/model/user_model.dart';
 import 'package:pantau_semar/ui/tampilancctv_page.dart';
 
 class Maps extends StatefulWidget {
-  final Datum dataUser;
+  final Data dataUser;
   const Maps({super.key, required this.dataUser});
 
   @override

@@ -37,10 +37,10 @@ class _LoginPageState extends State<LoginPage> {
     _login = ApiService().userLogin(_username.text, _password.text);
     _login.then((value) {
       userModel = value;
-      print(userModel.data[0].username);
+      print(userModel.data?.username);
       if (userModel.success != false) {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return Beranda(dataUser: userModel.data[0],);
+          return Beranda(dataUser: userModel.data!,);
         }));
       } else {
         showDialog(

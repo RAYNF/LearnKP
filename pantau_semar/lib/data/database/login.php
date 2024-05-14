@@ -18,15 +18,20 @@ $result = array();
 
 // Cek apakah ada pengguna dengan username dan password yang cocok
 if ($queryResult->num_rows > 0) {
-    // Jika ada, tambahkan data pengguna ke dalam array result
-    while ($fetchData = $queryResult->fetch_assoc()) {
-        $result[] = $fetchData;
-    }
+    // Ambil data pengguna
+    $userData = $queryResult->fetch_assoc();
     // Buat respons sukses dengan data pengguna
-    $response = array("success" => true, "message" => "Akun ditemukan.", "data" => $result);
+    $response = array(
+        "success" => true,
+        "message" => "Akun ditemukan.",
+        "data" => $userData
+    );
 } else {
     // Buat respons gagal jika akun tidak ditemukan
-    $response = array("success" => false, "message" => "Akun tidak ditemukan.","data" =>$result);
+    $response = array(
+        "success" => false,
+        "message" => "Akun tidak ditemukan.",
+    );
 }
 
 // Mengembalikan respons dalam bentuk JSON

@@ -8,7 +8,7 @@ import 'package:pantau_semar/ui/tentang_page.dart';
 import 'package:pantau_semar/utils/Theme.dart';
 
 class MenuSamping extends StatelessWidget {
-  final Datum dataUser;
+  final Data dataUser;
   const MenuSamping({super.key, required this.dataUser});
 
   @override

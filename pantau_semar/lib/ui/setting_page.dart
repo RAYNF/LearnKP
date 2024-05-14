@@ -5,7 +5,7 @@ import 'package:pantau_semar/ui/login_page.dart';
 import 'package:pantau_semar/utils/Theme.dart';
 
 class Setting extends StatelessWidget {
-  final Datum dataUser;
+  final Data dataUser;
   const Setting({super.key, required this.dataUser});
 
   @override

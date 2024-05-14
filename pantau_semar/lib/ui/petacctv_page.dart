@@ -5,7 +5,7 @@ import 'package:pantau_semar/utils/Theme.dart';
 import 'package:pantau_semar/widget/menusamping_widget.dart';
 
 class PetaCctv extends StatefulWidget {
-  final Datum dataUser;
+  final Data dataUser;
   const PetaCctv({super.key, required this.dataUser});
 
   @override

@@ -7,7 +7,7 @@ import 'package:pantau_semar/widget/menusamping_widget.dart';
 
 class Bantuan extends StatefulWidget {
   static const routeName = '/bantuan';
-  final Datum dataUser;
+  final Data dataUser;
   const Bantuan({super.key, required this.dataUser});
 
   @override

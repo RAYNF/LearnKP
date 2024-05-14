@@ -8,7 +8,7 @@ import 'package:pantau_semar/widget/menusamping_widget.dart';
 const List<String> data = <String>['One', 'Two', 'Three', 'Four'];
 
 class DaftaCctv extends StatefulWidget {
-  final Datum dataUser;
+  final Data dataUser;
   const DaftaCctv({super.key, required this.dataUser});
   @override
   State<DaftaCctv> createState() => _DaftarCctv();

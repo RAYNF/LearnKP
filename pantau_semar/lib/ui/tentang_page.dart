@@ -5,7 +5,7 @@ import 'package:pantau_semar/widget/menusamping_widget.dart';
 
 class Tentang extends StatelessWidget {
   static const routeName = '/tentang';
-  final Datum dataUser;
+  final Data dataUser;
   const Tentang({super.key, required this.dataUser});
 
   @override

@@ -17,7 +17,7 @@ import 'package:pantau_semar/widget/customscrollablecolumnitem_widget.dart';
 class Beranda extends StatefulWidget {
   static const routeName = '/beranda';
 
-  final Datum dataUser;
+  final Data dataUser;
   const Beranda({super.key, required this.dataUser});
 
   @override
