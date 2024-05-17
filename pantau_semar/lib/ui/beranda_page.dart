@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pantau_semar/data/api/api_service.dart';
 import 'package:pantau_semar/data/model/getberita_model.dart';
 import 'package:pantau_semar/data/model/newslist_model.dart';
+import 'package:pantau_semar/data/model/registerresponse_model.dart';
 import 'package:pantau_semar/data/model/user_model.dart';
 import 'package:pantau_semar/ui/daftarcctv_page.dart';
 import 'package:pantau_semar/ui/petacctv_page.dart';
@@ -26,7 +27,21 @@ class Beranda extends StatefulWidget {
 
 class _BerandaState extends State<Beranda> {
   late Future<GetBeritaModel> _getberita;
+  late Future<RegisterResponseModel> _addBerita;
   late GetBeritaModel getBeritaModel;
+  late RegisterResponseModel registerResponseModel;
+
+  final TextEditingController _users_id = TextEditingController();
+  final TextEditingController _judul = TextEditingController();
+  final TextEditingController _description = TextEditingController();
+  final TextEditingController _urlImage = TextEditingController();
+
+  void dispose() {
+    super.dispose();
+    _judul.dispose();
+    _description.dispose();
+    _urlImage.dispose();
+  }
 
   @override
   void initState() {
@@ -38,8 +53,78 @@ class _BerandaState extends State<Beranda> {
     });
   }
 
+  void _tambahBerita() {
+    _addBerita = ApiService().addBerita(
+        _users_id.text, _judul.text, _description.text, _urlImage.text);
+    _addBerita.then((value) {
+      registerResponseModel = value;
+      if (registerResponseModel.succes == true) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("tambah berita berhasil"),
+              content: Text(registerResponseModel.message),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return Beranda(
+                        dataUser: widget.dataUser,
+                      );
+                    }));
+                  },
+                  child: Text("Kembali"),
+                ),
+              ],
+            );
+          },
+        );
+      } else {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("tambah berita Gagal"),
+              content: Text(registerResponseModel.message),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("OK"),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    }).catchError((error) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Error"),
+            content: Text(error.toString()),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("OK"),
+              ),
+            ],
+          );
+        },
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    bool _isVisible = widget.dataUser.level == "admin";
+
     final List<String> imgList = [
       'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
       'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
@@ -81,6 +166,8 @@ class _BerandaState extends State<Beranda> {
               ),
             ))
         .toList();
+
+    _users_id.text = widget.dataUser.id;
 
     return Scaffold(
       drawer: MenuSamping(dataUser: widget.dataUser),
@@ -371,70 +458,91 @@ class _BerandaState extends State<Beranda> {
                         "Seputar Kota Semarang",
                         style: text.copyWith(color: danger),
                       ),
-                      TextButton(
-                        onPressed: () {
-                          if (widget.dataUser.level == "admin") {
-                            showDialog<void>(
-                              context: context,
-                              barrierDismissible: false,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: const Text('Basic dialog title'),
-                                  content: Container(
-                                    width: screenSize.width,
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        TextField(
-                                          // controller: _titleController,
-                                          decoration: InputDecoration(
-                                              hintText: 'title'),
-                                        ),
-                                        TextField(
-                                          // controller: _priceController,
-                                          decoration: InputDecoration(
-                                              hintText: 'price'),
-                                        ),
-                                        TextField(
-                                          // controller: _descriptionController,
-                                          decoration: InputDecoration(
-                                              hintText: 'description'),
-                                        ),
-                                        TextField(
-                                          // controller: _categoryIdController,
-                                          decoration: InputDecoration(
-                                              hintText: 'categoryId'),
-                                        ),
-                                        TextField(
-                                          // controller: _imagesController,
-                                          decoration: InputDecoration(
-                                              hintText: 'images'),
-                                        ),
-                                      ],
+                      Visibility(
+                        visible: _isVisible,
+                        child: TextButton(
+                          onPressed: () {
+                            if (widget.dataUser.level == "admin") {
+                              showDialog<void>(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: const Text('Tambah berita'),
+                                    content: Container(
+                                      width: screenSize.width,
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          TextField(
+                                            controller: _users_id,
+                                            readOnly: true,
+                                            enabled: false,
+                                            decoration: InputDecoration(
+                                                hintText: 'user id'),
+                                          ),
+                                          TextField(
+                                            controller: _judul,
+                                            decoration: InputDecoration(
+                                                hintText: 'judul berita'),
+                                          ),
+                                          TextField(
+                                            controller: _description,
+                                            decoration: InputDecoration(
+                                                hintText: 'deskripsi'),
+                                          ),
+                                          TextField(
+                                            controller: _urlImage,
+                                            decoration: InputDecoration(
+                                                hintText: 'link image'),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  actions: <Widget>[
-                                    TextButton(
-                                      child: const Text('Disable'),
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                    ),
-                                    TextButton(
-                                      child: const Text('Enable'),
-                                      onPressed: () async {},
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
-                          } else {}
-                        },
-                        child: Text(
-                          "Tambah Berita",
-                          style: textSm.copyWith(color: muted),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        child: const Text('Batal'),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                      TextButton(
+                                        child: const Text('Upload'),
+                                        onPressed: () {
+                                          _tambahBerita();
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            } else {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text("Fitur tidak tersedia"),
+                                    content: Text(
+                                        "Hanya admin yang bisa menambhakan berita"),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text("OK"),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            }
+                          },
+                          child: Text(
+                            "Tambah Berita",
+                            style: textSm.copyWith(color: muted),
+                          ),
                         ),
                       )
                     ],
@@ -465,6 +573,7 @@ class _BerandaState extends State<Beranda> {
                                       var berita = snapshot.data!.berita[index];
                                       return CardArticle(
                                         berita: berita,
+                                        dataUser: widget.dataUser,
                                       );
                                     });
                               } else if (snapshot.hasError) {

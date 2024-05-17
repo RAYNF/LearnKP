@@ -5,7 +5,8 @@ import 'package:pantau_semar/ui/detailnews_page.dart';
 
 class CardArticle extends StatelessWidget {
   final Berita berita;
-  const CardArticle({super.key, required this.berita});
+  final Data dataUser;
+  const CardArticle({super.key, required this.berita, required this.dataUser});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class CardArticle extends StatelessWidget {
           InkWell(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return DetailNews( berita: berita);
+                return DetailNews( berita: berita, dataUser: dataUser,);
               }));
             },
             child: Container(

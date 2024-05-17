@@ -11,6 +11,9 @@ class ApiService {
   static const String _login = "login.php";
   static const String _register = "register.php";
   static const String _getberita = "getBerita.php";
+  static const String _addBerita = "tambahBerita.php";
+  static const String _deleteBerita = "hapusBerita.php";
+  static const String _editBerita = "editBerita.php";
 
   Future<UserModel> userLogin(String username, String password) async {
     final response = await http.post(Uri.parse("$_baseUrl$_login"),
@@ -45,6 +48,47 @@ class ApiService {
       return GetBeritaModel.fromJson(json.decode(response.body));
     } else {
       throw Exception("gagal ambil berita");
+    }
+  }
+
+  Future<RegisterResponseModel> addBerita(String users_id, String judul,
+      String description, String urlImage) async {
+    final response = await http.post(Uri.parse("$_baseUrl$_addBerita"), body: {
+      "users_id": users_id,
+      "judul": judul,
+      "description": description,
+      "urlImage": urlImage
+    });
+    if (response.statusCode == 200) {
+      return RegisterResponseModel.fromJson(json.decode(response.body));
+    } else {
+      throw Exception("gagal tambah berita");
+    }
+  }
+
+  Future<RegisterResponseModel> removeBerita(String id) async {
+    final response =
+        await http.post(Uri.parse("$_baseUrl$_deleteBerita"), body: {"id": id});
+    if (response.statusCode == 200) {
+      return RegisterResponseModel.fromJson(json.decode(response.body));
+    } else {
+      throw Exception("gagal hapus berita");
+    }
+  }
+
+  Future<RegisterResponseModel> UpdateBerita(String users_id, String judul,
+      String description, String urlImage, String idBerita) async {
+    final response = await http.post(Uri.parse("$_baseUrl$_editBerita"), body: {
+      "users_id": users_id,
+      "judul": judul,
+      "description": description,
+      "urlImage": urlImage,
+      "id": idBerita
+    });
+    if (response.statusCode == 200) {
+      return RegisterResponseModel.fromJson(json.decode(response.body));
+    } else {
+      throw Exception("gagal tambah berita");
     }
   }
 }
