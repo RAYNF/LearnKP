@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:pantau_semar/data/api/api_service.dart';
 import 'package:pantau_semar/data/model/getberita_model.dart';
+import 'package:pantau_semar/data/model/kecamatan_model.dart';
 import 'package:pantau_semar/data/model/newslist_model.dart';
 import 'package:pantau_semar/data/model/registerresponse_model.dart';
 import 'package:pantau_semar/data/model/user_model.dart';
@@ -35,6 +36,9 @@ class _BerandaState extends State<Beranda> {
   final TextEditingController _judul = TextEditingController();
   final TextEditingController _description = TextEditingController();
   final TextEditingController _urlImage = TextEditingController();
+
+  late Future<KecamatanModel> _getKecamatan;
+  late KecamatanModel kecamatanModel;
 
   void dispose() {
     super.dispose();
@@ -169,6 +173,20 @@ class _BerandaState extends State<Beranda> {
 
     _users_id.text = widget.dataUser.id;
 
+    void _getKecamatanApi(String kecamatan) {
+      _getKecamatan = ApiService().getKecamatan(kecamatan);
+      _getKecamatan.then((value) {
+        kecamatanModel = value;
+        print(kecamatanModel.kecamatan.id);
+        if (kecamatanModel.success != false) {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return DaftaCctv(
+                dataUser: widget.dataUser, kecamatan: kecamatanModel.kecamatan);
+          }));
+        }
+      });
+    }
+
     return Scaffold(
       drawer: MenuSamping(dataUser: widget.dataUser),
       backgroundColor: danger,
@@ -292,13 +310,8 @@ class _BerandaState extends State<Beranda> {
                                             OpsiPopupMenu(
                                               text: "Daftar CCTV",
                                               onTap: () {
-                                                Navigator.push(context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) {
-                                                  return DaftaCctv(
-                                                    dataUser: widget.dataUser,
-                                                  );
-                                                }));
+                                                _getKecamatanApi(
+                                                    "Semarang Tengah");
                                               },
                                             ),
                                             SizedBox(

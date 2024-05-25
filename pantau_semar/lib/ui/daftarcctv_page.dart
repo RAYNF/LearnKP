@@ -1,22 +1,118 @@
 import 'package:flutter/material.dart';
+import 'package:pantau_semar/data/api/api_service.dart';
+import 'package:pantau_semar/data/model/kecamatan_model.dart';
+import 'package:pantau_semar/data/model/kelurahan_model.dart';
 import 'package:pantau_semar/data/model/user_model.dart';
 import 'package:pantau_semar/ui/tampilancctv_page.dart';
 import 'package:pantau_semar/utils/Theme.dart';
 import 'package:pantau_semar/widget/menuopsicctv_widget.dart';
 import 'package:pantau_semar/widget/menusamping_widget.dart';
 
-const List<String> data = <String>['One', 'Two', 'Three', 'Four'];
 
 class DaftaCctv extends StatefulWidget {
   final Data dataUser;
-  const DaftaCctv({super.key, required this.dataUser});
+  //masuk sini sudah bawak data kecamatan default, panggil fungsi get kecamatan saat tombol daftar cctv di tekan
+  final Kecamatan kecamatan;
+  const DaftaCctv({super.key, required this.dataUser, required this.kecamatan});
   @override
   State<DaftaCctv> createState() => _DaftarCctv();
 }
 
 class _DaftarCctv extends State<DaftaCctv> {
   String? selected;
-  List<String> data = ["KYAI SALEH", "SIMPANG LIMA", "TUGU MUDA"];
+  List<String> data = [
+    "gunung pati",
+    "Semarang Tengah",
+    "Semarang Utara",
+    "Semarang Timur",
+    "Gayamsari",
+    "Genuk",
+    "Pedurungan",
+    "Semarang Selatan",
+    "Candisari",
+    "Gajahmungkur",
+    "Tembalang",
+    "Banyumanik",
+    "Semarang Barat",
+    "Mijen",
+    "Ngaliyan",
+    "Tugu"
+  ];
+  late Future<KecamatanModel> _getKecamatan;
+  late KecamatanModel kecamatanModel;
+
+  late Future<KelurahanModel> _getKelurahanApi;
+  late KelurahanModel kelurahanModel;
+
+  void _getKecamatanApi(String name) {
+    _getKecamatan = ApiService().getKecamatan(name);
+    _getKecamatan.then((value) {
+      kecamatanModel = value;
+      print(kecamatanModel.kecamatan.id);
+      if (kecamatanModel.success != false) {
+        //masuk ke daftar cctv page  lagi dengan request kelurahan berdasar kecamatan_id yang sama
+        //blm
+        //msh error
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return DaftaCctv(
+            dataUser: widget.dataUser,
+            kecamatan: kecamatanModel.kecamatan,
+          );
+        }));
+      } else {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("kelurahan Gagal"),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("OK"),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    }).catchError((error) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Error"),
+            content: Text(error.toString()),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("OK"),
+              ),
+            ],
+          );
+        },
+      );
+    });
+  }
+
+  void initState() {
+    super.initState();
+    _getKelurahanApi =
+        ApiService().getKelurahan(int.parse(widget.kecamatan.id));
+    _getKelurahanApi.then((value) {
+      setState(() {
+        kelurahanModel = value;
+      });
+      if (kelurahanModel.success != false) {
+        print("sukses");
+      } else {
+        print("gagal");
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,6 +197,7 @@ class _DaftarCctv extends State<DaftaCctv> {
                           setState(() {
                             selected = value;
                           });
+                          _getKecamatanApi(value!);
                         },
                       ),
                     ),
@@ -108,21 +205,27 @@ class _DaftarCctv extends State<DaftaCctv> {
                   SizedBox(
                     height: 30,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      MenuOpsiCctv(
-                          imagePath: "assets/lalulintas_cctv.png",
+                  Container(
+                    height: 300,
+                    width: screenSize.width,
+                    child: GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2),
+                      itemCount: kelurahanModel.kelurahan.length,
+                      itemBuilder: (BuildContext context, index) {
+                        return MenuOpsiCctv(
+                          title: widget.kecamatan.name,
                           onTap: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                              return TampilanCctv(
-                                dataUser: widget.dataUser,
-                              );
-                            }));
-                          })
-                      // menu 1 lagi kalau ada
-                    ],
+                            // Navigator.push(context,
+                            //     MaterialPageRoute(builder: (context) {
+                            //   return TampilanCctv(
+                            //     dataUser: widget.dataUser,
+                            //   );
+                            // }));
+                          },
+                        );
+                      },
+                    ),
                   ),
                   SizedBox(
                     height: 10,

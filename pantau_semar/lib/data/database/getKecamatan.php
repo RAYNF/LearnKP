@@ -2,10 +2,10 @@
 
 include 'conn.php';
 
-$username = $_POST['username'];
-$password = $_POST['password'];
+$name = $_POST['name'];
 
-$queryResult = $connect->query("SELECT * FROM users WHERE username='".$username."' and password='".$password."'");
+
+$queryResult = $connect->query("SELECT * FROM kecamatan WHERE name='".$name."' ");
 
 $result = array();
 
@@ -17,7 +17,7 @@ if ($queryResult->num_rows > 0) {
     $response = array(
         "success" => true,
         "message" => "Akun ditemukan.",
-        "data" => $userData
+        "kecamatan" => $userData
     );
 } else {
     // Buat respons gagal jika akun tidak ditemukan

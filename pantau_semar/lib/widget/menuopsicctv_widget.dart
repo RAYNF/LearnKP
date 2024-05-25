@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class MenuOpsiCctv extends StatelessWidget {
-  final String imagePath;
+  final String title;
   final VoidCallback onTap;
 
-  const MenuOpsiCctv({super.key, required this.imagePath, required this.onTap});
+  const MenuOpsiCctv({super.key, required this.title, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -13,10 +13,8 @@ class MenuOpsiCctv extends StatelessWidget {
       child: Container(
         width: 150,
         height: 150,
-        child: Image.asset(
-          imagePath,
-          fit: BoxFit.fill,
-        ),
+        decoration: BoxDecoration(color: Colors.amber),
+        child: Text(title),
       ),
     );
   }
