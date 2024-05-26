@@ -30,9 +30,9 @@ class _MapsState extends State<Maps> {
           point: LatLng.LatLng(e.latitude, e.longtitude),
           child: InkWell(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return TampilanCctv(dataUser: widget.dataUser,);
-              }));
+              // Navigator.push(context, MaterialPageRoute(builder: (context) {
+              //   return TampilanCctv(dataUser: widget.dataUser,);
+              // }));
             },
             child: Container(
               width: 30,

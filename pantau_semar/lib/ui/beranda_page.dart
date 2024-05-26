@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pantau_semar/data/api/api_service.dart';
 import 'package:pantau_semar/data/model/getberita_model.dart';
 import 'package:pantau_semar/data/model/kecamatan_model.dart';
+import 'package:pantau_semar/data/model/kelurahan_model.dart';
 import 'package:pantau_semar/data/model/newslist_model.dart';
 import 'package:pantau_semar/data/model/registerresponse_model.dart';
 import 'package:pantau_semar/data/model/user_model.dart';
@@ -39,6 +40,9 @@ class _BerandaState extends State<Beranda> {
 
   late Future<KecamatanModel> _getKecamatan;
   late KecamatanModel kecamatanModel;
+
+  late Future<KelurahanModel> _getKelurahanApi;
+  late KelurahanModel kelurahanModel;
 
   void dispose() {
     super.dispose();
@@ -179,10 +183,20 @@ class _BerandaState extends State<Beranda> {
         kecamatanModel = value;
         print(kecamatanModel.kecamatan.id);
         if (kecamatanModel.success != false) {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return DaftaCctv(
-                dataUser: widget.dataUser, kecamatan: kecamatanModel.kecamatan);
-          }));
+          _getKelurahanApi =
+              ApiService().getKelurahan(int.parse(kecamatanModel.kecamatan.id));
+          _getKelurahanApi.then((value) {
+            kelurahanModel = value;
+            if (kelurahanModel.success != false) {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return DaftaCctv(
+                    dataUser: widget.dataUser, kelurahan: kelurahanModel.kelurahan,
+                 );
+              }));
+            } else {
+              print("gagal");
+            }
+          });
         }
       });
     }
