@@ -4,8 +4,8 @@ import 'package:video_player/video_player.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideoPlayerScreen extends StatefulWidget {
-  
-  const VideoPlayerScreen({super.key});
+  final String vidioURL;
+  VideoPlayerScreen({super.key, required this.vidioURL});
 
   @override
   State<VideoPlayerScreen> createState() => _VideoPlayerScreenState();
@@ -14,7 +14,7 @@ class VideoPlayerScreen extends StatefulWidget {
 class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   // late VideoPlayerController _controller;
   // late Future<void> _initializeVideoPlayerFuture;
-  final videoURL = "https://www.youtube.com/watch?v=YMx8Bbev6T4";
+ String videoURL = "https://www.youtube.com/watch?v=YMx8Bbev6T4";
   late YoutubePlayerController _controller;
 
   // double speed = 1;
@@ -22,6 +22,9 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   @override
   void initState() {
     super.initState();
+    setState(() {
+      videoURL = widget.vidioURL;
+    });
     final videoID = YoutubePlayer.convertUrlToId(videoURL);
     _controller = YoutubePlayerController(
       initialVideoId: videoID!,

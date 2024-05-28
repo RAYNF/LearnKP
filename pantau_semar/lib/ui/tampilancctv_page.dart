@@ -19,6 +19,7 @@ class _TampilanCctvState extends State<TampilanCctv> {
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
+    print(widget.cctvLinks.link.toString());
     return Scaffold(
       drawer: MenuSamping(dataUser: widget.dataUser,),
       backgroundColor: danger,
@@ -53,7 +54,7 @@ class _TampilanCctvState extends State<TampilanCctv> {
               padding: EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [VideoPlayerScreen()],
+                children: [VideoPlayerScreen(vidioURL: widget.cctvLinks.link,)],
                 //blm bisa kirim link ytb 
               ),
             ),
