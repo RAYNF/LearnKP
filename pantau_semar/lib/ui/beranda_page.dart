@@ -190,8 +190,9 @@ class _BerandaState extends State<Beranda> {
             if (kelurahanModel.success != false) {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return DaftaCctv(
-                    dataUser: widget.dataUser, kelurahan: kelurahanModel.kelurahan,
-                 );
+                  dataUser: widget.dataUser,
+                  kelurahan: kelurahanModel.kelurahan,
+                );
               }));
             } else {
               print("gagal");
@@ -199,6 +200,10 @@ class _BerandaState extends State<Beranda> {
           });
         }
       });
+    }
+
+    void _getLaluLintas(int id) {
+      
     }
 
     return Scaffold(
@@ -246,7 +251,6 @@ class _BerandaState extends State<Beranda> {
             ),
           ),
         ],
-        //belum bisa buka drawer
       ),
       body: ListView(
         children: [
@@ -302,7 +306,7 @@ class _BerandaState extends State<Beranda> {
                           children: [
                             CustomScrollableColumnItem(
                               icon: Icons.traffic,
-                              text: 'Lalu lintas',
+                              text: 'RT RW',
                               onTap: () {
                                 // iki
                                 showDialog(
@@ -357,10 +361,43 @@ class _BerandaState extends State<Beranda> {
                             ),
                             CustomScrollableColumnItem(
                               icon: Icons.house,
-                              text: 'Fasum',
+                              text: 'Lalu Lintas',
                               onTap: () {
-                                // Handler when item is tapped
-                                print('Item tapped');
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text(
+                                        "Pilih tampilanmu ?",
+                                        style:
+                                            subHeading.copyWith(color: danger),
+                                      ),
+                                      content: Text(
+                                        "Ayo segera Jelajahi Kota Semarang",
+                                        style: text.copyWith(color: muted),
+                                      ),
+                                      actions: [
+                                        Column(
+                                          children: [
+                                            OpsiPopupMenu(
+                                              text: "Daftar CCTV",
+                                              onTap: () {
+                                                _getLaluLintas(102);
+                                              },
+                                            ),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            OpsiPopupMenu(
+                                              text: "Peta CCTV",
+                                              onTap: () {},
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    );
+                                  },
+                                );
                               },
                             ),
                             SizedBox(
@@ -368,7 +405,7 @@ class _BerandaState extends State<Beranda> {
                             ),
                             CustomScrollableColumnItem(
                               icon: Icons.landscape,
-                              text: 'Kota lama',
+                              text: 'Pompa Air',
                               onTap: () {
                                 // Handler when item is tapped
                                 print('Item tapped');
@@ -379,7 +416,7 @@ class _BerandaState extends State<Beranda> {
                             ),
                             CustomScrollableColumnItem(
                               icon: Icons.water,
-                              text: 'Sungai',
+                              text: 'Yan Publik',
                               onTap: () {
                                 // Handler when item is tapped
                                 print('Item tapped');
@@ -391,6 +428,28 @@ class _BerandaState extends State<Beranda> {
                             CustomScrollableColumnItem(
                               icon: Icons.shield,
                               text: 'Kamtib',
+                              onTap: () {
+                                // Handler when item is tapped
+                                print('Item tapped');
+                              },
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            CustomScrollableColumnItem(
+                              icon: Icons.water_drop,
+                              text: 'Kota Lama',
+                              onTap: () {
+                                // Handler when item is tapped
+                                print('Item tapped');
+                              },
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            CustomScrollableColumnItem(
+                              icon: Icons.water_drop,
+                              text: 'Sungai',
                               onTap: () {
                                 // Handler when item is tapped
                                 print('Item tapped');
