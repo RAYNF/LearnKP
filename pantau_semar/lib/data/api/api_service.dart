@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:pantau_semar/data/model/getberita_model.dart';
 import 'package:pantau_semar/data/model/getcctvlinks_model.dart';
 import 'package:pantau_semar/data/model/getcctvsname_model.dart';
+import 'package:pantau_semar/data/model/getlalulintas_model.dart';
 import 'package:pantau_semar/data/model/kecamatan_model.dart';
 import 'package:pantau_semar/data/model/kelurahan_model.dart';
 import 'package:pantau_semar/data/model/registerresponse_model.dart';
@@ -23,6 +24,8 @@ class ApiService {
   static const String _getcctvKelurahan = "getKelurahan.php";
   static const String _getcctvsName = 'getCctvs.php';
   static const String _getcctvLinks = 'getCctvLinks.php';
+  static const String _getlaluLintas = "getLaluLintas.php";
+
 
   Future<UserModel> userLogin(String username, String password) async {
     final response = await http.post(Uri.parse("$_baseUrl$_login"),
@@ -146,6 +149,17 @@ class ApiService {
       return GetCctvLinksModel.fromJson(json.decode(response.body));
     } else {
       throw Exception("gagal dapat data cctvLinks");
+    }
+  }
+
+    Future<GetLaluLintasModel> getLalulintas(int cctv_categories_id) async {
+    final response = await http.post(Uri.parse("$_baseUrl$_getlaluLintas"),
+        body: {"cctv_categories_id": cctv_categories_id.toString()});
+    //hasil respon berupa json array
+    if (response.statusCode == 200) {
+      return GetLaluLintasModel.fromJson(json.decode(response.body));
+    } else {
+      throw Exception("gagal dapat data kelurahan");
     }
   }
 }

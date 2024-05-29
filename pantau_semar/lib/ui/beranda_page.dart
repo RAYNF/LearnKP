@@ -2,12 +2,14 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:pantau_semar/data/api/api_service.dart';
 import 'package:pantau_semar/data/model/getberita_model.dart';
+import 'package:pantau_semar/data/model/getlalulintas_model.dart';
 import 'package:pantau_semar/data/model/kecamatan_model.dart';
 import 'package:pantau_semar/data/model/kelurahan_model.dart';
 import 'package:pantau_semar/data/model/newslist_model.dart';
 import 'package:pantau_semar/data/model/registerresponse_model.dart';
 import 'package:pantau_semar/data/model/user_model.dart';
-import 'package:pantau_semar/ui/daftarcctv_page.dart';
+import 'package:pantau_semar/ui/daftarcctvgeneric_page.dart';
+import 'package:pantau_semar/ui/daftarcctvlalulintas_page.dart';
 import 'package:pantau_semar/ui/petacctv_page.dart';
 import 'package:pantau_semar/widget/animatedtexttrafic_widget.dart';
 import 'package:pantau_semar/widget/card_article.dart';
@@ -43,6 +45,9 @@ class _BerandaState extends State<Beranda> {
 
   late Future<KelurahanModel> _getKelurahanApi;
   late KelurahanModel kelurahanModel;
+
+  late Future<GetLaluLintasModel> _getLaluLintasApi;
+  late GetLaluLintasModel getLaluLintasModel;
 
   void dispose() {
     super.dispose();
@@ -202,8 +207,20 @@ class _BerandaState extends State<Beranda> {
       });
     }
 
-    void _getLaluLintas(int id) {
-      
+    void _getLaluLintas(int cctv_categories_id) {
+      _getLaluLintasApi = ApiService().getLalulintas(cctv_categories_id);
+      _getLaluLintasApi.then((value) {
+        getLaluLintasModel = value;
+        if (getLaluLintasModel.success != false) {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return DaftarCctvGeneric(
+                Lalulintas: getLaluLintasModel.laluLintas,
+                dataUser: widget.dataUser);
+          }));
+        } else {
+          print("gagal");
+        }
+      });
     }
 
     return Scaffold(
@@ -305,7 +322,7 @@ class _BerandaState extends State<Beranda> {
                         child: Row(
                           children: [
                             CustomScrollableColumnItem(
-                              icon: Icons.traffic,
+                              icon: Icons.home_work,
                               text: 'RT RW',
                               onTap: () {
                                 // iki
@@ -338,6 +355,7 @@ class _BerandaState extends State<Beranda> {
                                             OpsiPopupMenu(
                                               text: "Peta CCTV",
                                               onTap: () {
+                                                //blm connect sesuai data database
                                                 Navigator.push(context,
                                                     MaterialPageRoute(
                                                         builder: (context) {
@@ -360,7 +378,7 @@ class _BerandaState extends State<Beranda> {
                               width: 20,
                             ),
                             CustomScrollableColumnItem(
-                              icon: Icons.house,
+                              icon: Icons.traffic,
                               text: 'Lalu Lintas',
                               onTap: () {
                                 showDialog(
@@ -390,7 +408,9 @@ class _BerandaState extends State<Beranda> {
                                             ),
                                             OpsiPopupMenu(
                                               text: "Peta CCTV",
-                                              onTap: () {},
+                                              onTap: () {
+                                                //blm ada 
+                                              },
                                             )
                                           ],
                                         )
@@ -404,22 +424,92 @@ class _BerandaState extends State<Beranda> {
                               width: 20,
                             ),
                             CustomScrollableColumnItem(
-                              icon: Icons.landscape,
+                              icon: Icons.water_drop,
                               text: 'Pompa Air',
                               onTap: () {
-                                // Handler when item is tapped
-                                print('Item tapped');
+                               showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text(
+                                        "Pilih tampilanmu ?",
+                                        style:
+                                            subHeading.copyWith(color: danger),
+                                      ),
+                                      content: Text(
+                                        "Ayo segera Jelajahi Kota Semarang",
+                                        style: text.copyWith(color: muted),
+                                      ),
+                                      actions: [
+                                        Column(
+                                          children: [
+                                            OpsiPopupMenu(
+                                              text: "Daftar CCTV",
+                                              onTap: () {
+                                                _getLaluLintas(103);
+                                              },
+                                            ),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            OpsiPopupMenu(
+                                              text: "Peta CCTV",
+                                              onTap: () {
+                                                //blm ada 
+                                              },
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    );
+                                  },
+                                );
                               },
                             ),
                             SizedBox(
                               width: 20,
                             ),
                             CustomScrollableColumnItem(
-                              icon: Icons.water,
+                              icon: Icons.house,
                               text: 'Yan Publik',
                               onTap: () {
-                                // Handler when item is tapped
-                                print('Item tapped');
+                               showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text(
+                                        "Pilih tampilanmu ?",
+                                        style:
+                                            subHeading.copyWith(color: danger),
+                                      ),
+                                      content: Text(
+                                        "Ayo segera Jelajahi Kota Semarang",
+                                        style: text.copyWith(color: muted),
+                                      ),
+                                      actions: [
+                                        Column(
+                                          children: [
+                                            OpsiPopupMenu(
+                                              text: "Daftar CCTV",
+                                              onTap: () {
+                                                _getLaluLintas(104);
+                                              },
+                                            ),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            OpsiPopupMenu(
+                                              text: "Peta CCTV",
+                                              onTap: () {
+                                                //blm ada 
+                                              },
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    );
+                                  },
+                                );
                               },
                             ),
                             SizedBox(
@@ -429,41 +519,181 @@ class _BerandaState extends State<Beranda> {
                               icon: Icons.shield,
                               text: 'Kamtib',
                               onTap: () {
-                                // Handler when item is tapped
-                                print('Item tapped');
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text(
+                                        "Pilih tampilanmu ?",
+                                        style:
+                                            subHeading.copyWith(color: danger),
+                                      ),
+                                      content: Text(
+                                        "Ayo segera Jelajahi Kota Semarang",
+                                        style: text.copyWith(color: muted),
+                                      ),
+                                      actions: [
+                                        Column(
+                                          children: [
+                                            OpsiPopupMenu(
+                                              text: "Daftar CCTV",
+                                              onTap: () {
+                                                _getLaluLintas(105);
+                                              },
+                                            ),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            OpsiPopupMenu(
+                                              text: "Peta CCTV",
+                                              onTap: () {
+                                                //blm ada 
+                                              },
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    );
+                                  },
+                                );
                               },
                             ),
                             SizedBox(
                               width: 20,
                             ),
                             CustomScrollableColumnItem(
-                              icon: Icons.water_drop,
+                              icon: Icons.location_city,
                               text: 'Kota Lama',
                               onTap: () {
-                                // Handler when item is tapped
-                                print('Item tapped');
+                               showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text(
+                                        "Pilih tampilanmu ?",
+                                        style:
+                                            subHeading.copyWith(color: danger),
+                                      ),
+                                      content: Text(
+                                        "Ayo segera Jelajahi Kota Semarang",
+                                        style: text.copyWith(color: muted),
+                                      ),
+                                      actions: [
+                                        Column(
+                                          children: [
+                                            OpsiPopupMenu(
+                                              text: "Daftar CCTV",
+                                              onTap: () {
+                                                _getLaluLintas(106);
+                                              },
+                                            ),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            OpsiPopupMenu(
+                                              text: "Peta CCTV",
+                                              onTap: () {
+                                                //blm ada 
+                                              },
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    );
+                                  },
+                                );
                               },
                             ),
                             SizedBox(
                               width: 20,
                             ),
                             CustomScrollableColumnItem(
-                              icon: Icons.water_drop,
+                              icon: Icons.water,
                               text: 'Sungai',
                               onTap: () {
-                                // Handler when item is tapped
-                                print('Item tapped');
+                               showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text(
+                                        "Pilih tampilanmu ?",
+                                        style:
+                                            subHeading.copyWith(color: danger),
+                                      ),
+                                      content: Text(
+                                        "Ayo segera Jelajahi Kota Semarang",
+                                        style: text.copyWith(color: muted),
+                                      ),
+                                      actions: [
+                                        Column(
+                                          children: [
+                                            OpsiPopupMenu(
+                                              text: "Daftar CCTV",
+                                              onTap: () {
+                                                _getLaluLintas(107);
+                                              },
+                                            ),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            OpsiPopupMenu(
+                                              text: "Peta CCTV",
+                                              onTap: () {
+                                                //blm ada 
+                                              },
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    );
+                                  },
+                                );
                               },
                             ),
                             SizedBox(
                               width: 20,
                             ),
                             CustomScrollableColumnItem(
-                              icon: Icons.water_drop,
+                              icon: Icons.water_sharp,
                               text: 'Genangan',
                               onTap: () {
-                                // Handler when item is tapped
-                                print('Item tapped');
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text(
+                                        "Pilih tampilanmu ?",
+                                        style:
+                                            subHeading.copyWith(color: danger),
+                                      ),
+                                      content: Text(
+                                        "Ayo segera Jelajahi Kota Semarang",
+                                        style: text.copyWith(color: muted),
+                                      ),
+                                      actions: [
+                                        Column(
+                                          children: [
+                                            OpsiPopupMenu(
+                                              text: "Daftar CCTV",
+                                              onTap: () {
+                                                _getLaluLintas(108);
+                                              },
+                                            ),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            OpsiPopupMenu(
+                                              text: "Peta CCTV",
+                                              onTap: () {
+                                                //blm ada 
+                                              },
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    );
+                                  },
+                                );
                               },
                             ),
                           ],

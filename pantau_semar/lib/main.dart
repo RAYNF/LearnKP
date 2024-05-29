@@ -6,7 +6,7 @@ import 'package:pantau_semar/ui/onboarding_page.dart';
 import 'package:pantau_semar/ui/petacctv_page.dart';
 import 'package:pantau_semar/ui/register_page.dart';
 import 'package:pantau_semar/widget/maps_widget.dart';
-import 'package:pantau_semar/ui/daftarcctv_page.dart';
+import 'package:pantau_semar/ui/daftarcctvlalulintas_page.dart';
 import 'package:pantau_semar/ui/detailnews_page.dart';
 import 'package:pantau_semar/ui/splashScreen_page.dart';
 import 'package:pantau_semar/ui/tampilancctv_page.dart';
