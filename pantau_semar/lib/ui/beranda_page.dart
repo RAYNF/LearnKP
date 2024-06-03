@@ -49,6 +49,9 @@ class _BerandaState extends State<Beranda> {
   late Future<GetLaluLintasModel> _getLaluLintasApi;
   late GetLaluLintasModel getLaluLintasModel;
 
+  late Future<GetLaluLintasModel> _getLocationApi;
+  late GetLaluLintasModel getLocationApi;
+
   void dispose() {
     super.dispose();
     _judul.dispose();
@@ -223,6 +226,21 @@ class _BerandaState extends State<Beranda> {
       });
     }
 
+    void _getLocation(int cctv_categories_id) {
+      _getLocationApi = ApiService().getLalulintas(cctv_categories_id);
+      _getLocationApi.then((value) {
+        getLocationApi = value;
+        if (getLocationApi.success != false) {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return PetaCctv(
+              dataUser: widget.dataUser,
+              Lalulintas: getLocationApi.laluLintas,
+            );
+          }));
+        }
+      });
+    }
+
     return Scaffold(
       drawer: MenuSamping(dataUser: widget.dataUser),
       backgroundColor: danger,
@@ -356,13 +374,7 @@ class _BerandaState extends State<Beranda> {
                                               text: "Peta CCTV",
                                               onTap: () {
                                                 //blm connect sesuai data database
-                                                Navigator.push(context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) {
-                                                  return PetaCctv(
-                                                    dataUser: widget.dataUser,
-                                                  );
-                                                }));
+                                                 _getLocation(101);
                                               },
                                             )
                                           ],
@@ -409,7 +421,7 @@ class _BerandaState extends State<Beranda> {
                                             OpsiPopupMenu(
                                               text: "Peta CCTV",
                                               onTap: () {
-                                                //blm ada 
+                                                _getLocation(102);
                                               },
                                             )
                                           ],
@@ -427,7 +439,7 @@ class _BerandaState extends State<Beranda> {
                               icon: Icons.water_drop,
                               text: 'Pompa Air',
                               onTap: () {
-                               showDialog(
+                                showDialog(
                                   context: context,
                                   builder: (context) {
                                     return AlertDialog(
@@ -455,7 +467,7 @@ class _BerandaState extends State<Beranda> {
                                             OpsiPopupMenu(
                                               text: "Peta CCTV",
                                               onTap: () {
-                                                //blm ada 
+                                                _getLocation(103);
                                               },
                                             )
                                           ],
@@ -473,7 +485,7 @@ class _BerandaState extends State<Beranda> {
                               icon: Icons.house,
                               text: 'Yan Publik',
                               onTap: () {
-                               showDialog(
+                                showDialog(
                                   context: context,
                                   builder: (context) {
                                     return AlertDialog(
@@ -501,7 +513,7 @@ class _BerandaState extends State<Beranda> {
                                             OpsiPopupMenu(
                                               text: "Peta CCTV",
                                               onTap: () {
-                                                //blm ada 
+                                               _getLocation(104);
                                               },
                                             )
                                           ],
@@ -519,7 +531,7 @@ class _BerandaState extends State<Beranda> {
                               icon: Icons.shield,
                               text: 'Kamtib',
                               onTap: () {
-                              showDialog(
+                                showDialog(
                                   context: context,
                                   builder: (context) {
                                     return AlertDialog(
@@ -547,7 +559,7 @@ class _BerandaState extends State<Beranda> {
                                             OpsiPopupMenu(
                                               text: "Peta CCTV",
                                               onTap: () {
-                                                //blm ada 
+                                               _getLocation(105);
                                               },
                                             )
                                           ],
@@ -565,7 +577,7 @@ class _BerandaState extends State<Beranda> {
                               icon: Icons.location_city,
                               text: 'Kota Lama',
                               onTap: () {
-                               showDialog(
+                                showDialog(
                                   context: context,
                                   builder: (context) {
                                     return AlertDialog(
@@ -593,7 +605,7 @@ class _BerandaState extends State<Beranda> {
                                             OpsiPopupMenu(
                                               text: "Peta CCTV",
                                               onTap: () {
-                                                //blm ada 
+                                                _getLocation(106);
                                               },
                                             )
                                           ],
@@ -611,7 +623,7 @@ class _BerandaState extends State<Beranda> {
                               icon: Icons.water,
                               text: 'Sungai',
                               onTap: () {
-                               showDialog(
+                                showDialog(
                                   context: context,
                                   builder: (context) {
                                     return AlertDialog(
@@ -639,7 +651,7 @@ class _BerandaState extends State<Beranda> {
                                             OpsiPopupMenu(
                                               text: "Peta CCTV",
                                               onTap: () {
-                                                //blm ada 
+                                                _getLocation(107);
                                               },
                                             )
                                           ],
@@ -657,7 +669,7 @@ class _BerandaState extends State<Beranda> {
                               icon: Icons.water_sharp,
                               text: 'Genangan',
                               onTap: () {
-                              showDialog(
+                                showDialog(
                                   context: context,
                                   builder: (context) {
                                     return AlertDialog(
@@ -685,7 +697,7 @@ class _BerandaState extends State<Beranda> {
                                             OpsiPopupMenu(
                                               text: "Peta CCTV",
                                               onTap: () {
-                                                //blm ada 
+                                               _getLocation(108);
                                               },
                                             )
                                           ],
