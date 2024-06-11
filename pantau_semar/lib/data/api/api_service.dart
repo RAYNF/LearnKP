@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
-
 import 'package:http/http.dart' as http;
 import 'package:pantau_semar/data/model/getberita_model.dart';
 import 'package:pantau_semar/data/model/getcctvlinks_model.dart';
@@ -26,11 +24,9 @@ class ApiService {
   static const String _getcctvLinks = 'getCctvLinks.php';
   static const String _getlaluLintas = "getLaluLintas.php";
 
-
   Future<UserModel> userLogin(String username, String password) async {
     final response = await http.post(Uri.parse("$_baseUrl$_login"),
         body: {"username": username, "password": password});
-    //hasil respon berupa json array
     if (response.statusCode == 200) {
       return UserModel.fromJson(json.decode(response.body));
     } else {
@@ -46,7 +42,6 @@ class ApiService {
       "username": username,
       "phone_number": phone_number
     });
-    //hasil respon berupa json object
     if (response.statusCode == 200) {
       return RegisterResponseModel.fromJson(json.decode(response.body));
     } else {
@@ -107,7 +102,6 @@ class ApiService {
   Future<KecamatanModel> getKecamatan(String name) async {
     final response = await http
         .post(Uri.parse("$_baseUrl$_getcctvKecamatan"), body: {"name": name});
-    //hasil respon berupa json array
     if (response.statusCode == 200) {
       return KecamatanModel.fromJson(json.decode(response.body));
     } else {
@@ -118,7 +112,6 @@ class ApiService {
   Future<KelurahanModel> getKelurahan(int kecamatan_id) async {
     final response = await http.post(Uri.parse("$_baseUrl$_getcctvKelurahan"),
         body: {"kecamatan_id": kecamatan_id.toString()});
-    //hasil respon berupa json array
     if (response.statusCode == 200) {
       return KelurahanModel.fromJson(json.decode(response.body));
     } else {
@@ -133,7 +126,6 @@ class ApiService {
       "kelurahan_id": idKelurahan.toString(),
       "cctv_categories_id": categories_id.toString()
     });
-    //hasil respon berupa json array
     if (response.statusCode == 200) {
       return GetCctvsNameModel.fromJson(json.decode(response.body));
     } else {
@@ -141,10 +133,9 @@ class ApiService {
     }
   }
 
-    Future<GetCctvLinksModel> getCctvLinks(int cctv_id) async {
+  Future<GetCctvLinksModel> getCctvLinks(int cctv_id) async {
     final response = await http.post(Uri.parse("$_baseUrl$_getcctvLinks"),
         body: {"cctv_id": cctv_id.toString()});
-    //hasil respon berupa json array
     if (response.statusCode == 200) {
       return GetCctvLinksModel.fromJson(json.decode(response.body));
     } else {
@@ -152,16 +143,13 @@ class ApiService {
     }
   }
 
-    Future<GetLaluLintasModel> getLalulintas(int cctv_categories_id) async {
+  Future<GetLaluLintasModel> getLalulintas(int cctv_categories_id) async {
     final response = await http.post(Uri.parse("$_baseUrl$_getlaluLintas"),
         body: {"cctv_categories_id": cctv_categories_id.toString()});
-    //hasil respon berupa json array
     if (response.statusCode == 200) {
       return GetLaluLintasModel.fromJson(json.decode(response.body));
     } else {
       throw Exception("gagal dapat data kelurahan");
     }
   }
-
-  
 }

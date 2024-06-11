@@ -4,7 +4,6 @@ import 'package:latlong2/latlong.dart' as LatLng;
 import 'package:pantau_semar/data/api/api_service.dart';
 import 'package:pantau_semar/data/model/getcctvlinks_model.dart';
 import 'package:pantau_semar/data/model/getlalulintas_model.dart';
-import 'package:pantau_semar/data/model/location_model.dart';
 import 'package:pantau_semar/data/model/user_model.dart';
 import 'package:pantau_semar/ui/tampilancctv_page.dart';
 

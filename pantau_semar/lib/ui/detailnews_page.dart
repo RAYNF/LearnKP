@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pantau_semar/data/api/api_service.dart';
 import 'package:pantau_semar/data/model/getberita_model.dart';
-import 'package:pantau_semar/data/model/newslist_model.dart';
 import 'package:pantau_semar/data/model/registerresponse_model.dart';
 import 'package:pantau_semar/data/model/user_model.dart';
 import 'package:pantau_semar/ui/beranda_page.dart';

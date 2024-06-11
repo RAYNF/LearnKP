@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pantau_semar/data/model/user_model.dart';
-
 import 'package:pantau_semar/utils/Theme.dart';
 import 'package:pantau_semar/widget/buttonbantuan_widget.dart';
 import 'package:pantau_semar/widget/menusamping_widget.dart';
@@ -19,7 +18,9 @@ class _BantuanState extends State<Bantuan> {
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
-      drawer: MenuSamping(dataUser: widget.dataUser,),
+      drawer: MenuSamping(
+        dataUser: widget.dataUser,
+      ),
       backgroundColor: danger,
       appBar: AppBar(
         backgroundColor: danger,
@@ -80,7 +81,3 @@ class _BantuanState extends State<Bantuan> {
     );
   }
 }
-
-
-
-

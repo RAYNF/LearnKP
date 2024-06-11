@@ -11,16 +11,11 @@ class GetCctvLinksModel {
 
   factory GetCctvLinksModel.fromJson(Map<String, dynamic> json) =>
       GetCctvLinksModel(
-        success: json["success"],
-        message: json["message"],
-         cctvLinks: json["cctvLinks"] != null ? CctvLinks.fromJson(json["cctvLinks"]) : null
-      );
-
-  Map<String, dynamic> toJson() => {
-        "success": success,
-        "message": message,
-        "cctvLinks": cctvLinks?.toJson(),
-      };
+          success: json["success"],
+          message: json["message"],
+          cctvLinks: json["cctvLinks"] != null
+              ? CctvLinks.fromJson(json["cctvLinks"])
+              : null);
 }
 
 class CctvLinks {
@@ -51,14 +46,4 @@ class CctvLinks {
         lat: json["lat"],
         ing: json["ing"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "cctv_id": cctvId,
-        "channel": channel,
-        "link": link,
-        "status": status,
-        "lat": lat,
-        "ing": ing,
-      };
 }

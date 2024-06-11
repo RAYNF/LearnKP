@@ -12,9 +12,4 @@ class RegisterResponseModel {
         succes: json["succes"],
         message: json["message"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "succes": succes,
-        "message": message,
-      };
 }

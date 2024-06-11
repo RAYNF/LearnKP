@@ -5,7 +5,6 @@ import 'package:pantau_semar/data/model/getberita_model.dart';
 import 'package:pantau_semar/data/model/getlalulintas_model.dart';
 import 'package:pantau_semar/data/model/kecamatan_model.dart';
 import 'package:pantau_semar/data/model/kelurahan_model.dart';
-import 'package:pantau_semar/data/model/newslist_model.dart';
 import 'package:pantau_semar/data/model/registerresponse_model.dart';
 import 'package:pantau_semar/data/model/user_model.dart';
 import 'package:pantau_semar/ui/daftarcctvgeneric_page.dart';
@@ -262,7 +261,7 @@ class _BerandaState extends State<Beranda> {
               style: textSm.copyWith(color: primary),
             ),
             SizedBox(
-              height: 5,
+              height: 10,
             )
           ],
         ),
@@ -373,7 +372,6 @@ class _BerandaState extends State<Beranda> {
                                             OpsiPopupMenu(
                                               text: "Peta CCTV",
                                               onTap: () {
-                                                //blm connect sesuai data database
                                                  _getLocation(101);
                                               },
                                             )
