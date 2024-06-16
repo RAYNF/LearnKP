@@ -1,9 +1,7 @@
 import 'dart:async';
-import 'dart:ui';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:pantau_semar/ui/welcome_page.dart';
 import 'package:pantau_semar/utils/Theme.dart';
 
@@ -36,7 +34,9 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             SizedBox(height: screenSize.height / 5.5),
             Image.asset('assets/logo_splashscreen.png'),
-            Text("PantauSemar", style: heading.copyWith(color: danger))
+            Text("alertdialog17_beranda",
+                    style: heading.copyWith(color: danger))
+                .tr()
           ],
         ),
       )),

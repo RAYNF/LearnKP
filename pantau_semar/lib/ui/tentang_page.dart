@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pantau_semar/data/model/user_model.dart';
 import 'package:pantau_semar/utils/Theme.dart';
@@ -19,7 +20,7 @@ class Tentang extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: danger,
         centerTitle: true,
-        title: Text("Bantuan", style: heading.copyWith(color: primary)),
+        title: Text("title1_tentang", style: heading.copyWith(color: primary)).tr(),
         leading: Builder(builder: (context) {
           return IconButton(
             onPressed: () {
@@ -39,7 +40,6 @@ class Tentang extends StatelessWidget {
           ),
           Container(
             width: screenSize.width,
-            height: screenSize.height,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
                 color: primary),
@@ -80,16 +80,16 @@ class Tentang extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "PANTAUSEMAR v1.4.1",
+                                    "title2_tentang",
                                     style: subHeading.copyWith(color: primary),
-                                  ),
+                                  ).tr(),
                                   SizedBox(
                                     height: 10,
                                   ),
                                   Text(
-                                    "2024 Pemerintah Kota Semarang",
+                                    "title3_tentang",
                                     style: textSm.copyWith(color: primary),
-                                  )
+                                  ).tr()
                                 ],
                               )
                             ],
@@ -99,9 +99,9 @@ class Tentang extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.all(20),
                         child: Text(
-                          "PantauSemar adalah aplikasi inovatif yang dirancang khusus untuk memudahkan warga Kota Semarang dalam mengakses informasi dan memantau langsung berbagai CCTV yang tersebar di seluruh penjuru kota. Dengan PantauSemar, Anda dapat:\n\n1. Melihat CCTV di Berbagai Tempat:\n- Pantau kondisi lalu lintas secara real-time di berbagai titik strategis.\n- Awasi situasi di kantor pelayanan publik seperti kelurahan, kecamatan, dan dinas-dinas terkait.\n- Pastikan keamanan dan kebersihan sungai dengan melihat langsung CCTV di area sungai.\n\n2. Mendapatkan Berita Terbaru:\n- Dapatkan informasi terkini seputar Kota Semarang dengan mudah dan cepat.\n- Temukan berita terbaru tentang peristiwa, kebijakan pemerintah, dan kegiatan di berbagai wilayah Semarang.\n- Selalu update dengan informasi penting yang dapat membantu Anda dalam keseharian.\n\n3. Mengetahui Perkiraan Cuaca:\n- Lihat perkiraan cuaca akurat untuk Kota Semarang dalam beberapa hari ke depan.\n- Rencanakan aktivitas Anda dengan lebih baik berdasarkan informasi cuaca yang terpercaya.\n- Hindari potensi cuaca buruk dan persiapkan diri untuk berbagai kemungkinan.",
+                          "title4_tentang",
                           style: textSm.copyWith(color: primary),
-                        ),
+                        ).tr(),
                       )
                     ],
                   ),

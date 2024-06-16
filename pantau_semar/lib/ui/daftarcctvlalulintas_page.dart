@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pantau_semar/data/api/api_service.dart';
 import 'package:pantau_semar/data/model/getcctvlinks_model.dart';
@@ -12,8 +13,6 @@ import 'package:pantau_semar/widget/menusamping_widget.dart';
 
 class DaftaCctv extends StatefulWidget {
   final Data dataUser;
-  //masuk sini sudah bawak data kecamatan default, panggil fungsi get kecamatan saat tombol daftar cctv di tekan
-  // final Kecamatan kecamatan;
   final List<Kelurahan> kelurahan;
   const DaftaCctv({super.key, required this.dataUser, required this.kelurahan});
   @override
@@ -55,19 +54,14 @@ class _DaftarCctv extends State<DaftaCctv> {
   void _getKecamatanApi(String name) {
     _getKecamatan = ApiService().getKecamatan(name);
     _getKecamatan.then((value) {
-      // kecamatanModel = value;
       setState(() {
         kecamatanModel = value;
       });
       print(kecamatanModel.kecamatan.id);
       if (kecamatanModel.success != false) {
-        //masuk ke daftar cctv page  lagi dengan request kelurahan berdasar kecamatan_id yang sama
-        //blm
-        //msh error
         _getKelurahanApi =
             ApiService().getKelurahan(int.parse(kecamatanModel.kecamatan.id));
         _getKelurahanApi.then((value) {
-          // kelurahanModel = value;
           setState(() {
             kelurahanModel = value;
           });
@@ -79,7 +73,7 @@ class _DaftarCctv extends State<DaftaCctv> {
               );
             }));
           } else {
-            print("gagal");
+            print("respon1_beranda".tr());
           }
         });
       } else {
@@ -87,13 +81,13 @@ class _DaftarCctv extends State<DaftaCctv> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text("kelurahan Gagal"),
+              title: Text("alertDialog1_cctvlalulintas").tr(),
               actions: <Widget>[
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text("OK"),
+                  child: Text("alertDialog15_beranda").tr(),
                 ),
               ],
             );
@@ -105,14 +99,14 @@ class _DaftarCctv extends State<DaftaCctv> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text("Error"),
+            title: Text("alertDialog18_beranda").tr(),
             content: Text(error.toString()),
             actions: <Widget>[
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text("OK"),
+                child: Text("alertDialog15_beranda").tr(),
               ),
             ],
           );
@@ -128,8 +122,7 @@ class _DaftarCctv extends State<DaftaCctv> {
         getCctvLinksModel = value;
       });
       if (getCctvLinksModel.success != false) {
-        print("berhasil");
-        //blm bisa kirim link ytb masih bawaan
+        print("alertDialog2_cctvlalulintas".tr());
         if (getCctvLinksModel.cctvLinks?.link != null) {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
             return TampilanCctv(
@@ -137,26 +130,26 @@ class _DaftarCctv extends State<DaftaCctv> {
               cctvLinks: getCctvLinksModel.cctvLinks!,
             );
           }));
-        }else{
-             showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text("Cctv belum tersedia"),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text("OK"),
-              ),
-            ],
+        } else {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text("alertDialog3_cctvlalulintas").tr(),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text("alertDialog15_beranda").tr(),
+                  ),
+                ],
+              );
+            },
           );
-        },
-      );
         }
       } else {
-        print("gagal");
+        print("respon1_beranda".tr());
       }
     });
   }
@@ -171,13 +164,13 @@ class _DaftarCctv extends State<DaftaCctv> {
           builder: (context) {
             return AlertDialog(
               title: Text(
-                "Pilih Lokasi CCTV ?",
+                "alertDialog3_cctvlalulintas",
                 style: subHeading.copyWith(color: danger),
-              ),
+              ).tr(),
               content: Text(
-                "Ayo segera Jelajahi Kota Semarang",
+                "alertdialog5_beranda",
                 style: text.copyWith(color: muted),
-              ),
+              ).tr(),
               actions: [
                 FutureBuilder<GetCctvsNameModel>(
                     future: _getCctvsNames,
@@ -230,13 +223,13 @@ class _DaftarCctv extends State<DaftaCctv> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text("ambil data gagal"),
+              title: Text("alertDialog5_cctvlalulintas").tr(),
               actions: <Widget>[
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text("OK"),
+                  child: Text("alertdialog15_beranda").tr(),
                 ),
               ],
             );
@@ -256,7 +249,9 @@ class _DaftarCctv extends State<DaftaCctv> {
       backgroundColor: danger,
       appBar: AppBar(
         backgroundColor: danger,
-        title: Text("CCTV", style: heading.copyWith(color: primary)),
+        title: Text("title1_cctvlalulintas",
+                style: heading.copyWith(color: primary))
+            .tr(),
         leading: Builder(builder: (context) {
           return IconButton(
             onPressed: () {
@@ -286,16 +281,16 @@ class _DaftarCctv extends State<DaftaCctv> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Explore",
+                    "title2_cctvlalulintas",
                     style: subHeading.copyWith(color: danger),
-                  ),
+                  ).tr(),
                   SizedBox(
                     height: 10,
                   ),
                   Text(
-                    "Pilih menu area pemantau CCTV",
+                    "title3_cctvlalulintas",
                     style: text.copyWith(color: muted),
-                  ),
+                  ).tr(),
                   SizedBox(
                     height: 20,
                   ),
@@ -311,15 +306,13 @@ class _DaftarCctv extends State<DaftaCctv> {
                         style: text.copyWith(color: primary),
                         value: selected,
                         hint: Text(
-                          "Pilih area CCTV",
+                          "title4_cctvlalulintas",
                           style: text.copyWith(color: primary),
-                        ),
+                        ).tr(),
                         items: data
                             .map(
                               (e) => DropdownMenuItem(
-                                //nilai
                                 value: e,
-                                //tampilan drodown
                                 child: Text(e),
                               ),
                             )
@@ -351,15 +344,7 @@ class _DaftarCctv extends State<DaftaCctv> {
                           return MenuOpsiCctv(
                             title: widget.kelurahan[index].name,
                             onTap: () {
-                              //ambil id kelurahan
-                              //ambil id kategories
                               _getCctvs(widget.kelurahan[index].id, 101);
-                              // Navigator.push(context,
-                              //     MaterialPageRoute(builder: (context) {
-                              //   return TampilanCctv(
-                              //     dataUser: widget.dataUser,
-                              //   );
-                              // }));
                             },
                           );
                         },

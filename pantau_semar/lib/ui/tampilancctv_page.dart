@@ -1,8 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pantau_semar/data/model/getcctvlinks_model.dart';
 import 'package:pantau_semar/data/model/user_model.dart';
 import 'package:pantau_semar/utils/Theme.dart';
-import 'package:pantau_semar/widget/buttonbantuan_widget.dart';
 import 'package:pantau_semar/widget/menusamping_widget.dart';
 import 'package:pantau_semar/widget/vidioplayer_widget.dart';
 
@@ -26,7 +26,7 @@ class _TampilanCctvState extends State<TampilanCctv> {
       appBar: AppBar(
         backgroundColor: danger,
         centerTitle: true,
-        title: Text("Tampilan CCTV", style: heading.copyWith(color: primary)),
+        title: Text("title1_tampilan", style: heading.copyWith(color: primary)).tr(),
         leading: Builder(builder: (context) {
           return IconButton(
             onPressed: () {
@@ -55,7 +55,6 @@ class _TampilanCctvState extends State<TampilanCctv> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [VideoPlayerScreen(vidioURL: widget.cctvLinks.link,)],
-                //blm bisa kirim link ytb 
               ),
             ),
           ),

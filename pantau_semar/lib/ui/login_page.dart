@@ -1,8 +1,6 @@
-import 'dart:convert';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart' as http;
 import 'package:pantau_semar/data/api/api_service.dart';
 import 'package:pantau_semar/data/model/user_model.dart';
 import 'package:pantau_semar/ui/beranda_page.dart';
@@ -47,14 +45,14 @@ class _LoginPageState extends State<LoginPage> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text("Login Gagal"),
-              content: Text("Username atau password salah"),
+              title: Text("alerDialog1_login").tr(),
+              content: Text("alertDialog2_login").tr(),
               actions: <Widget>[
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text("OK"),
+                  child: Text("alertdialog15_beranda").tr(),
                 ),
               ],
             );
@@ -66,14 +64,14 @@ class _LoginPageState extends State<LoginPage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text("Error"),
+            title: Text("alertdialog18_beranda").tr(),
             content: Text(error.toString()),
             actions: <Widget>[
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text("OK"),
+                child: Text("alertdialog15_beranda").tr(),
               ),
             ],
           );
@@ -99,10 +97,10 @@ class _LoginPageState extends State<LoginPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Login",
+                          "btn1_onboarding",
                           style: headings,
                           textAlign: TextAlign.center,
-                        )
+                        ).tr()
                       ],
                     ),
                     SizedBox(
@@ -112,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                       controller: _username,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
-                        hintText: 'masukkan nama pengguna',
+                        hintText: 'title2_login'.tr(),
                         hintStyle: GoogleFonts.poppins(
                           fontSize: 12,
                         ),
@@ -136,7 +134,7 @@ class _LoginPageState extends State<LoginPage> {
                       controller: _password,
                       obscureText: visible,
                       decoration: InputDecoration(
-                        hintText: 'masukkan password',
+                        hintText: 'title3_login'.tr(),
                         hintStyle: GoogleFonts.poppins(
                           fontSize: 12,
                         ),
@@ -169,8 +167,8 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () {
                         login();
                       },
-                      child: Text("Login",
-                          style: heading.copyWith(color: Colors.black)),
+                      child: Text("btn1_onboarding",
+                          style: heading.copyWith(color: Colors.black)).tr(),
                       style: ElevatedButton.styleFrom(
                           backgroundColor: danger,
                           minimumSize: Size(screenWidth.width, 60)),
@@ -181,7 +179,7 @@ class _LoginPageState extends State<LoginPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Belum punya akun? "),
+                        Text("title4_login").tr(),
                         TextButton(
                             onPressed: () {
                               Navigator.push(context,
@@ -190,9 +188,9 @@ class _LoginPageState extends State<LoginPage> {
                               }));
                             },
                             child: Text(
-                              "Sign Up",
+                              "btn2_onboarding",
                               style: text.copyWith(color: Colors.purple),
-                            ))
+                            ).tr())
                       ],
                     )
                   ],

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pantau_semar/data/api/api_service.dart';
 import 'package:pantau_semar/data/model/getcctvlinks_model.dart';
@@ -9,9 +10,8 @@ import 'package:pantau_semar/widget/menuopsicctv_widget.dart';
 import 'package:pantau_semar/widget/menusamping_widget.dart';
 
 class DaftarCctvGeneric extends StatefulWidget {
-  //tabel cctvs langsung
   final List<LaluLinta> Lalulintas;
-  
+
   final Data dataUser;
   const DaftarCctvGeneric(
       {super.key, required this.Lalulintas, required this.dataUser});
@@ -31,8 +31,7 @@ class _DaftarCctvGenericState extends State<DaftarCctvGeneric> {
         getCctvLinksModel = value;
       });
       if (getCctvLinksModel.success != false) {
-        print("berhasil");
-        //blm bisa kirim link ytb masih bawaan
+        print("alertDialog2_cctvlalulintas".tr());
         if (getCctvLinksModel.cctvLinks?.link != null) {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
             return TampilanCctv(
@@ -45,13 +44,13 @@ class _DaftarCctvGenericState extends State<DaftarCctvGeneric> {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: Text("Cctv belum tersedia"),
+                title: Text("alertDialog3_cctvlalulintas".tr()),
                 actions: <Widget>[
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: Text("OK"),
+                    child: Text("alertdialog15_beranda").tr(),
                   ),
                 ],
               );
@@ -59,7 +58,7 @@ class _DaftarCctvGenericState extends State<DaftarCctvGeneric> {
           );
         }
       } else {
-        print("gagal");
+        print("alertdialog16_beranda".tr());
       }
     });
   }
@@ -74,7 +73,9 @@ class _DaftarCctvGenericState extends State<DaftarCctvGeneric> {
       backgroundColor: danger,
       appBar: AppBar(
         backgroundColor: danger,
-        title: Text("CCTV", style: heading.copyWith(color: primary)),
+        title: Text("title1_cctvlalulintas",
+                style: heading.copyWith(color: primary))
+            .tr(),
         leading: Builder(builder: (context) {
           return IconButton(
             onPressed: () {
@@ -104,16 +105,16 @@ class _DaftarCctvGenericState extends State<DaftarCctvGeneric> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Explore",
+                    "title2_cctvlalulintas",
                     style: subHeading.copyWith(color: danger),
-                  ),
+                  ).tr(),
                   SizedBox(
                     height: 10,
                   ),
                   Text(
-                    "Pilih menu area pemantau CCTV",
+                    "title3_cctvlalulintas",
                     style: text.copyWith(color: muted),
-                  ),
+                  ).tr(),
                   SizedBox(
                     height: 20,
                   ),
@@ -131,17 +132,7 @@ class _DaftarCctvGenericState extends State<DaftarCctvGeneric> {
                           return MenuOpsiCctv(
                             title: widget.Lalulintas[index].name,
                             onTap: () {
-                              //ambil id Lalulintas
-                              //ambil id kategories
-
                               _getCctvs(int.parse(widget.Lalulintas[index].id));
-
-                              // Navigator.push(context,
-                              //     MaterialPageRoute(builder: (context) {
-                              //   return TampilanCctv(
-                              //     dataUser: widget.dataUser,
-                              //   );
-                              // }));
                             },
                           );
                         },

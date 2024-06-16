@@ -1,5 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:pantau_semar/ui/beranda_page.dart';
 import 'package:pantau_semar/ui/onboarding_page.dart';
 import 'package:pantau_semar/utils/Theme.dart';
 
@@ -42,13 +42,13 @@ class Welcome extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Pantau Kondisi Perjalanan Anda",
+                              "slogan1_welcome",
                               style: subHeading.copyWith(color: primary),
-                            ),
+                            ).tr(),
                             Text(
-                              "di sekitar Kota Semarang",
+                              "slogan2_welcone",
                               style: subHeading.copyWith(color: primary),
-                            )
+                            ).tr()
                           ],
                         ),
                         SizedBox(
@@ -59,9 +59,9 @@ class Welcome extends StatelessWidget {
                             child: Padding(
                               padding: EdgeInsets.all(10),
                               child: Text(
-                                "Mulai Sekarang",
+                                "btn1_welcome",
                                 style: heading.copyWith(color: danger),
-                              ),
+                              ).tr(),
                             ),
                             decoration: BoxDecoration(
                                 color: primary,

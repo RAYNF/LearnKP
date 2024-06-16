@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pantau_semar/data/model/user_model.dart';
@@ -73,12 +74,12 @@ class Setting extends StatelessWidget {
                       child: Row(
                         children: [
                           Text(
-                            "General Settings",
+                            "title1_setting",
                             style: GoogleFonts.poppins(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
                                 color: whiteColor),
-                          ),
+                          ).tr(),
                         ],
                       ),
                     ),
@@ -88,21 +89,21 @@ class Setting extends StatelessWidget {
                     child: Column(
                       children: [
                         ProfileDetailInfo(
-                          cat: 'Password',
+                          cat: 'title2_setting'.tr(),
                           value: '',
                           onTap: () {
                             showDialog(
                                 context: context,
                                 builder: (context) {
                                   return AlertDialog(
-                                    title: Text("Password"),
+                                    title: Text("title2_setting").tr(),
                                     content: Text(dataUser.password),
                                   );
                                 });
                           },
                         ),
                         ProfileDetailInfo(
-                          cat: 'Status',
+                          cat: 'title3_setting'.tr(),
                           value: '',
                           noValue: true,
                           onTap: () {
@@ -110,14 +111,14 @@ class Setting extends StatelessWidget {
                                 context: context,
                                 builder: (context) {
                                   return AlertDialog(
-                                    title: Text("Status"),
+                                    title: Text("title3_setting").tr(),
                                     content: Text(dataUser.level),
                                   );
                                 });
                           },
                         ),
                         ProfileDetailInfo(
-                          cat: 'Score',
+                          cat: 'title4_setting'.tr(),
                           value: '',
                           noValue: true,
                           onTap: () {
@@ -125,7 +126,7 @@ class Setting extends StatelessWidget {
                                 context: context,
                                 builder: (context) {
                                   return AlertDialog(
-                                    title: Text("Score"),
+                                    title: Text("title4_setting").tr(),
                                     content: Text(dataUser.phoneNumber),
                                   );
                                 });
@@ -146,12 +147,12 @@ class Setting extends StatelessWidget {
                       child: Row(
                         children: [
                           Text(
-                            "General Settings",
+                            "title5_setting",
                             style: GoogleFonts.poppins(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
                                 color: whiteColor),
-                          ),
+                          ).tr(),
                         ],
                       ),
                     ),
@@ -161,34 +162,79 @@ class Setting extends StatelessWidget {
                     child: Column(
                       children: [
                         ProfileDetailInfo(
-                          cat: 'About App',
+                          cat: 'title6_setting'.tr(),
                           value: '',
                           onTap: () {
                             showDialog(
                                 context: context,
                                 builder: (context) {
                                   return AlertDialog(
-                                    title: Text("About"),
-                                    content: Text(
-                                        "Curiousiz adalah sebuah aplikasi yang dibangun dapat memenuhi semua keresahan guru dalam meyelenggarakan ulangan secara online"),
+                                    title: Text("title7_setting").tr(),
+                                    content: Text("title8_setting").tr(),
                                   );
                                 });
                           },
                         ),
                         ProfileDetailInfo(
-                          cat: 'Terms',
+                          cat: 'title9_setting'.tr(),
                           value: '',
                           onTap: () {},
                         ),
                         ProfileDetailInfo(
-                          cat: 'Privacy Policy',
+                          cat: 'title10_setting'.tr(),
                           value: '',
                           onTap: () {},
                         ),
                         ProfileDetailInfo(
-                          cat: 'Share This App',
+                          cat: 'title11_setting'.tr(),
                           value: '',
-                          onTap: () {},
+                          onTap: () {
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    title: Text("title11_setting").tr(),
+                                    actions: [
+                                      Container(
+                                        width: double.infinity,
+                                        child: Center(
+                                          child: Row(
+                                            children: [
+                                              ElevatedButton(
+                                                onPressed: () {
+                                                  context.setLocale(
+                                                      const Locale('id'));
+                                                },
+                                                child: Text(
+                                                  "title13_setting",
+                                                  style: subText.copyWith(
+                                                      color: whiteColor),
+                                                ).tr(),
+                                                style: ElevatedButton.styleFrom(
+                                                  backgroundColor: danger,
+                                                ),
+                                              ),
+                                              ElevatedButton(
+                                                onPressed: () {
+                                                  context.setLocale(
+                                                      const Locale('en', 'US'));
+                                                },
+                                                child: Text("title14_setting",
+                                                        style: subText.copyWith(
+                                                            color: whiteColor))
+                                                    .tr(),
+                                                style: ElevatedButton.styleFrom(
+                                                  backgroundColor: danger,
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  );
+                                });
+                          },
                         ),
                       ],
                     ),
@@ -203,7 +249,7 @@ class Setting extends StatelessWidget {
                     return LoginPage();
                   }));
                 },
-                child: Text("Logout"))
+                child: Text("title12_setting").tr())
           ],
         ),
       ),

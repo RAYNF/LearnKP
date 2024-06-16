@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pantau_semar/data/api/api_service.dart';
 import 'package:pantau_semar/data/model/getberita_model.dart';
@@ -78,7 +79,7 @@ class _BerandaState extends State<Beranda> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text("tambah berita berhasil"),
+              title: Text("alertdialog1_beranda").tr(),
               content: Text(registerResponseModel.message),
               actions: <Widget>[
                 TextButton(
@@ -90,7 +91,7 @@ class _BerandaState extends State<Beranda> {
                       );
                     }));
                   },
-                  child: Text("Kembali"),
+                  child: Text("alertdialog2_beranda").tr(),
                 ),
               ],
             );
@@ -101,14 +102,14 @@ class _BerandaState extends State<Beranda> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text("tambah berita Gagal"),
+              title: Text("alertdialog3_beranda").tr(),
               content: Text(registerResponseModel.message),
               actions: <Widget>[
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text("OK"),
+                  child: Text("alertdialog15_beranda").tr(),
                 ),
               ],
             );
@@ -120,14 +121,14 @@ class _BerandaState extends State<Beranda> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text("Error"),
+            title: Text("alertdialog18_beranda").tr(),
             content: Text(error.toString()),
             actions: <Widget>[
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text("OK"),
+                child: Text("alertdialog15_beranda").tr(),
               ),
             ],
           );
@@ -202,7 +203,7 @@ class _BerandaState extends State<Beranda> {
                 );
               }));
             } else {
-              print("gagal");
+              print("alertdialog16_beranda".tr());
             }
           });
         }
@@ -220,7 +221,7 @@ class _BerandaState extends State<Beranda> {
                 dataUser: widget.dataUser);
           }));
         } else {
-          print("gagal");
+          print("alertdialog16_beranda".tr());
         }
       });
     }
@@ -250,16 +251,16 @@ class _BerandaState extends State<Beranda> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "PantauSemar",
+              "alertdialog17_beranda",
               style: heading.copyWith(color: primary),
-            ),
+            ).tr(),
             SizedBox(
               height: 10,
             ),
             Text(
-              "Layanan CCTV Integrasi Kota Semarang",
+              "slogan1_beranda",
               style: textSm.copyWith(color: primary),
-            ),
+            ).tr(),
             SizedBox(
               height: 10,
             )
@@ -316,16 +317,16 @@ class _BerandaState extends State<Beranda> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Mau Lihat CCTV Apa ?",
+                        "slogan2_beranda",
                         style: text.copyWith(color: danger),
-                      ),
+                      ).tr(),
                       SizedBox(
                         height: 10,
                       ),
                       Text(
-                        "Mulai jelajahi kota semarang sekarang",
+                        "slogan3_beranda",
                         style: text.copyWith(color: muted),
-                      )
+                      ).tr()
                     ],
                   ),
                   SizedBox(
@@ -340,7 +341,7 @@ class _BerandaState extends State<Beranda> {
                           children: [
                             CustomScrollableColumnItem(
                               icon: Icons.home_work,
-                              text: 'RT RW',
+                              text: 'menu1_beranda'.tr(),
                               onTap: () {
                                 // iki
                                 showDialog(
@@ -348,19 +349,19 @@ class _BerandaState extends State<Beranda> {
                                   builder: (context) {
                                     return AlertDialog(
                                       title: Text(
-                                        "Pilih tampilanmu ?",
+                                        "alertdialog4_beranda".tr(),
                                         style:
                                             subHeading.copyWith(color: danger),
                                       ),
                                       content: Text(
-                                        "Ayo segera Jelajahi Kota Semarang",
+                                        "alertdialog5_beranda".tr(),
                                         style: text.copyWith(color: muted),
                                       ),
                                       actions: [
                                         Column(
                                           children: [
                                             OpsiPopupMenu(
-                                              text: "Daftar CCTV",
+                                              text: "popupmenu1_beranda".tr(),
                                               onTap: () {
                                                 _getKecamatanApi(
                                                     "Semarang Tengah");
@@ -370,7 +371,7 @@ class _BerandaState extends State<Beranda> {
                                               height: 10,
                                             ),
                                             OpsiPopupMenu(
-                                              text: "Peta CCTV",
+                                              text: "popupmenu2_beranda".tr(),
                                               onTap: () {
                                                  _getLocation(101);
                                               },
@@ -389,26 +390,26 @@ class _BerandaState extends State<Beranda> {
                             ),
                             CustomScrollableColumnItem(
                               icon: Icons.traffic,
-                              text: 'Lalu Lintas',
+                              text: 'menu2_beranda'.tr(),
                               onTap: () {
                                 showDialog(
                                   context: context,
                                   builder: (context) {
                                     return AlertDialog(
                                       title: Text(
-                                        "Pilih tampilanmu ?",
+                                        "alertdialog4_beranda".tr(),
                                         style:
                                             subHeading.copyWith(color: danger),
                                       ),
                                       content: Text(
-                                        "Ayo segera Jelajahi Kota Semarang",
+                                        "alertdialog5_beranda".tr(),
                                         style: text.copyWith(color: muted),
                                       ),
                                       actions: [
                                         Column(
                                           children: [
                                             OpsiPopupMenu(
-                                              text: "Daftar CCTV",
+                                              text: "popupmenu1_beranda".tr(),
                                               onTap: () {
                                                 _getLaluLintas(102);
                                               },
@@ -417,7 +418,7 @@ class _BerandaState extends State<Beranda> {
                                               height: 10,
                                             ),
                                             OpsiPopupMenu(
-                                              text: "Peta CCTV",
+                                              text: "popupmenu2_beranda".tr(),
                                               onTap: () {
                                                 _getLocation(102);
                                               },
@@ -435,26 +436,26 @@ class _BerandaState extends State<Beranda> {
                             ),
                             CustomScrollableColumnItem(
                               icon: Icons.water_drop,
-                              text: 'Pompa Air',
+                              text: 'menu3_beranda'.tr(),
                               onTap: () {
                                 showDialog(
                                   context: context,
                                   builder: (context) {
                                     return AlertDialog(
                                       title: Text(
-                                        "Pilih tampilanmu ?",
+                                        "alertdialog4_beranda".tr(),
                                         style:
                                             subHeading.copyWith(color: danger),
                                       ),
                                       content: Text(
-                                        "Ayo segera Jelajahi Kota Semarang",
+                                        "alertdialog5_beranda".tr(),
                                         style: text.copyWith(color: muted),
                                       ),
                                       actions: [
                                         Column(
                                           children: [
                                             OpsiPopupMenu(
-                                              text: "Daftar CCTV",
+                                              text: "popupmenu1_beranda".tr(),
                                               onTap: () {
                                                 _getLaluLintas(103);
                                               },
@@ -463,7 +464,7 @@ class _BerandaState extends State<Beranda> {
                                               height: 10,
                                             ),
                                             OpsiPopupMenu(
-                                              text: "Peta CCTV",
+                                              text: "popupmenu2_beranda".tr(),
                                               onTap: () {
                                                 _getLocation(103);
                                               },
@@ -481,26 +482,26 @@ class _BerandaState extends State<Beranda> {
                             ),
                             CustomScrollableColumnItem(
                               icon: Icons.house,
-                              text: 'Yan Publik',
+                              text: 'menu5_beranda'.tr(),
                               onTap: () {
                                 showDialog(
                                   context: context,
                                   builder: (context) {
                                     return AlertDialog(
                                       title: Text(
-                                        "Pilih tampilanmu ?",
+                                        "alertdialog4_beranda".tr(),
                                         style:
                                             subHeading.copyWith(color: danger),
                                       ),
                                       content: Text(
-                                        "Ayo segera Jelajahi Kota Semarang",
+                                        "alertdialog5_beranda".tr(),
                                         style: text.copyWith(color: muted),
                                       ),
                                       actions: [
                                         Column(
                                           children: [
                                             OpsiPopupMenu(
-                                              text: "Daftar CCTV",
+                                              text: "popupmenu1_beranda".tr(),
                                               onTap: () {
                                                 _getLaluLintas(104);
                                               },
@@ -509,7 +510,7 @@ class _BerandaState extends State<Beranda> {
                                               height: 10,
                                             ),
                                             OpsiPopupMenu(
-                                              text: "Peta CCTV",
+                                              text: "popupmenu2_beranda".tr(),
                                               onTap: () {
                                                _getLocation(104);
                                               },
@@ -527,26 +528,26 @@ class _BerandaState extends State<Beranda> {
                             ),
                             CustomScrollableColumnItem(
                               icon: Icons.shield,
-                              text: 'Kamtib',
+                              text: 'menu6_beranda'.tr(),
                               onTap: () {
                                 showDialog(
                                   context: context,
                                   builder: (context) {
                                     return AlertDialog(
                                       title: Text(
-                                        "Pilih tampilanmu ?",
+                                        "alertdialog4_beranda".tr(),
                                         style:
                                             subHeading.copyWith(color: danger),
                                       ),
                                       content: Text(
-                                        "Ayo segera Jelajahi Kota Semarang",
+                                        "alertdialog5_beranda".tr(),
                                         style: text.copyWith(color: muted),
                                       ),
                                       actions: [
                                         Column(
                                           children: [
                                             OpsiPopupMenu(
-                                              text: "Daftar CCTV",
+                                              text: "popupmenu1_beranda".tr(),
                                               onTap: () {
                                                 _getLaluLintas(105);
                                               },
@@ -555,7 +556,7 @@ class _BerandaState extends State<Beranda> {
                                               height: 10,
                                             ),
                                             OpsiPopupMenu(
-                                              text: "Peta CCTV",
+                                              text: "popupmenu2_beranda".tr(),
                                               onTap: () {
                                                _getLocation(105);
                                               },
@@ -573,26 +574,26 @@ class _BerandaState extends State<Beranda> {
                             ),
                             CustomScrollableColumnItem(
                               icon: Icons.location_city,
-                              text: 'Kota Lama',
+                              text: 'menu7_beranda'.tr(),
                               onTap: () {
                                 showDialog(
                                   context: context,
                                   builder: (context) {
                                     return AlertDialog(
                                       title: Text(
-                                        "Pilih tampilanmu ?",
+                                        "alertdialog4_beranda".tr(),
                                         style:
                                             subHeading.copyWith(color: danger),
                                       ),
                                       content: Text(
-                                        "Ayo segera Jelajahi Kota Semarang",
+                                        "alertdialog5_beranda".tr(),
                                         style: text.copyWith(color: muted),
                                       ),
                                       actions: [
                                         Column(
                                           children: [
                                             OpsiPopupMenu(
-                                              text: "Daftar CCTV",
+                                              text: "popupmenu1_beranda".tr(),
                                               onTap: () {
                                                 _getLaluLintas(106);
                                               },
@@ -601,7 +602,7 @@ class _BerandaState extends State<Beranda> {
                                               height: 10,
                                             ),
                                             OpsiPopupMenu(
-                                              text: "Peta CCTV",
+                                              text: "popupmenu2_beranda".tr(),
                                               onTap: () {
                                                 _getLocation(106);
                                               },
@@ -619,26 +620,26 @@ class _BerandaState extends State<Beranda> {
                             ),
                             CustomScrollableColumnItem(
                               icon: Icons.water,
-                              text: 'Sungai',
+                              text: 'menu8_beranda'.tr(),
                               onTap: () {
                                 showDialog(
                                   context: context,
                                   builder: (context) {
                                     return AlertDialog(
                                       title: Text(
-                                        "Pilih tampilanmu ?",
+                                        "alertdialog4_beranda".tr(),
                                         style:
                                             subHeading.copyWith(color: danger),
                                       ),
                                       content: Text(
-                                        "Ayo segera Jelajahi Kota Semarang",
+                                        "alertdialog5_beranda".tr(),
                                         style: text.copyWith(color: muted),
                                       ),
                                       actions: [
                                         Column(
                                           children: [
                                             OpsiPopupMenu(
-                                              text: "Daftar CCTV",
+                                              text: "popupmenu1_beranda".tr(),
                                               onTap: () {
                                                 _getLaluLintas(107);
                                               },
@@ -647,7 +648,7 @@ class _BerandaState extends State<Beranda> {
                                               height: 10,
                                             ),
                                             OpsiPopupMenu(
-                                              text: "Peta CCTV",
+                                              text: "popupmenu2_beranada".tr(),
                                               onTap: () {
                                                 _getLocation(107);
                                               },
@@ -665,26 +666,26 @@ class _BerandaState extends State<Beranda> {
                             ),
                             CustomScrollableColumnItem(
                               icon: Icons.water_sharp,
-                              text: 'Genangan',
+                              text: 'menu9_beranda'.tr(),
                               onTap: () {
                                 showDialog(
                                   context: context,
                                   builder: (context) {
                                     return AlertDialog(
                                       title: Text(
-                                        "Pilih tampilanmu ?",
+                                        "alertdialog4_beranda".tr(),
                                         style:
                                             subHeading.copyWith(color: danger),
                                       ),
                                       content: Text(
-                                        "Ayo segera Jelajahi Kota Semarang",
+                                        "alertdialog5_beranda".tr(),
                                         style: text.copyWith(color: muted),
                                       ),
                                       actions: [
                                         Column(
                                           children: [
                                             OpsiPopupMenu(
-                                              text: "Daftar CCTV",
+                                              text: "popupmenu1_beranda".tr(),
                                               onTap: () {
                                                 _getLaluLintas(108);
                                               },
@@ -693,7 +694,7 @@ class _BerandaState extends State<Beranda> {
                                               height: 10,
                                             ),
                                             OpsiPopupMenu(
-                                              text: "Peta CCTV",
+                                              text: "popupmenu2_beranda".tr(),
                                               onTap: () {
                                                _getLocation(108);
                                               },
@@ -718,9 +719,9 @@ class _BerandaState extends State<Beranda> {
                     height: 20,
                   ),
                   Text(
-                    "Perkiraan Cuaca Kota Semarang",
+                    "title1_beranda",
                     style: text.copyWith(color: danger),
-                  ),
+                  ).tr(),
                   SizedBox(
                     height: 20,
                   ),
@@ -741,15 +742,15 @@ class _BerandaState extends State<Beranda> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "CCTV Lalu Lintas",
+                        "title2_beranda",
                         style: text.copyWith(color: danger),
-                      ),
+                      ).tr(),
                       TextButton(
                         onPressed: () {},
                         child: Text(
-                          "Lihat Selengkapnya",
+                          "title3_beranda",
                           style: textSm.copyWith(color: muted),
-                        ),
+                        ).tr(),
                       )
                     ],
                   ),
@@ -781,9 +782,9 @@ class _BerandaState extends State<Beranda> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Seputar Kota Semarang",
+                        "title4_beranda",
                         style: text.copyWith(color: danger),
-                      ),
+                      ).tr(),
                       Visibility(
                         visible: _isVisible,
                         child: TextButton(
@@ -794,7 +795,7 @@ class _BerandaState extends State<Beranda> {
                                 barrierDismissible: false,
                                 builder: (BuildContext context) {
                                   return AlertDialog(
-                                    title: const Text('Tambah berita'),
+                                    title: const Text('alertdialog6_beranda').tr(),
                                     content: Container(
                                       width: screenSize.width,
                                       child: Column(
@@ -807,35 +808,35 @@ class _BerandaState extends State<Beranda> {
                                             readOnly: true,
                                             enabled: false,
                                             decoration: InputDecoration(
-                                                hintText: 'user id'),
+                                                hintText: 'alertdialog7_beranda'.tr()),
                                           ),
                                           TextField(
                                             controller: _judul,
                                             decoration: InputDecoration(
-                                                hintText: 'judul berita'),
+                                                hintText: 'alertdialog8_beranda'.tr()),
                                           ),
                                           TextField(
                                             controller: _description,
                                             decoration: InputDecoration(
-                                                hintText: 'deskripsi'),
+                                                hintText: 'alertdialog9_beranda'.tr()),
                                           ),
                                           TextField(
                                             controller: _urlImage,
                                             decoration: InputDecoration(
-                                                hintText: 'link image'),
+                                                hintText: 'alertdialog10_beranda'.tr()),
                                           ),
                                         ],
                                       ),
                                     ),
                                     actions: <Widget>[
                                       TextButton(
-                                        child: const Text('Batal'),
+                                        child: const Text('alertdialog11_beranda').tr(),
                                         onPressed: () {
                                           Navigator.of(context).pop();
                                         },
                                       ),
                                       TextButton(
-                                        child: const Text('Upload'),
+                                        child: const Text('alertdialog12_beranda').tr(),
                                         onPressed: () {
                                           _tambahBerita();
                                         },
@@ -849,9 +850,9 @@ class _BerandaState extends State<Beranda> {
                                 context: context,
                                 builder: (BuildContext context) {
                                   return AlertDialog(
-                                    title: Text("Fitur tidak tersedia"),
+                                    title: Text("alertdialog13_beranda").tr(),
                                     content: Text(
-                                        "Hanya admin yang bisa menambhakan berita"),
+                                        "alertdialog14_beranda").tr(),
                                     actions: <Widget>[
                                       TextButton(
                                         onPressed: () {
@@ -866,9 +867,9 @@ class _BerandaState extends State<Beranda> {
                             }
                           },
                           child: Text(
-                            "Tambah Berita",
+                            "alertdialog6_beranda",
                             style: textSm.copyWith(color: muted),
-                          ),
+                          ).tr(),
                         ),
                       )
                     ],

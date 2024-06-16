@@ -3,7 +3,6 @@ import 'package:pantau_semar/data/model/getlalulintas_model.dart';
 import 'package:pantau_semar/data/model/user_model.dart';
 import 'package:pantau_semar/widget/maps_widget.dart';
 import 'package:pantau_semar/utils/Theme.dart';
-import 'package:pantau_semar/widget/menusamping_widget.dart';
 
 class PetaCctv extends StatefulWidget {
   final Data dataUser;
@@ -17,7 +16,6 @@ class PetaCctv extends StatefulWidget {
 class _PetaCctvState extends State<PetaCctv> {
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
         backgroundColor: danger,
         appBar: AppBar(

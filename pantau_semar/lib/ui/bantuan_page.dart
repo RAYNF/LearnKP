@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pantau_semar/data/model/user_model.dart';
 import 'package:pantau_semar/utils/Theme.dart';
@@ -25,7 +26,7 @@ class _BantuanState extends State<Bantuan> {
       appBar: AppBar(
         backgroundColor: danger,
         centerTitle: true,
-        title: Text("Bantuan", style: heading.copyWith(color: primary)),
+        title: Text("title1_bantuan", style: heading.copyWith(color: primary)).tr(),
         leading: Builder(builder: (context) {
           return IconButton(
             onPressed: () {
@@ -56,21 +57,21 @@ class _BantuanState extends State<Bantuan> {
                 children: [
                   ButtonBantuan(
                       icon: Icons.email,
-                      text: "semarangpemkot@semarangkota.go.id",
+                      text: "title2_bantuan".tr(),
                       onTap: () {}),
                   SizedBox(
                     height: 20,
                   ),
                   ButtonBantuan(
                       icon: Icons.call,
-                      text: "(024) 3513366 - 3515871",
+                      text: "title3_bantuan".tr(),
                       onTap: () {}),
                   SizedBox(
                     height: 20,
                   ),
                   ButtonBantuan(
                       icon: Icons.map,
-                      text: "Jl. Pemuda No. 148 Semarang",
+                      text: "title4_bantuan".tr(),
                       onTap: () {}),
                 ],
               ),

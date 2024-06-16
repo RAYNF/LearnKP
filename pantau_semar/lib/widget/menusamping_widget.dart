@@ -1,8 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pantau_semar/data/model/user_model.dart';
 import 'package:pantau_semar/ui/bantuan_page.dart';
 import 'package:pantau_semar/ui/beranda_page.dart';
-import 'package:pantau_semar/ui/notifikasi_page.dart';
 import 'package:pantau_semar/ui/setting_page.dart';
 import 'package:pantau_semar/ui/tentang_page.dart';
 import 'package:pantau_semar/utils/Theme.dart';
@@ -35,9 +35,9 @@ class MenuSamping extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: Text(
-                    "PantauSemar",
+                    "title1_menusamping",
                     style: heading.copyWith(color: danger),
-                  ),
+                  ).tr(),
                 )
               ],
             ),
@@ -48,9 +48,9 @@ class MenuSamping extends StatelessWidget {
               color: danger,
             ),
             title: Text(
-              "Beranda",
+              "title2_menusamping",
               style: subHeading.copyWith(color: danger),
-            ),
+            ).tr(),
             onTap: () {
               // Navigator.pushNamed(context, Beranda.routeName);
               Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -66,9 +66,9 @@ class MenuSamping extends StatelessWidget {
               color: danger,
             ),
             title: Text(
-              "Tentang",
+              "title3_menusamping",
               style: subHeading.copyWith(color: danger),
-            ),
+            ).tr(),
             onTap: () {
               // Navigator.pushNamed(context, Tentang.routeName);
               Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -84,9 +84,9 @@ class MenuSamping extends StatelessWidget {
               color: danger,
             ),
             title: Text(
-              "Bantuan",
+              "title4_menusamping",
               style: subHeading.copyWith(color: danger),
-            ),
+            ).tr(),
             onTap: () {
               // Navigator.pushNamed(context, Bantuan.routeName);
               Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -102,29 +102,14 @@ class MenuSamping extends StatelessWidget {
               color: danger,
             ),
             title: Text(
-              "Settings",
+              "title5_menusamping",
               style: subHeading.copyWith(color: danger),
-            ),
+            ).tr(),
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return Setting(
                   dataUser: dataUser,
                 );
-              }));
-            },
-          ),
-          ListTile(
-            leading: Icon(
-              Icons.notifications,
-              color: danger,
-            ),
-            title: Text(
-              "Notifications",
-              style: subHeading.copyWith(color: danger),
-            ),
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return Notifikasi();
               }));
             },
           ),

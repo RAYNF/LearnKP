@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pantau_semar/ui/login_page.dart';
 import 'package:pantau_semar/ui/register_page.dart';
@@ -22,13 +23,13 @@ class OnBoarding extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Selamat Datang di Aplikasi",
-                  style: heading,
-                ),
+                  "slogan1_onboarding",
+                  style: title,
+                ).tr(),
                 Text(
-                  "Pantau Semar",
-                  style: heading,
-                )
+                  "slogan2_onboarding",
+                  style: title,
+                ).tr()
               ],
             ),
             SizedBox(
@@ -52,7 +53,7 @@ class OnBoarding extends StatelessWidget {
                 }));
               },
               child:
-                  Text("Login", style: heading.copyWith(color: Colors.black)),
+                  Text("btn1_onboarding", style: heading.copyWith(color: Colors.black)).tr(),
               style: ElevatedButton.styleFrom(
                   backgroundColor: danger,
                   minimumSize: Size(screenWidth.width, 60)),
@@ -67,7 +68,7 @@ class OnBoarding extends StatelessWidget {
                 }));
               },
               child:
-                  Text("SIGN UP", style: heading.copyWith(color: Colors.black)),
+                  Text("btn2_onboarding", style: heading.copyWith(color: Colors.black)).tr(),
               style: ElevatedButton.styleFrom(
                   backgroundColor: danger,
                   minimumSize: Size(screenWidth.width, 60)),

@@ -1,8 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pantau_semar/data/api/api_service.dart';
 import 'package:pantau_semar/data/model/registerresponse_model.dart';
-import 'package:pantau_semar/ui/beranda_page.dart';
 import 'package:pantau_semar/ui/login_page.dart';
 import 'package:pantau_semar/utils/Theme.dart';
 
@@ -39,7 +39,7 @@ class _RegisterPageState extends State<RegisterPage> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text("register berhasil"),
+              title: Text("alertDialog1_register").tr(),
               content: Text(registerResponseModel.message),
               actions: <Widget>[
                 TextButton(
@@ -49,7 +49,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       return LoginPage();
                     }));
                   },
-                  child: Text("Login sekarang"),
+                  child: Text("alertDialog2_register").tr(),
                 ),
               ],
             );
@@ -60,14 +60,14 @@ class _RegisterPageState extends State<RegisterPage> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text("register Gagal"),
-              content: Text("Ulangi register kembali"),
+              title: Text("alertDialog3_register").tr(),
+              content: Text("alertDialog4_register").tr(),
               actions: <Widget>[
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text("OK"),
+                  child: Text("alertDialog15_beranda").tr(),
                 ),
               ],
             );
@@ -79,14 +79,14 @@ class _RegisterPageState extends State<RegisterPage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text("Error"),
+            title: Text("alertdialog18_beranda").tr(),
             content: Text(error.toString()),
             actions: <Widget>[
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text("OK"),
+                child: Text("alertdialog15_beranda").tr(),
               ),
             ],
           );
@@ -112,10 +112,10 @@ class _RegisterPageState extends State<RegisterPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Sign Up",
+                        "btn2_onboarding",
                         style: headings,
                         textAlign: TextAlign.center,
-                      )
+                      ).tr()
                     ],
                   ),
                   SizedBox(
@@ -124,7 +124,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   TextField(
                     controller: _username,
                     decoration: InputDecoration(
-                      hintText: 'masukkan nama pengguna',
+                      hintText: 'title2_login'.tr(),
                       hintStyle: GoogleFonts.poppins(
                         fontSize: 12,
                       ),
@@ -147,7 +147,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   TextField(
                     controller: _email,
                     decoration: InputDecoration(
-                      hintText: 'masukkan email',
+                      hintText: 'title1_register'.tr(),
                       hintStyle: GoogleFonts.poppins(
                         fontSize: 12,
                       ),
@@ -170,7 +170,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   TextField(
                     controller: _phone_number,
                     decoration: InputDecoration(
-                      hintText: 'masukkan phone number',
+                      hintText: 'title2_register'.tr(),
                       hintStyle: GoogleFonts.poppins(
                         fontSize: 12,
                       ),
@@ -194,7 +194,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     controller: _password,
                     obscureText: visibility,
                     decoration: InputDecoration(
-                      hintText: 'masukkan password',
+                      hintText: 'title3_login'.tr(),
                       hintStyle: GoogleFonts.poppins(
                         fontSize: 12,
                       ),
@@ -227,8 +227,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     onPressed: () {
                       _registerUser();
                     },
-                    child: Text("SIGN UP",
-                        style: heading.copyWith(color: Colors.black)),
+                    child: Text("btn2_onboarding",
+                        style: heading.copyWith(color: Colors.black)).tr(),
                     style: ElevatedButton.styleFrom(
                         backgroundColor: danger,
                         minimumSize: Size(screenWidth.width, 60)),
@@ -236,7 +236,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Sudah punya akun? "),
+                      Text("title3_register").tr(),
                       TextButton(
                           onPressed: () {
                             Navigator.push(context,
@@ -245,9 +245,9 @@ class _RegisterPageState extends State<RegisterPage> {
                             }));
                           },
                           child: Text(
-                            "Login",
+                            "btn2_onboarding",
                             style: text.copyWith(color: Colors.purple),
-                          ))
+                          ).tr())
                     ],
                   )
                 ],

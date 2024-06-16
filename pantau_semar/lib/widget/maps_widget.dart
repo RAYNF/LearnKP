@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart' as LatLng;
@@ -36,8 +37,7 @@ class _MapsState extends State<Maps> {
         getCctvLinksModel = value;
       });
       if (getCctvLinksModel.success != false) {
-        print("berhasil");
-        //blm bisa kirim link ytb masih bawaan
+        print("alertDialog2_cctvlalulintas".tr());
         if (getCctvLinksModel.cctvLinks?.link != null) {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
             return TampilanCctv(
@@ -50,13 +50,13 @@ class _MapsState extends State<Maps> {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: Text("Cctv belum tersedia"),
+                title: Text("alertDialog3_cctvlalulintas").tr(),
                 actions: <Widget>[
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: Text("OK"),
+                    child: Text("alertdialog15_beranda").tr(),
                   ),
                 ],
               );
@@ -64,7 +64,7 @@ class _MapsState extends State<Maps> {
           );
         }
       } else {
-        print("gagal");
+        print("alertdialog16_beranda".tr());
       }
     });
   }
@@ -78,9 +78,6 @@ class _MapsState extends State<Maps> {
           child: InkWell(
             onTap: () {
               _getCctvs(int.parse(e.id));
-              // Navigator.push(context, MaterialPageRoute(builder: (context) {
-              //   return TampilanCctv(dataUser: widget.dataUser,);
-              // }));
             },
             child: Container(
               width: 30,
@@ -101,11 +98,6 @@ class _MapsState extends State<Maps> {
         options: MapOptions(
           initialCenter: postion,
           initialZoom: 9,
-          //cari lokasi
-          // onPositionChanged: (position, hasGesture) {
-          //   print(
-          //       "latitude ${position.center!.latitude.toString()} longtitude ${position.center!.longitude.toString()}");
-          // },
         ),
         children: [
           TileLayer(

@@ -28,11 +28,11 @@ class ButtonBantuan extends StatelessWidget {
                 color: primary,
               ),
               SizedBox(
-                width: 20,
+                width: 10,
               ),
               Text(
                 text,
-                style: textSm.copyWith(color: primary),
+                style: subText.copyWith(color: primary),
               )
             ],
           ),

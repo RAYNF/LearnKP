@@ -5,7 +5,6 @@ import 'package:pantau_semar/data/model/registerresponse_model.dart';
 import 'package:pantau_semar/data/model/user_model.dart';
 import 'package:pantau_semar/ui/beranda_page.dart';
 import 'package:pantau_semar/utils/Theme.dart';
-import 'package:pantau_semar/widget/menusamping_widget.dart';
 
 class DetailNews extends StatefulWidget {
   static const routeName = '/detail-news';
