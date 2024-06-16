@@ -6,6 +6,7 @@ import 'package:pantau_semar/data/model/user_model.dart';
 import 'package:pantau_semar/ui/beranda_page.dart';
 import 'package:pantau_semar/ui/register_page.dart';
 import 'package:pantau_semar/utils/Theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   static const routeName = '/login-page';
@@ -24,6 +25,17 @@ class _LoginPageState extends State<LoginPage> {
   late Future<UserModel> _login;
   late UserModel userModel;
 
+  bool isLogin = false;
+  String username = "";
+  String password = "";
+
+  void saveData() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setBool("isLogin", isLogin);
+    pref.setString("username", username);
+    pref.setString("password", password);
+  }
+
   void dispose() {
     super.dispose();
     _username.dispose();
@@ -37,8 +49,16 @@ class _LoginPageState extends State<LoginPage> {
       userModel = value;
       print(userModel.data?.username);
       if (userModel.success != false) {
+        setState(() {
+          isLogin = true;
+          username = userModel.data!.username;
+          password = userModel.data!.password;
+        });
+        saveData();
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return Beranda(dataUser: userModel.data!,);
+          return Beranda(
+            dataUser: userModel.data!,
+          );
         }));
       } else {
         showDialog(
@@ -168,7 +188,8 @@ class _LoginPageState extends State<LoginPage> {
                         login();
                       },
                       child: Text("btn1_onboarding",
-                          style: heading.copyWith(color: Colors.black)).tr(),
+                              style: heading.copyWith(color: Colors.black))
+                          .tr(),
                       style: ElevatedButton.styleFrom(
                           backgroundColor: danger,
                           minimumSize: Size(screenWidth.width, 60)),

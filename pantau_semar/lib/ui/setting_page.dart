@@ -4,10 +4,36 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pantau_semar/data/model/user_model.dart';
 import 'package:pantau_semar/ui/login_page.dart';
 import 'package:pantau_semar/utils/Theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class Setting extends StatelessWidget {
+Future<void> saveLanguage(Locale locale) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.setString('languageCode', locale.languageCode);
+  await prefs.setString('countryCode', locale.countryCode ?? '');
+}
+
+class Setting extends StatefulWidget {
   final Data dataUser;
   const Setting({super.key, required this.dataUser});
+
+  @override
+  State<Setting> createState() => _SettingState();
+}
+
+class _SettingState extends State<Setting> {
+  bool isLogin = false;
+  String username = "";
+  String password = "";
+
+  void saveData() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setBool("isLogin", isLogin);
+    pref.setString("username", username);
+    pref.setString("password", password);
+    Locale locale = Locale('en', 'US');
+    await saveLanguage(locale);
+    context.setLocale(locale);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +69,7 @@ class Setting extends StatelessWidget {
                           height: 10,
                         ),
                         Text(
-                          dataUser.username,
+                          widget.dataUser.username,
                           style: GoogleFonts.poppins(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
@@ -53,7 +79,7 @@ class Setting extends StatelessWidget {
                           height: 0,
                         ),
                         Text(
-                          dataUser.email,
+                          widget.dataUser.email,
                           style: GoogleFonts.poppins(
                               fontSize: 12,
                               fontWeight: FontWeight.w400,
@@ -97,7 +123,7 @@ class Setting extends StatelessWidget {
                                 builder: (context) {
                                   return AlertDialog(
                                     title: Text("title2_setting").tr(),
-                                    content: Text(dataUser.password),
+                                    content: Text(widget.dataUser.password),
                                   );
                                 });
                           },
@@ -112,7 +138,7 @@ class Setting extends StatelessWidget {
                                 builder: (context) {
                                   return AlertDialog(
                                     title: Text("title3_setting").tr(),
-                                    content: Text(dataUser.level),
+                                    content: Text(widget.dataUser.level),
                                   );
                                 });
                           },
@@ -127,7 +153,7 @@ class Setting extends StatelessWidget {
                                 builder: (context) {
                                   return AlertDialog(
                                     title: Text("title4_setting").tr(),
-                                    content: Text(dataUser.phoneNumber),
+                                    content: Text(widget.dataUser.phoneNumber),
                                   );
                                 });
                           },
@@ -201,9 +227,10 @@ class Setting extends StatelessWidget {
                                           child: Row(
                                             children: [
                                               ElevatedButton(
-                                                onPressed: () {
-                                                  context.setLocale(
-                                                      const Locale('id'));
+                                                onPressed: () async {
+                                                  Locale locale = Locale('id');
+                                                  context.setLocale(locale);
+                                                  await saveLanguage(locale);
                                                 },
                                                 child: Text(
                                                   "title13_setting",
@@ -215,9 +242,11 @@ class Setting extends StatelessWidget {
                                                 ),
                                               ),
                                               ElevatedButton(
-                                                onPressed: () {
-                                                  context.setLocale(
-                                                      const Locale('en', 'US'));
+                                                onPressed: () async {
+                                                  Locale locale =
+                                                      Locale('en', 'US');
+                                                  context.setLocale(locale);
+                                                  await saveLanguage(locale);
                                                 },
                                                 child: Text("title14_setting",
                                                         style: subText.copyWith(
@@ -244,6 +273,7 @@ class Setting extends StatelessWidget {
             ),
             ElevatedButton(
                 onPressed: () {
+                  saveData();
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) {
                     return LoginPage();
