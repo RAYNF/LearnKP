@@ -1,6 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:pantau_semar/data/provider/loginServiceProvider.dart';
+import 'package:pantau_semar/data/provider/registerServiceProvider.dart';
 import 'package:pantau_semar/ui/splashscreen_page.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<Locale> getSavedLanguage() async {
@@ -23,7 +26,14 @@ Future<void> main() async {
   Locale savedLocale = await getSavedLanguage();
 
   runApp(EasyLocalization(
-    child: const MyApp(),
+    child: MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => LoginServiceProvider()),
+        ChangeNotifierProvider(create: (_) => RegisterServiceProvider())
+        
+      ],
+      child: const MyApp(),
+    ),
     supportedLocales: const [Locale('id'), Locale('en', 'US')],
     path: 'assets/translations',
     startLocale: savedLocale,

@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pantau_semar/data/api/api_service.dart';
-import 'package:pantau_semar/data/model/registerresponse_model.dart';
+import 'package:pantau_semar/data/provider/registerServiceProvider.dart';
 import 'package:pantau_semar/ui/login_page.dart';
 import 'package:pantau_semar/utils/Theme.dart';
+import 'package:provider/provider.dart';
 
 class RegisterPage extends StatefulWidget {
   RegisterPage({super.key});
@@ -19,8 +19,6 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _password = TextEditingController();
   final TextEditingController _phone_number = TextEditingController();
   bool visibility = true;
-  late Future<RegisterResponseModel> _register;
-  late RegisterResponseModel registerResponseModel;
 
   void dispose() {
     super.dispose();
@@ -30,17 +28,20 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   void _registerUser() {
-    _register = ApiService().userRegister(
-        _email.text, _password.text, _username.text, _phone_number.text);
-    _register.then((value) {
-      registerResponseModel = value;
-      if (registerResponseModel.succes == true) {
+    final registerServiceProvider =
+        Provider.of<RegisterServiceProvider>(context, listen: false);
+    registerServiceProvider
+        .register(
+            _email.text, _password.text, _username.text, _phone_number.text)
+        .then((_) {
+      if (registerServiceProvider.registerResponseModel!.succes != false) {
         showDialog(
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
               title: Text("alertDialog1_register").tr(),
-              content: Text(registerResponseModel.message),
+              content:
+                  Text(registerServiceProvider.registerResponseModel!.message),
               actions: <Widget>[
                 TextButton(
                   onPressed: () {
@@ -228,7 +229,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       _registerUser();
                     },
                     child: Text("btn2_onboarding",
-                        style: heading.copyWith(color: Colors.black)).tr(),
+                            style: heading.copyWith(color: Colors.black))
+                        .tr(),
                     style: ElevatedButton.styleFrom(
                         backgroundColor: danger,
                         minimumSize: Size(screenWidth.width, 60)),

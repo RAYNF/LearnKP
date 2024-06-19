@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pantau_semar/data/api/api_service.dart';
-import 'package:pantau_semar/data/model/user_model.dart';
+import 'package:pantau_semar/data/provider/loginServiceProvider.dart';
 import 'package:pantau_semar/ui/beranda_page.dart';
 import 'package:pantau_semar/ui/register_page.dart';
 import 'package:pantau_semar/utils/Theme.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
@@ -22,9 +22,6 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _verifypassword = TextEditingController();
   String message = '';
   bool visible = true;
-  late Future<UserModel> _login;
-  late UserModel userModel;
-
   bool isLogin = false;
   String username = "";
   String password = "";
@@ -43,22 +40,22 @@ class _LoginPageState extends State<LoginPage> {
     _verifypassword.dispose();
   }
 
+
   void login() {
-    _login = ApiService().userLogin(_username.text, _password.text);
-    _login.then((value) {
-      userModel = value;
-      print(userModel.data?.username);
-      if (userModel.success != false) {
+    final apiServiceProvider =
+        Provider.of<LoginServiceProvider>(context, listen: false);
+    apiServiceProvider.login(_username.text, _password.text).then((_) {
+      if (apiServiceProvider.userModel != null) {
         setState(() {
           isLogin = true;
-          username = userModel.data!.username;
-          password = userModel.data!.password;
+          username = apiServiceProvider.userModel!.data!.username;
+          password = apiServiceProvider.userModel!.data!.password;
         });
         saveData();
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return Beranda(
-            dataUser: userModel.data!,
-          );
+
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) {
+          return Beranda(dataUser: apiServiceProvider.userModel!.data!);
         }));
       } else {
         showDialog(

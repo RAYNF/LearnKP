@@ -2,11 +2,11 @@ import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:pantau_semar/data/api/api_service.dart';
-import 'package:pantau_semar/data/model/user_model.dart';
+import 'package:pantau_semar/data/provider/loginServiceProvider.dart';
 import 'package:pantau_semar/ui/beranda_page.dart';
 import 'package:pantau_semar/ui/welcome_page.dart';
 import 'package:pantau_semar/utils/Theme.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -21,8 +21,6 @@ class _SplashScreenState extends State<SplashScreen> {
   bool isLogin = false;
   String username = "";
   String password = "";
-  late Future<UserModel> _login;
-  late UserModel userModel;
 
   Future<void> checkLoginStatus() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
@@ -44,17 +42,14 @@ class _SplashScreenState extends State<SplashScreen> {
     }
   }
 
-  void login() {
-    _login = ApiService().userLogin(username, password);
-    _login.then((value) {
-      userModel = value;
-      print(userModel.data?.username);
-      if (userModel.success != false) {
+    void login() {
+    final apiServiceProvider =
+        Provider.of<LoginServiceProvider>(context, listen: false);
+    apiServiceProvider.login(username, password).then((_) {
+      if (apiServiceProvider.userModel != null) {
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) {
-          return Beranda(
-            dataUser: userModel.data!,
-          );
+          return Beranda(dataUser: apiServiceProvider.userModel!.data!);
         }));
       }
     });
