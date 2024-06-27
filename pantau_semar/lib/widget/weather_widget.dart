@@ -52,21 +52,23 @@ class _WeartherPageState extends State<WeartherPage> {
                     Image.network(iconUrl),
                   ],
                 ),
-                SizedBox(width: 10),
+                SizedBox(
+                  width: 5,
+                ),
                 Column(
                   children: [
                     Text(
                       '${weatherData?['weather'][0]['main']}',
-                      style: TextStyle(fontSize: 20, color: Colors.white),
+                      style: TextStyle(fontSize: 16, color: Colors.white),
                     ),
                     Text(
                       'Suhu : ${weatherData?['main']['temp']} °C',
-                      style: TextStyle(fontSize: 20, color: Colors.white),
+                      style: TextStyle(fontSize: 16, color: Colors.white),
                     ),
                     SizedBox(height: 10),
                     Text(
                       'Kelembapan : ${weatherData?['main']['humidity']}%',
-                      style: TextStyle(fontSize: 20, color: Colors.white),
+                      style: TextStyle(fontSize: 16, color: Colors.white),
                     ),
                   ],
                 )

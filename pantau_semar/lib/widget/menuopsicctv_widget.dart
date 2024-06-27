@@ -34,7 +34,7 @@ class _MenuOpsiCctvState extends State<MenuOpsiCctv> {
           children: [
             Container(
               width: 150,
-              height: 150,
+              height: 100,
               decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(20)),
               child: Image.network(
@@ -47,7 +47,7 @@ class _MenuOpsiCctvState extends State<MenuOpsiCctv> {
             ),
             Text(
               widget.title,
-              style: textSm.copyWith(color: danger),
+              style: subText.copyWith(color: danger),
             )
           ],
         ));

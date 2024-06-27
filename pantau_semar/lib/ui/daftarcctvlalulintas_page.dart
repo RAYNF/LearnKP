@@ -270,7 +270,6 @@ class _DaftarCctv extends State<DaftaCctv> {
             height: 20,
           ),
           Container(
-            height: screenSize.height / 1.16,
             width: double.infinity,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(30)),

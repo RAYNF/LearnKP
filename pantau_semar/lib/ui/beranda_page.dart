@@ -882,7 +882,7 @@ class _BerandaState extends State<Beranda> {
                           borderRadius:
                               BorderRadius.vertical(top: Radius.circular(20))),
                       width: double.infinity,
-                      height: 800,
+                      height: 600,
                       child: FutureBuilder<GetBeritaModel>(
                           future: _getberita,
                           builder: (context,
