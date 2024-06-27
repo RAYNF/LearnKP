@@ -20,6 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _username = TextEditingController();
   final TextEditingController _password = TextEditingController();
   final TextEditingController _verifypassword = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   String message = '';
   bool visible = true;
   bool isLogin = false;
@@ -40,30 +41,49 @@ class _LoginPageState extends State<LoginPage> {
     _verifypassword.dispose();
   }
 
-
   void login() {
-    final apiServiceProvider =
-        Provider.of<LoginServiceProvider>(context, listen: false);
-    apiServiceProvider.login(_username.text, _password.text).then((_) {
-      if (apiServiceProvider.userModel != null) {
-        setState(() {
-          isLogin = true;
-          username = apiServiceProvider.userModel!.data!.username;
-          password = apiServiceProvider.userModel!.data!.password;
-        });
-        saveData();
+    if (_formKey.currentState!.validate()) {
+      final apiServiceProvider =
+          Provider.of<LoginServiceProvider>(context, listen: false);
+      apiServiceProvider.login(_username.text, _password.text).then((_) {
+        if (apiServiceProvider.userModel != null) {
+          setState(() {
+            isLogin = true;
+            username = apiServiceProvider.userModel!.data!.username;
+            password = apiServiceProvider.userModel!.data!.password;
+          });
+          saveData();
 
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) {
-          return Beranda(dataUser: apiServiceProvider.userModel!.data!);
-        }));
-      } else {
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) {
+            return Beranda(dataUser: apiServiceProvider.userModel!.data!);
+          }));
+        } else {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text("alerDialog1_login").tr(),
+                content: Text("alertDialog2_login").tr(),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text("alertdialog15_beranda").tr(),
+                  ),
+                ],
+              );
+            },
+          );
+        }
+      }).catchError((error) {
         showDialog(
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text("alerDialog1_login").tr(),
-              content: Text("alertDialog2_login").tr(),
+              title: Text("alertdialog18_beranda").tr(),
+              content: Text("alertdialog16_beranda").tr(),
               actions: <Widget>[
                 TextButton(
                   onPressed: () {
@@ -75,26 +95,8 @@ class _LoginPageState extends State<LoginPage> {
             );
           },
         );
-      }
-    }).catchError((error) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text("alertdialog18_beranda").tr(),
-            content: Text(error.toString()),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text("alertdialog15_beranda").tr(),
-              ),
-            ],
-          );
-        },
-      );
-    });
+      });
+    }
   }
 
   @override
@@ -102,118 +104,134 @@ class _LoginPageState extends State<LoginPage> {
     Size screenWidth = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
-          child: Padding(
-              padding: EdgeInsets.all(20),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 80,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "btn1_onboarding",
-                          style: headings,
-                          textAlign: TextAlign.center,
-                        ).tr()
-                      ],
-                    ),
-                    SizedBox(
-                      height: 140,
-                    ),
-                    TextField(
-                      controller: _username,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        hintText: 'title2_login'.tr(),
-                        hintStyle: GoogleFonts.poppins(
-                          fontSize: 12,
+        child: Padding(
+          padding: EdgeInsets.all(20),
+          child: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 80,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "btn1_onboarding",
+                        style: headings,
+                        textAlign: TextAlign.center,
+                      ).tr()
+                    ],
+                  ),
+                  SizedBox(
+                    height: 140,
+                  ),
+                  TextFormField(
+                    controller: _username,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: InputDecoration(
+                      hintText: 'title2_login'.tr(),
+                      hintStyle: GoogleFonts.poppins(
+                        fontSize: 12,
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: primary,
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: primary,
-                          ),
-                        ),
-                        isDense: true,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: primary,
-                          ),
+                      ),
+                      isDense: true,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: primary,
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 30,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Username tidak boleh kosong';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  TextFormField(
+                    controller: _password,
+                    obscureText: visible,
+                    decoration: InputDecoration(
+                      hintText: 'title3_login'.tr(),
+                      hintStyle: GoogleFonts.poppins(
+                        fontSize: 12,
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: primary,
+                        ),
+                      ),
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            visible = !visible;
+                          });
+                        },
+                        icon: Icon(
+                            visible ? Icons.visibility : Icons.visibility_off),
+                      ),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: primary,
+                        ),
+                      ),
                     ),
-                    TextField(
-                      controller: _password,
-                      obscureText: visible,
-                      decoration: InputDecoration(
-                        hintText: 'title3_login'.tr(),
-                        hintStyle: GoogleFonts.poppins(
-                          fontSize: 12,
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: primary,
-                          ),
-                        ),
-                        suffixIcon: IconButton(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Password tidak boleh kosong';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      login();
+                    },
+                    child: Text("btn1_onboarding",
+                            style: heading.copyWith(color: Colors.black))
+                        .tr(),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: danger,
+                        minimumSize: Size(screenWidth.width, 60)),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("title4_login").tr(),
+                      TextButton(
                           onPressed: () {
-                            setState(() {
-                              visible = !visible;
-                            });
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return RegisterPage();
+                            }));
                           },
-                          icon: Icon(visible
-                              ? Icons.visibility
-                              : Icons.visibility_off),
-                        ),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: primary,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        login();
-                      },
-                      child: Text("btn1_onboarding",
-                              style: heading.copyWith(color: Colors.black))
-                          .tr(),
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: danger,
-                          minimumSize: Size(screenWidth.width, 60)),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("title4_login").tr(),
-                        TextButton(
-                            onPressed: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return RegisterPage();
-                              }));
-                            },
-                            child: Text(
-                              "btn2_onboarding",
-                              style: text.copyWith(color: Colors.purple),
-                            ).tr())
-                      ],
-                    )
-                  ],
-                ),
-              ))),
+                          child: Text(
+                            "btn2_onboarding",
+                            style: text.copyWith(color: Colors.purple),
+                          ).tr())
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
