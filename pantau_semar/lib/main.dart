@@ -30,7 +30,6 @@ Future<void> main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => LoginServiceProvider()),
         ChangeNotifierProvider(create: (_) => RegisterServiceProvider())
-        
       ],
       child: const MyApp(),
     ),

@@ -88,63 +88,59 @@ class _DaftarCctvGenericState extends State<DaftarCctvGeneric> {
           );
         }),
       ),
-      body: ListView(
-        children: [
-          SizedBox(
-            height: 20,
-          ),
-          Container(
-            width: double.infinity,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
-                color: primary),
-            child: Padding(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "title2_cctvlalulintas",
-                    style: subHeading.copyWith(color: danger),
-                  ).tr(),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "title3_cctvlalulintas",
-                    style: text.copyWith(color: muted),
-                  ).tr(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  if (widget.Lalulintas.isNotEmpty)
-                    Container(
-                      height: 500,
-                      width: screenSize.width,
-                      child: GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            mainAxisSpacing: 20,
-                            crossAxisSpacing: 20),
-                        itemCount: widget.Lalulintas.length,
-                        itemBuilder: (BuildContext context, index) {
-                          return MenuOpsiCctv(
-                            title: widget.Lalulintas[index].name,
-                            onTap: () {
-                              _getCctvs(int.parse(widget.Lalulintas[index].id));
-                            },
-                          );
-                        },
-                      ),
+      body: SingleChildScrollView(
+        child: Container(
+          width: double.infinity,
+          height: screenSize.height,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+              color: primary),
+          child: Padding(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "title2_cctvlalulintas",
+                  style: subHeading.copyWith(color: danger),
+                ).tr(),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "title3_cctvlalulintas",
+                  style: text.copyWith(color: muted),
+                ).tr(),
+                SizedBox(
+                  height: 20,
+                ),
+                if (widget.Lalulintas.isNotEmpty)
+                  Container(
+                    height: 500,
+                    width: screenSize.width,
+                    child: GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 20,
+                          crossAxisSpacing: 20),
+                      itemCount: widget.Lalulintas.length,
+                      itemBuilder: (BuildContext context, index) {
+                        return MenuOpsiCctv(
+                          title: widget.Lalulintas[index].name,
+                          onTap: () {
+                            _getCctvs(int.parse(widget.Lalulintas[index].id));
+                          },
+                        );
+                      },
                     ),
-                  SizedBox(
-                    height: 10,
                   ),
-                ],
-              ),
+                SizedBox(
+                  height: 10,
+                ),
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }

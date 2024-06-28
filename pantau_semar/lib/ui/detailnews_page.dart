@@ -197,152 +197,146 @@ class _DetailNewsState extends State<DetailNews> {
             icon: Icon(Icons.arrow_back),
             color: primary,
           )),
-      body: ListView(
-        children: [
-          SizedBox(
-            height: 20,
-          ),
-          Container(
-            height: screenSize.height / 1.16,
-            width: screenSize.width,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
-                color: primary),
-            child: Padding(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.berita.judul,
-                    textAlign: TextAlign.center,
-                    style: subHeading.copyWith(color: danger),
-                  ),
-                  SizedBox(height: 10),
-                  Container(
-                    width: double.infinity,
-                    height: screenSize.height / 3,
-                    child: Image.network(widget.berita.urlImage),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    widget.berita.tanggal.toString(),
-                    style: textSm.copyWith(color: danger),
-                    textAlign: TextAlign.start,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    widget.berita.description,
-                    style: text.copyWith(color: danger),
-                    textAlign: TextAlign.justify,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        widget.berita.usersId,
-                        style: textSm.copyWith(color: danger),
-                        textAlign: TextAlign.center,
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Visibility(
-                        visible: _isVisible,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            showDialog<void>(
-                              context: context,
-                              barrierDismissible: false,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: const Text('Update berita'),
-                                  content: Container(
-                                    width: screenSize.width,
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        TextField(
-                                          controller: _users_id,
-                                          readOnly: true,
-                                          enabled: false,
-                                          decoration: InputDecoration(
-                                              hintText: 'user id'),
+      body: SingleChildScrollView(
+        child: Container(
+          height: screenSize.height,
+          width: double.infinity,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+              color: primary),
+          child: Padding(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  widget.berita.judul,
+                  textAlign: TextAlign.center,
+                  style: subHeading.copyWith(color: danger),
+                ),
+                SizedBox(height: 10),
+                Container(
+                  width: double.infinity,
+                  height: screenSize.height / 3,
+                  child: Image.network(widget.berita.urlImage),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  widget.berita.tanggal.toString(),
+                  style: textSm.copyWith(color: danger),
+                  textAlign: TextAlign.start,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  widget.berita.description,
+                  style: text.copyWith(color: danger),
+                  textAlign: TextAlign.justify,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      widget.berita.usersId,
+                      style: textSm.copyWith(color: danger),
+                      textAlign: TextAlign.center,
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Visibility(
+                      visible: _isVisible,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          showDialog<void>(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: const Text('Update berita'),
+                                content: Container(
+                                  width: screenSize.width,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      TextField(
+                                        controller: _users_id,
+                                        readOnly: true,
+                                        enabled: false,
+                                        decoration: InputDecoration(
+                                            hintText: 'user id'),
+                                      ),
+                                      TextField(
+                                        controller: _judul,
+                                        decoration: InputDecoration(
+                                            hintText: 'judul berita'),
+                                      ),
+                                      TextField(
+                                        controller: _description,
+                                        maxLines: null,
+                                        decoration: InputDecoration(
+                                          hintText: 'deskripsi',
                                         ),
-                                        TextField(
-                                          controller: _judul,
-                                          decoration: InputDecoration(
-                                              hintText: 'judul berita'),
-                                        ),
-                                        TextField(
-                                          controller: _description,
-                                          maxLines: null,
-                                          decoration: InputDecoration(
-                                            hintText: 'deskripsi',
-                                          ),
-                                        ),
-                                        TextField(
-                                          controller: _urlImage,
-                                          decoration: InputDecoration(
-                                              hintText: 'link image'),
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                      TextField(
+                                        controller: _urlImage,
+                                        decoration: InputDecoration(
+                                            hintText: 'link image'),
+                                      ),
+                                    ],
                                   ),
-                                  actions: <Widget>[
-                                    TextButton(
-                                      child: const Text('Batal'),
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                    ),
-                                    TextButton(
-                                      child: const Text('Upload'),
-                                      onPressed: () {
-                                        _editBerita();
-                                      },
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
-                          },
-                          child: Text("Edit Berita"),
-                        ),
+                                ),
+                                actions: <Widget>[
+                                  TextButton(
+                                    child: const Text('Batal'),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                  TextButton(
+                                    child: const Text('Upload'),
+                                    onPressed: () {
+                                      _editBerita();
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                        child: Text("Edit Berita"),
                       ),
-                      SizedBox(
-                        width: 20,
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Visibility(
+                      visible: _isVisible,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          _removeBerita(widget.berita.id);
+                        },
+                        child: Text("Hapus Berita"),
                       ),
-                      Visibility(
-                        visible: _isVisible,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            _removeBerita(widget.berita.id);
-                          },
-                          child: Text("Hapus Berita"),
-                        ),
-                      )
-                    ],
-                  )
-                ],
-              ),
+                    )
+                  ],
+                )
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }
