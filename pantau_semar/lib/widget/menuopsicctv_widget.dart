@@ -35,20 +35,22 @@ class _MenuOpsiCctvState extends State<MenuOpsiCctv> {
             Container(
               width: 150,
               height: 100,
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(20)),
-              child: Image.network(
-                items.first,
-                fit: BoxFit.fill,
-              ),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20), color: danger),
+              // child: Image.network(
+              //   items.first,
+              //   fit: BoxFit.fill,
+              // ),
+              child: Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Text(
+                    widget.title,
+                    style: subText.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )),
             ),
-            SizedBox(
-              height: 5,
-            ),
-            Text(
-              widget.title,
-              style: subText.copyWith(color: danger),
-            )
           ],
         ));
   }

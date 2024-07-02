@@ -264,99 +264,95 @@ class _DaftarCctv extends State<DaftaCctv> {
           );
         }),
       ),
-      body: ListView(
-        children: [
-          SizedBox(
-            height: 20,
-          ),
-          Container(
-            width: double.infinity,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
-                color: primary),
-            child: Padding(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "title2_cctvlalulintas",
-                    style: subHeading.copyWith(color: danger),
-                  ).tr(),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "title3_cctvlalulintas",
-                    style: text.copyWith(color: muted),
-                  ).tr(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: danger, borderRadius: BorderRadius.circular(16)),
-                    child: Padding(
-                      padding: EdgeInsets.all(10),
-                      child: DropdownButton(
-                        iconEnabledColor: primary,
-                        dropdownColor: danger,
-                        isExpanded: true,
+      body: SingleChildScrollView(
+        child: Container(
+          width: double.infinity,
+          height: screenSize.height,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+              color: primary),
+          child: Padding(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "title2_cctvlalulintas",
+                  style: subHeading.copyWith(color: danger),
+                ).tr(),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "title3_cctvlalulintas",
+                  style: text.copyWith(color: muted),
+                ).tr(),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      color: danger, borderRadius: BorderRadius.circular(16)),
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: DropdownButton(
+                      iconEnabledColor: primary,
+                      dropdownColor: danger,
+                      isExpanded: true,
+                      style: text.copyWith(color: primary),
+                      value: selected,
+                      hint: Text(
+                        "title4_cctvlalulintas",
                         style: text.copyWith(color: primary),
-                        value: selected,
-                        hint: Text(
-                          "title4_cctvlalulintas",
-                          style: text.copyWith(color: primary),
-                        ).tr(),
-                        items: data
-                            .map(
-                              (e) => DropdownMenuItem(
-                                value: e,
-                                child: Text(e),
-                              ),
-                            )
-                            .toList(),
-                        onChanged: (value) {
-                          print(value);
-                          setState(() {
-                            selected = value ?? "";
-                          });
-                          _getKecamatanApi(value!);
-                        },
-                      ),
+                      ).tr(),
+                      items: data
+                          .map(
+                            (e) => DropdownMenuItem(
+                              value: e,
+                              child: Text(e),
+                            ),
+                          )
+                          .toList(),
+                      onChanged: (value) {
+                        print(value);
+                        setState(() {
+                          selected = value ?? "";
+                        });
+                        _getKecamatanApi(value!);
+                      },
                     ),
                   ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  if (widget.kelurahan.isNotEmpty)
-                    Container(
-                      height: 500,
-                      width: screenSize.width,
-                      child: GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            mainAxisSpacing: 20,
-                            crossAxisSpacing: 20),
-                        itemCount: widget.kelurahan.length,
-                        itemBuilder: (BuildContext context, index) {
-                          return MenuOpsiCctv(
-                            title: widget.kelurahan[index].name,
-                            onTap: () {
-                              _getCctvs(widget.kelurahan[index].id, 101);
-                            },
-                          );
-                        },
-                      ),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                if (widget.kelurahan.isNotEmpty)
+                  Container(
+                    height: 500,
+                    width: screenSize.width,
+                    child: GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 20,
+                          crossAxisSpacing: 20),
+                      itemCount: widget.kelurahan.length,
+                      itemBuilder: (BuildContext context, index) {
+                        return MenuOpsiCctv(
+                          title: widget.kelurahan[index].name,
+                          onTap: () {
+                            _getCctvs(widget.kelurahan[index].id, 101);
+                          },
+                        );
+                      },
                     ),
-                  SizedBox(
-                    height: 10,
                   ),
-                ],
-              ),
+                SizedBox(
+                  height: 10,
+                ),
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }

@@ -52,21 +52,21 @@ class _SettingState extends State<Setting> {
                   Center(
                     child: Column(
                       children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.25,
-                          height: MediaQuery.of(context).size.width * 0.25,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                                image: AssetImage("assets/guest.png")),
-                            border: Border.all(
-                              color: Colors.black87, // Warna border
-                              width: 1.0, // Lebar border
-                            ),
-                          ),
-                        ),
+                        // Container(
+                        //   width: MediaQuery.of(context).size.width * 0.25,
+                        //   height: MediaQuery.of(context).size.width * 0.25,
+                        //   decoration: BoxDecoration(
+                        //     shape: BoxShape.circle,
+                        //     image: DecorationImage(
+                        //         image: AssetImage("assets/guest.png")),
+                        //     border: Border.all(
+                        //       color: Colors.black87, // Warna border
+                        //       width: 1.0, // Lebar border
+                        //     ),
+                        //   ),
+                        // ),
                         SizedBox(
-                          height: 10,
+                          height: MediaQuery.of(context).size.width * 0.2,
                         ),
                         Text(
                           widget.dataUser.username,

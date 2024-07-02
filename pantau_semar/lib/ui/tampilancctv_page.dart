@@ -9,7 +9,8 @@ import 'package:pantau_semar/widget/vidioplayer_widget.dart';
 class TampilanCctv extends StatefulWidget {
   final Data dataUser;
   final CctvLinks cctvLinks;
-  const TampilanCctv({super.key, required this.dataUser, required this.cctvLinks});
+  const TampilanCctv(
+      {super.key, required this.dataUser, required this.cctvLinks});
 
   @override
   State<TampilanCctv> createState() => _TampilanCctvState();
@@ -21,12 +22,15 @@ class _TampilanCctvState extends State<TampilanCctv> {
     Size screenSize = MediaQuery.of(context).size;
     print(widget.cctvLinks.link.toString());
     return Scaffold(
-      drawer: MenuSamping(dataUser: widget.dataUser,),
+      drawer: MenuSamping(
+        dataUser: widget.dataUser,
+      ),
       backgroundColor: danger,
       appBar: AppBar(
         backgroundColor: danger,
         centerTitle: true,
-        title: Text("title1_tampilan", style: heading.copyWith(color: primary)).tr(),
+        title: Text("title1_tampilan", style: heading.copyWith(color: primary))
+            .tr(),
         leading: Builder(builder: (context) {
           return IconButton(
             onPressed: () {
@@ -39,26 +43,25 @@ class _TampilanCctvState extends State<TampilanCctv> {
           );
         }),
       ),
-      body: ListView(
-        children: [
-          SizedBox(
-            height: 20,
-          ),
-          Container(
-            height: screenSize.height / 1.16,
-            width: screenSize.width,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
-                color: primary),
-            child: Padding(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [VideoPlayerScreen(vidioURL: widget.cctvLinks.link,)],
-              ),
+      body: SingleChildScrollView(
+        child: Container(
+          height: screenSize.height,
+          width: double.infinity,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+              color: primary),
+          child: Padding(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                VideoPlayerScreen(
+                  vidioURL: widget.cctvLinks.link,
+                )
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }

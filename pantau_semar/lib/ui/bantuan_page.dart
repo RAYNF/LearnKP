@@ -23,6 +23,16 @@ class _BantuanState extends State<Bantuan> {
       await launch('tel:$phoneNumber');
     }
 
+    Future<void> sendEmail(String email) async {
+      await launch('mailto:$email');
+    }
+
+    Future<void> openUrl(String url,
+        {bool forceWebview = false, bool enableJavaScript = false}) async {
+      await launch(url,
+          forceWebView: forceWebview, enableJavaScript: enableJavaScript);
+    }
+
     return Scaffold(
       drawer: MenuSamping(
         dataUser: widget.dataUser,
@@ -60,7 +70,9 @@ class _BantuanState extends State<Bantuan> {
                 ButtonBantuan(
                     icon: Icons.email,
                     text: "title2_bantuan".tr(),
-                    onTap: () {}),
+                    onTap: () async {
+                      sendEmail("semarangpemkot@semarangkota.go.id");
+                    }),
                 SizedBox(
                   height: 20,
                 ),
@@ -74,7 +86,15 @@ class _BantuanState extends State<Bantuan> {
                   height: 20,
                 ),
                 ButtonBantuan(
-                    icon: Icons.map, text: "title4_bantuan".tr(), onTap: () {}),
+                    icon: Icons.map,
+                    text: "title4_bantuan".tr(),
+                    onTap: () async {
+                      await openUrl(
+                        'https://www.google.com/maps/place/Dinas+Komunikasi,+Informatika,+Statistik+dan+Persandian+Kota+Semarang/@-6.9832533,110.4110619,17z/data=!3m1!4b1!4m6!3m5!1s0x2e708bb22883d313:0xc7b865c010d779de!8m2!3d-6.9832586!4d110.4136368!16s%2Fg%2F11fnb0dxcr?entry=ttu',
+                        forceWebview: true,
+                        enableJavaScript: true,
+                      );
+                    }),
               ],
             ),
           ),
