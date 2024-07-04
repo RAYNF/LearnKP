@@ -142,12 +142,20 @@ class _BerandaState extends State<Beranda> {
     bool _isVisible = widget.dataUser.level == "admin";
 
     final List<String> imgList = [
-      'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
-      'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
-      'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
-      'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
-      'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
-      'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
+      //image network
+      // 'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
+      // 'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
+      // 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
+      // 'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
+      // 'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
+      // 'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
+
+      //image local
+      'assets/image_slider1.png',
+      'assets/image_slider2.png',
+      'assets/image_slider3.png',
+      'assets/image_slider4.png',
+      'assets/image_slider5.png',
     ];
     Size screenSize = MediaQuery.of(context).size;
 
@@ -159,7 +167,7 @@ class _BerandaState extends State<Beranda> {
                     borderRadius: BorderRadius.all(Radius.circular(16)),
                     child: Stack(
                       children: <Widget>[
-                        Image.network(item, fit: BoxFit.cover, width: 1000.0),
+                        Image.asset(item, fit: BoxFit.cover, width: 1000.0),
                         Positioned(
                           bottom: 0.0,
                           left: 0.0,
@@ -373,7 +381,7 @@ class _BerandaState extends State<Beranda> {
                                             OpsiPopupMenu(
                                               text: "popupmenu2_beranda".tr(),
                                               onTap: () {
-                                                 _getLocation(101);
+                                                _getLocation(101);
                                               },
                                             )
                                           ],
@@ -512,7 +520,7 @@ class _BerandaState extends State<Beranda> {
                                             OpsiPopupMenu(
                                               text: "popupmenu2_beranda".tr(),
                                               onTap: () {
-                                               _getLocation(104);
+                                                _getLocation(104);
                                               },
                                             )
                                           ],
@@ -558,7 +566,7 @@ class _BerandaState extends State<Beranda> {
                                             OpsiPopupMenu(
                                               text: "popupmenu2_beranda".tr(),
                                               onTap: () {
-                                               _getLocation(105);
+                                                _getLocation(105);
                                               },
                                             )
                                           ],
@@ -696,7 +704,7 @@ class _BerandaState extends State<Beranda> {
                                             OpsiPopupMenu(
                                               text: "popupmenu2_beranda".tr(),
                                               onTap: () {
-                                               _getLocation(108);
+                                                _getLocation(108);
                                               },
                                             )
                                           ],
@@ -795,7 +803,8 @@ class _BerandaState extends State<Beranda> {
                                 barrierDismissible: false,
                                 builder: (BuildContext context) {
                                   return AlertDialog(
-                                    title: const Text('alertdialog6_beranda').tr(),
+                                    title:
+                                        const Text('alertdialog6_beranda').tr(),
                                     content: Container(
                                       width: screenSize.width,
                                       child: Column(
@@ -808,35 +817,44 @@ class _BerandaState extends State<Beranda> {
                                             readOnly: true,
                                             enabled: false,
                                             decoration: InputDecoration(
-                                                hintText: 'alertdialog7_beranda'.tr()),
+                                                hintText: 'alertdialog7_beranda'
+                                                    .tr()),
                                           ),
                                           TextField(
                                             controller: _judul,
                                             decoration: InputDecoration(
-                                                hintText: 'alertdialog8_beranda'.tr()),
+                                                hintText: 'alertdialog8_beranda'
+                                                    .tr()),
                                           ),
                                           TextField(
                                             controller: _description,
                                             decoration: InputDecoration(
-                                                hintText: 'alertdialog9_beranda'.tr()),
+                                                hintText: 'alertdialog9_beranda'
+                                                    .tr()),
                                           ),
                                           TextField(
                                             controller: _urlImage,
                                             decoration: InputDecoration(
-                                                hintText: 'alertdialog10_beranda'.tr()),
+                                                hintText:
+                                                    'alertdialog10_beranda'
+                                                        .tr()),
                                           ),
                                         ],
                                       ),
                                     ),
                                     actions: <Widget>[
                                       TextButton(
-                                        child: const Text('alertdialog11_beranda').tr(),
+                                        child:
+                                            const Text('alertdialog11_beranda')
+                                                .tr(),
                                         onPressed: () {
                                           Navigator.of(context).pop();
                                         },
                                       ),
                                       TextButton(
-                                        child: const Text('alertdialog12_beranda').tr(),
+                                        child:
+                                            const Text('alertdialog12_beranda')
+                                                .tr(),
                                         onPressed: () {
                                           _tambahBerita();
                                         },
@@ -851,8 +869,7 @@ class _BerandaState extends State<Beranda> {
                                 builder: (BuildContext context) {
                                   return AlertDialog(
                                     title: Text("alertdialog13_beranda").tr(),
-                                    content: Text(
-                                        "alertdialog14_beranda").tr(),
+                                    content: Text("alertdialog14_beranda").tr(),
                                     actions: <Widget>[
                                       TextButton(
                                         onPressed: () {
