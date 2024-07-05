@@ -10,7 +10,6 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
-  static const routeName = '/splash-screen';
   const SplashScreen({super.key});
 
   @override
