@@ -8,6 +8,7 @@ $password = $_POST['password'];
 $queryResult = $connect->query("SELECT * FROM users WHERE username='".$username."' and password='".$password."'");
 
 $result = array();
+
 if ($queryResult->num_rows > 0) {
     $userData = $queryResult->fetch_assoc();
     $response = array(
